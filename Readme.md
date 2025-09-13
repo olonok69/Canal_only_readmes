@@ -10,20 +10,21 @@ A comprehensive collection of AI/ML projects showcasing cutting-edge implementat
 | **Medical AI** | DICOM Anonymization | DICOM medical image anonymization using Microsoft Presidio | [📖 English](DICOM_FHIR/Readme_en.md) |
 | **Google AI** | Video Summarizer | AI-powered video transcription and summarization with Gemini Pro | [📖 English](Google_AI/Video_summarizer/Readme.md) |
 | **Google AI** | Content Caching | Google AI Context Caching optimization with Gemini API | [📖 English](Google_AI/content_caching/Readme_en.md) |
-| **Azure AI** | Azure AI Foundry Agent | Python application demonstrating Azure AI Foundry Agent Service for automated wheat production forecasting with comprehensive markdown reporting | [📖 English](Azure/AI_Foundry @ cef3241/Readme.md) |
+| **Azure AI** | Azure AI Foundry Agent | Python application demonstrating Azure AI Foundry Agent Service for specialized agricultural data analysis with automated wheat production forecasting capabilities and comprehensive markdown report generation | [📖 English](Azure/AI_Foundry/Readme.md) |
+| **Azure Multi-Agent** | Multi-Agent Solution | Enterprise-grade connected agents system for complex ticket processing with specialized sub-agents for triage, technical analysis, and customer communication using Azure AI Foundry | [📖 English](Azure/multi-agent-solution/readme.md) |
+| **NVIDIA GPU Computing** | Feature Engineering with GPU Acceleration | High-performance feature engineering for tabular data using RAPIDS cuDF and cuML with 100x+ speedup over traditional CPU-based approaches | [📖 English](Nvidia/Feature-Engineering-for-Tabular-Data-With-GPU-Acceleration/Readme.md) |
 | **Distributed OCR** | NATS OCR System | Distributed OCR system with NATS messaging and RapidOCR | [📖 English](Nats/Readme_en.md) |
 | **Financial RAG** | Financial Analysis | RAG system for fundamental financial analysis with real-time data | [📖 English](RAG/Intro/Readme.md) |
 | **Trading Strategy** | Bollinger RSI Strategy | Trading strategy combining Bollinger Bands and RSI crossover | [📖 English](RAG/bollinger%20z-score%20rsi%20startegy/Readme.md) |
 | **Trading Analysis** | Bollinger Z-Score | Financial trading analysis with Bollinger Bands and Z-Score | [📖 English](RAG/bollinger%20z-score/Readme.md) |
-| **Trading Strategy** | Bollinger Fibonacci | Advanced strategy combining Bollinger Bands and Fibonacci retracements | [📖 English](RAG/bollinger-fibonacci_retracements/Readme.md) |
-| **Trading Strategy** | Connors RSI Strategy | Advanced momentum oscillator with LangGraph integration for enhanced mean reversion signals | [📖 English](RAG/connor-rsi/Readme.md) |
-| **Trading Strategy** | MACD Donchian | Combined MACD and Donchian Channels trading strategy | [📖 English](RAG/macd_downchain%20startegy/Readme.md) |
-| **Trading Strategy** | Dual Moving Average Crossover | Classic trend-following strategy with AI-powered analysis, featuring Golden Cross and Death Cross signals enhanced with intelligent scoring and market scanning capabilities | [📖 English](RAG/Dual%20Moving%20Average%20Crossover%20Strategy/README.md) |
-| **Graph Database** | Neo4j RAG System | Natural language interface for Neo4j graph databases | [📖 English](RAG/speak%20with%20your%20Graph%20Database/Readme.md) |
-| **MCP Integration** | Financial Markets Analysis Tool | Comprehensive Model Context Protocol (MCP) server providing advanced technical analysis tools for financial markets with Claude Desktop integration | [📖 English](mcp/mcp_financial_markets_analysis_tool @ b510271/readme.md) |
-| **MCP Integration** | MCP Servers | Model Context Protocol servers for Claude AI integration | [📖 English](mcp/mcp_server/readme_en.md) |
-| **MCP Development** | Python MCP Client/Server | Python-based MCP financial analysis server with SSE transport | [📖 English](mcp/python_client_server/README.md) |
-| **MCP Client** | Multi-Language MCP Client | Comprehensive MCP client with financial analysis tools and multi-server support | [📖 English](mcp/mcp-client/README.md) |
+| **Trading Analysis** | Bollinger-Fibonacci Strategy | Advanced strategy merging volatility analysis (Bollinger Bands) with Fibonacci retracement levels for precise entry/exit points | [📖 English](RAG/bollinger%20fibonacci%20strategy/Readme.md) |
+| **Trading Strategy** | Connors RSI Strategy | Enhanced momentum oscillator with LangGraph integration for advanced mean reversion signals | [📖 English](RAG/connors%20rsi%20startegy/Readme.md) |
+| **Trading Strategy** | MACD-Donchian Strategy | Momentum and breakout combination using MACD signals with Donchian Channel analysis | [📖 English](RAG/MACD_Donchian/Readme.md) |
+| **Trading Strategy** | Dual Moving Average Crossover | Classic institutional strategy featuring Golden Cross/Death Cross signals with AI-powered analysis and scoring | [📖 English](RAG/bollinger%20RAG/Dual%20Moving%20Average%20Crossover%20Strategy/README.md) |
+| **Neo4j RAG** | Neo4j RAG System | Natural language interface for graph databases enabling conversational data exploration and complex relationship analysis | [📖 English](RAG/Neo4j_RAG/Readme.md) |
+| **MCP Client** | Financial Analysis MCP Client | Comprehensive MCP client with financial analysis tools and multi-server support | [📖 English](mcp/mcp-client/README.md) |
+| **MCP Platform** | Claude AI MCP Custom Connector | Multi-tenant MCP server platform with SQL database integration, Docker deployment, and production-ready authentication | [📖 English](mcp/Claude_ai_mcp_custom_connector/README.md) |
+| **MCP Tools** | Neo4j Tools MCP Copilot | Professional Neo4j report generator for event analytics with comprehensive visitor tracking, session analysis, and cross-event intelligence | [📖 English](mcp/tools-mcp-neo4j-tools-copilot/README.md) |
 | **MCP Chatbot** | Chainlit MCP Bot | Conversational AI chatbot integrating Neo4j and HubSpot through MCP protocol | [📖 English](mcp/chainlit_bot/README.md) |
 | **MCP Platform** | Streamlit CRM & Graph Platform | Full-stack AI-powered platform integrating Neo4j, HubSpot CRM, and Yahoo Finance with enterprise authentication | [📖 English](mcp/Streamlit_chatbot/README.md) |
 | **MCP Development** | Build MCP with LLMs | Comprehensive guide to accelerate MCP server development using language models like Claude, with practical PDF document processor example | [📖 English](mcp/Build%20MCP%20with%20LLMs/README.md) |
@@ -46,6 +47,10 @@ This repository represents a comprehensive exploration of modern AI/ML technolog
 
 ### ☁️ Azure AI Cloud Services
 - **Azure AI Foundry Agent**: Enterprise-grade Python application showcasing Azure AI Foundry Agent Service integration for specialized agricultural data analysis with automated wheat production forecasting capabilities and comprehensive markdown report generation.
+- **Multi-Agent Solution**: Advanced multi-agent system demonstrating connected agents architecture for complex business process automation, featuring specialized agents for ticket triage, technical analysis, and customer communication with scalable parallel processing capabilities.
+
+### 🚀 NVIDIA GPU Computing
+- **GPU-Accelerated Feature Engineering**: High-performance machine learning pipeline using RAPIDS ecosystem (cuDF, cuML) for tabular data processing. Demonstrates 100x+ speedup over traditional CPU approaches with advanced categorical encoding techniques, XGBoost GPU training, and comprehensive performance benchmarking on large-scale datasets.
 
 ### 🔍 Distributed Systems & OCR
 - **NATS OCR System**: Production-ready distributed optical character recognition system utilizing NATS messaging for scalable document processing in microservice architectures.
@@ -67,6 +72,7 @@ This repository features an extensive collection of sophisticated trading strate
 
 ### 🕸️ Graph Database & Knowledge Systems
 - **Neo4j RAG System**: Natural language interface for graph databases enabling conversational data exploration and complex relationship analysis
+- **Neo4j Analytics Tools**: Professional event analytics and visitor tracking systems with comprehensive reporting capabilities
 
 ### 🤖 Model Context Protocol (MCP) Ecosystem
 Comprehensive MCP implementations demonstrating cutting-edge AI integration patterns:
@@ -77,66 +83,48 @@ Comprehensive MCP implementations demonstrating cutting-edge AI integration patt
 - **Multi-Language Support**: TypeScript and Python server implementations with unified client interface
 
 #### **Financial Markets Analysis**
-- **Advanced Technical Analysis**: Comprehensive MCP server providing five distinct trading strategies with performance backtesting
-- **Market Scanner**: Multi-symbol analysis with real-time signal generation and risk assessment
-- **Claude Desktop Integration**: Seamless integration with Claude Desktop for conversational financial analysis
-- **Performance Metrics**: Detailed backtesting with Sharpe ratios, drawdown analysis, and comparative performance evaluation
+- **Advanced Technical Analysis**: Comprehensive MCP server providing multiple trading strategies with performance backtesting
+- **Real-time Market Data**: Integration with Yahoo Finance and other financial data providers
+- **Risk Management Tools**: Portfolio analysis and risk assessment capabilities
 
-#### **Advanced Applications**
-- **Enterprise CRM Platform**: Full-stack platform integrating Neo4j, HubSpot CRM, and Yahoo Finance with enterprise authentication
-- **AI Search Platform**: Comprehensive search integration with Google and Perplexity AI through MCP protocols
-- **Conversational AI Bots**: Chainlit-based chatbots with multi-service integration capabilities
+#### **Enterprise CRM Integration**
+- **HubSpot Integration**: Complete CRM integration with 25+ tools covering all HubSpot API capabilities
+- **Customer Analytics**: Advanced customer relationship analysis and management
+- **Workflow Automation**: Business process automation and optimization
 
-#### **Development Tools**
-- **LLM-Accelerated Development**: Revolutionary approach using language models to accelerate MCP server development from days to hours
-- **Claude Desktop Integration**: Complete setup guides and configuration examples for seamless AI assistant integration
+#### **Graph Database Integration**
+- **Neo4j MCP Tools**: Professional graph database integration with schema discovery and query validation
+- **Conference Analytics**: Specialized tools for event management and visitor analytics
+- **Relationship Analysis**: Advanced graph-based relationship mapping and analysis
 
-## 🚀 Key Features & Innovations
+#### **Development Acceleration**
+- **LLM-Assisted Development**: Comprehensive guide for accelerating MCP server development using language models
+- **Custom Connector Framework**: Multi-tenant MCP server platform with enterprise-grade security
+- **Production Deployment**: Docker-based deployment with SSL termination and load balancing
 
-### 🔥 Advanced AI Integration Patterns
-- **Local AI Processing**: Completely privacy-preserving video translation with zero cloud dependencies
-- **Multi-Modal AI Processing**: Integration of speech recognition, text translation, and speech synthesis
-- **Retrieval-Augmented Generation (RAG)**: Multiple implementations showcasing different approaches to combining retrieval with generation
-- **Multi-Modal AI**: Integration of text, image, and video processing capabilities
-- **Agent-Based Systems**: Intelligent agents that can discover and use tools dynamically
-- **Model Context Protocol**: Standardized AI-tool integration across multiple languages and platforms
-- **Conversational AI**: Interactive chatbot interfaces for natural language data exploration
-- **Enterprise Web Applications**: Production-ready web platforms with comprehensive authentication and multi-user support
-- **LLM-Accelerated Development**: Using language models to significantly accelerate MCP server development and reduce boilerplate code
+## 🛠️ Technology Stack
 
-### 📊 Sophisticated Financial Analysis
-- **Real-Time Market Data**: Live financial data integration with intelligent caching and processing
-- **Multi-Indicator Strategies**: Complex trading strategies combining 3-4 technical indicators
-- **Advanced Momentum Analysis**: Connors RSI implementation with component analysis and AI-powered recommendations
-- **Scoring Systems**: Standardized scoring (-100 to +100) for consistent signal interpretation
-- **Real-Time Processing**: Live market data integration with intelligent analysis
-- **Cross-Platform Integration**: Financial tools accessible via multiple transport mechanisms
-- **Enterprise Financial Platform**: Full-stack financial analysis with CRM integration and graph database connectivity
-
-### 🏗️ Production-Ready Architecture
-- **Microservices Design**: Distributed systems with clear separation of concerns
-- **Security Best Practices**: Proper authentication, authorization, and data protection
-- **Scalable Infrastructure**: Cloud-native designs with containerization support
-- **Multi-Transport Support**: STDIO, SSE, and HTTP transport mechanisms for flexible deployment
-- **Conversational Interfaces**: User-friendly chat interfaces for complex data interactions
-- **Enterprise Authentication**: Advanced user management with bcrypt encryption, session management, and SSL/TLS support
-- **LLM-Assisted Development**: Accelerated development workflows using language models to generate MCP servers, reducing development time from days to hours
-
-### 🔧 Developer Experience
-- **Comprehensive Documentation**: Detailed READMEs with setup instructions and examples
-- **Interactive Notebooks**: Jupyter notebooks for learning and experimentation
-- **Type Safety**: Python type hints and schema validation throughout the codebase
-- **Tool Discovery**: Automatic discovery and orchestration of available tools and capabilities
-
-## 💻 Technology Stack
-
-### **Core AI/ML Frameworks**
+### **AI/ML Frameworks**
 ```yaml
-OpenAI Ecosystem: Whisper, GPT models, function calling
-Google AI: Gemini Pro, Vertex AI, GenerativeAI embeddings
-Azure AI: AI Foundry Agent Service, service principal authentication
-Anthropic: Claude integration via Model Context Protocol
-HuggingFace: Helsinki-NLP transformers, model management
+OpenAI: Whisper transcription, GPT integration
+Google AI: Gemini Pro for content analysis
+Azure AI: Foundry agents, multi-agent orchestration
+Anthropic: Claude integration via MCP protocol
+NVIDIA RAPIDS: GPU-accelerated ML with cuDF/cuML
+```
+
+### **AI Integration & Orchestration**
+```yaml
+LangChain: Agent workflows and tool integration
+LangGraph: State management and complex workflows  
+MCP Protocol: Standardized AI tool integration
+FastMCP: Rapid MCP server development framework
+```
+
+### **Specialized ML Libraries**
+```yaml
+Computer Vision: OpenCV for image processing
+NLP: Transformers, model management
 Microsoft: Edge TTS synthesis, Presidio anonymization
 ```
 
@@ -155,6 +143,8 @@ Graph Databases: Neo4j for relationship modeling and analysis
 Time Series: Specialized financial data processing and analysis
 Message Queues: NATS JetStream for distributed processing
 Cloud Storage: Google Cloud Storage for scalable data management
+GPU Computing: NVIDIA RAPIDS ecosystem for accelerated processing
+SQL Databases: MSSQL Server integration with multi-tenant architecture
 ```
 
 #### **MCP Development**
@@ -170,6 +160,8 @@ Development Acceleration: LLM-assisted development
 - **UV Package Manager**: Fast Python package management
 - **Jupyter Notebooks**: Interactive development and documentation
 - **Environment Management**: Secure configuration with environment variables
+- **Docker**: Containerized deployment and scaling
+- **Git**: Version control with automated CI/CD pipelines
 
 ## 🎯 Use Cases & Applications
 
@@ -178,6 +170,7 @@ Development Acceleration: LLM-assisted development
 - Customer relationship management with graph-based insights
 - Real-time data processing and automated reporting
 - Multi-modal content analysis and summarization
+- Conference and event analytics with visitor tracking
 
 ### **Healthcare & Privacy**
 - Medical image anonymization for research compliance
@@ -189,12 +182,20 @@ Development Acceleration: LLM-assisted development
 - Microservices architecture with intelligent orchestration
 - Automated testing and deployment workflows
 - Cross-platform tool integration
+- GPU-accelerated machine learning pipelines
 
 ### **Enterprise Integration**
 - Multi-system data integration and analysis
 - Conversational interfaces for complex business processes
 - Automated workflow orchestration
 - Real-time monitoring and alerting systems
+- CRM and customer analytics platforms
+
+### **High-Performance Computing**
+- GPU-accelerated feature engineering and model training
+- Large-scale data processing with distributed systems
+- Performance optimization and benchmarking
+- Scalable machine learning infrastructure
 
 ## 📚 Getting Started
 
@@ -204,6 +205,7 @@ Each project includes detailed setup instructions and examples. Key prerequisite
 - **API Keys**: Various projects require API access (OpenAI, Google AI, Financial APIs)
 - **Docker** for containerized deployments
 - **Claude Desktop** for MCP integrations
+- **NVIDIA GPU** for RAPIDS-based projects (optional but recommended)
 
 ### Quick Start Examples
 
@@ -211,6 +213,8 @@ Each project includes detailed setup instructions and examples. Key prerequisite
 2. **AI Integration**: Try the Claude Desktop MCP setup for AI-powered workflows  
 3. **Enterprise Platform**: Deploy the Streamlit CRM platform for full-stack capabilities
 4. **Video Processing**: Use the AI Video Translator for local multimedia processing
+5. **GPU Computing**: Explore NVIDIA RAPIDS feature engineering for high-performance ML
+6. **Multi-Agent Systems**: Test Azure AI Foundry multi-agent solution for complex automation
 
 ## 🤝 Contributing & Development
 
@@ -220,8 +224,10 @@ This repository welcomes contributions across all domains. Each project maintain
 - **Security**: Proper credential management and data protection
 - **Performance**: Optimization for production workloads
 - **Usability**: Clear interfaces and comprehensive documentation
+- **GPU Optimization**: Efficient memory usage and performance tuning
+- **Multi-Agent Architecture**: Best practices for agent coordination and communication
 
-## 📄 License & Usage
+## 📄 License and Usage
 
 Individual projects may have specific licensing terms. Please review each project's documentation for:
 
@@ -229,6 +235,7 @@ Individual projects may have specific licensing terms. Please review each projec
 - **API Terms**: Third-party service terms and conditions
 - **Financial Disclaimer**: Investment and trading risk warnings
 - **Medical Disclaimer**: Healthcare application limitations
+- **GPU Computing**: Hardware requirements and compatibility
 
 ---
 
