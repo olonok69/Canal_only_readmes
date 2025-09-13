@@ -17,11 +17,11 @@ A comprehensive collection of AI/ML projects showcasing cutting-edge implementat
 | **Financial RAG** | Financial Analysis | RAG system for fundamental financial analysis with real-time data | [📖 English](RAG/Intro/Readme.md) |
 | **Trading Strategy** | Bollinger RSI Strategy | Trading strategy combining Bollinger Bands and RSI crossover | [📖 English](RAG/bollinger%20z-score%20rsi%20startegy/Readme.md) |
 | **Trading Analysis** | Bollinger Z-Score | Financial trading analysis with Bollinger Bands and Z-Score | [📖 English](RAG/bollinger%20z-score/Readme.md) |
-| **Trading Analysis** | Bollinger-Fibonacci Strategy | Advanced strategy merging volatility analysis (Bollinger Bands) with Fibonacci retracement levels for precise entry/exit points | [📖 English](RAG/bollinger%20fibonacci%20strategy/Readme.md) |
-| **Trading Strategy** | Connors RSI Strategy | Enhanced momentum oscillator with LangGraph integration for advanced mean reversion signals | [📖 English](RAG/connors%20rsi%20startegy/Readme.md) |
-| **Trading Strategy** | MACD-Donchian Strategy | Momentum and breakout combination using MACD signals with Donchian Channel analysis | [📖 English](RAG/MACD_Donchian/Readme.md) |
-| **Trading Strategy** | Dual Moving Average Crossover | Classic institutional strategy featuring Golden Cross/Death Cross signals with AI-powered analysis and scoring | [📖 English](RAG/bollinger%20RAG/Dual%20Moving%20Average%20Crossover%20Strategy/README.md) |
-| **Neo4j RAG** | Neo4j RAG System | Natural language interface for graph databases enabling conversational data exploration and complex relationship analysis | [📖 English](RAG/Neo4j_RAG/Readme.md) |
+| **Trading Analysis** | Bollinger-Fibonacci Strategy | Advanced strategy merging volatility analysis (Bollinger Bands) with Fibonacci retracement levels for precise entry/exit points | [📖 English](RAG/bollinger-fibonacci_retracements/Readme.md) |
+| **Trading Strategy** | Connors RSI Strategy | Enhanced momentum oscillator with LangGraph integration for advanced mean reversion signals | [📖 English](RAG/connor-rsi/Readme.md) |
+| **Trading Strategy** | MACD-Donchian Strategy | Momentum and breakout combination using MACD signals with Donchian Channel analysis | [📖 English](RAG/macd_downchain%20startegy/Readme.md) |
+| **Trading Strategy** | Dual Moving Average Crossover | Classic institutional strategy featuring Golden Cross/Death Cross signals with AI-powered analysis and scoring | [📖 English](RAG/Dual%20Moving%20Average%20Crossover%20Strategy/README.md) |
+| **Neo4j RAG** | Neo4j RAG System | Natural language interface for graph databases enabling conversational data exploration and complex relationship analysis | [📖 English](RAG/speak%20with%20your%20Graph%20Database/Readme.md) |
 | **MCP Client** | Financial Analysis MCP Client | Comprehensive MCP client with financial analysis tools and multi-server support | [📖 English](mcp/mcp-client/README.md) |
 | **MCP Platform** | Claude AI MCP Custom Connector | Multi-tenant MCP server platform with SQL database integration, Docker deployment, and production-ready authentication | [📖 English](mcp/Claude_ai_mcp_custom_connector/readme.md) |
 | **MCP Tools** | Neo4j Tools MCP Copilot | Professional Neo4j report generator for event analytics with comprehensive visitor tracking, session analysis, and cross-event intelligence | [📖 English](mcp/tools-mcp-neo4j-tools-copilot/README.md) |
@@ -30,6 +30,10 @@ A comprehensive collection of AI/ML projects showcasing cutting-edge implementat
 | **MCP Development** | Build MCP with LLMs | Comprehensive guide to accelerate MCP server development using language models like Claude, with practical PDF document processor example | [📖 English](mcp/Build%20MCP%20with%20LLMs/README.md) |
 | **MCP Search Platform** | AI-Powered Search MCP Integration Platform | Comprehensive full-stack application providing AI-powered interactions with Google Search and Perplexity AI through MCP servers with optional HTTPS security, user authentication, and advanced caching | [📖 English](mcp/Motor_busqueda_AI_google_perplexity/Readme.md) |
 | **Claude Desktop** | Claude Desktop Setup Guide | Complete guide for Claude Desktop installation and MCP configuration | [📖 English](mcp/claude_desktop/Readme.md) |
+
+| **MCP Client** | MCP Python Client/Server | Python reference implementation for MCP client/server (STDIO/SSE/HTTP) with tool examples and end-to-end flow | [📖 English](mcp/python_client_server/README.md) |
+| **MCP Platform** | MCP Server | Production-ready base MCP server with transport support (STDIO/SSE/HTTP) and authentication | [📖 English](mcp/mcp_server/readme_en.md) |
+| **MCP Tools** | Financial Markets Analysis MCP | MCP tool for technical/market analysis with strategies and backtesting | [📖 English](mcp/mcp_financial_markets_analysis_tool/readme_en.md) |
 
 ## 🌟 Repository Overview
 
