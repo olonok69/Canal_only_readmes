@@ -30,7 +30,6 @@ Una colección integral de proyectos de IA/ML que muestra implementaciones de va
 | **Desarrollo MCP** | Construir MCP con LLMs | Guía integral para acelerar el desarrollo de servidores MCP usando modelos de lenguaje como Claude, con ejemplo práctico de procesador de documentos PDF | [📖 Español](mcp/Build%20MCP%20with%20LLMs/README_es.md) |
 | **Plataforma Búsqueda MCP** | Plataforma de Integración MCP de Búsqueda Potenciada por IA | Aplicación full-stack integral que proporciona interacciones potenciadas por IA con Google Search y Perplexity AI a través de servidores MCP con seguridad HTTPS opcional, autenticación de usuarios y caché avanzado | [📖 Español](mcp/Motor_busqueda_AI_google_perplexity/Readme_es.md) |
 | **Claude Desktop** | Guía de Configuración Claude Desktop | Guía completa para instalación de Claude Desktop y configuración MCP | [📖 Español](mcp/claude_desktop/Readme_es.md) |
-
 | **Cliente MCP** | Cliente/Servidor Python MCP | Implementación de referencia Python para cliente/servidor MCP (STDIO/SSE/HTTP) con ejemplos de herramientas y flujo end‑to‑end | [📖 Español](mcp/python_client_server/README_es.md) |
 | **Plataforma MCP** | Servidor MCP | Servidor MCP base listo para producción con soporte de transporte (STDIO/SSE/HTTP) y autenticación | [📖 Español](mcp/mcp_server/readme_es.md) |
 | **Herramientas MCP** | Análisis de Mercados Financieros MCP | Herramienta MCP para análisis técnico y de mercados con estrategias y backtesting | [📖 Español](mcp/mcp_financial_markets_analysis_tool/readme_es.md) |
@@ -245,32 +244,3 @@ Los proyectos individuales pueden tener términos de licencia específicos. Por 
 
 **Este repositorio representa la convergencia de la experiencia tradicional del dominio con capacidades de IA de vanguardia, demostrando cómo los sistemas modernos de IA pueden integrarse en aplicaciones del mundo real mientras mantienen estándares de calidad de producción y mejores prácticas.**
 
-## Resumen detallado de proyectos
-
-### Solución Multi-Agente de Azure (Triaje de tickets)
-- Arquitectura: Sistema multi-agent en Azure AI Foundry con un Triage Agent (coordinador) que delega en tres connected agents especializados: Priority (urgencia), Team (asignación) y Effort (estimación).
-- Comunicación: Orquestación mediante function calling entre agents registrados como `ConnectedAgentTool`. Natural Language Routing, invocación automática de functions y compilación de respuestas gestionadas por Azure AI Foundry. Limitaciones: los connected agents no pueden llamar local functions y el citation passing no está garantizado.
-- Características: Composición modular, sin custom orchestration, especialización escalable, extensible (p. ej., Research, Notification, Analytics, Translation agents).
-- Seguridad: Autenticación con Azure Identity, service principal con least privilege, credenciales vía environment variables.
-- Operación: Python 3.8+, deployment de modelo en Azure AI Foundry, configuración `.env`. Entry point `main.py`. Apto para evaluaciones paralelas y delegación costo-eficiente.
-
-### Feature Engineering NVIDIA con Aceleración GPU (RAPIDS)
-- Alcance: Tres notebooks sobre Target Encoding, Count Encoding y entrenamiento de modelos (XGBoost, SVM) acelerados con RAPIDS cuDF/cuML. Enfoque en features categóricos de alta cardinalidad para ML tabular.
-- Técnicas: Smoothing Bayesiano para Target Encoding, out-of-fold encoding para evitar leakage, Count Encoding por grupos, TF-IDF para pipelines SVM y soporte categórico de XGBoost.
-- Rendimiento: Speedups empíricos de 10–100x vs CPU (ej.: Target Encoding ~20x, Count Encoding ~15x, entrenamiento SVM 100x+). Configuración GPU con XGBoost habilitado para CUDA y cuML.
-- Stack: RAPIDS cuDF/cuML, XGBoost GPU, interoperabilidad con scikit-learn. Imagen Docker disponible y entorno Conda recomendado para desarrollo local.
-- Datos: Diseñado para datasets tabulares de gran escala (p. ej., Amazon Product Reviews). Énfasis en validación out-of-fold, prevención de leakage y combinación de codificaciones para mejor AUC.
-
-### Conector Personalizado MCP Claude AI (MSSQL MCP Server)
-- Propósito: Servidor MCP de grado producción que expone acceso seguro (OAuth 2.0) a Microsoft SQL Server mediante Server-Sent Events (SSE) detrás de Nginx reverse proxy. Diseñado para Claude.ai y clientes compatibles con MCP.
-- Capacidades: Ciclo MCP completo (initialize, tools/list, tools/call). Herramientas de base de datos: `list_tables`, `describe_table`, `execute_sql`, `get_table_sample`, con serialización JSON-safe y manejo transaccional.
-- Seguridad y Autenticación: OAuth 2.0 con registro dinámico de clientes; tokens de corta duración; TLS con Let’s Encrypt; cuentas de BD de privilegios mínimos. Security headers y configuración Nginx endurecida.
-- Despliegue: Contenerizado con Docker y Nginx; health checks; auto-renovación Certbot; referencia GCP con reglas de firewall. Endpoints de discovery conforme a RFC 9728.
-- Operaciones: Endpoint de salud, logging estructurado y métricas de performance (conexiones SSE, tasa de emisión de tokens, latencia de queries). Documentación incluye guía multi-tenant y modo read-only.
-
-### Herramientas Neo4j MCP Copilot (Generador de Reportes)
-- Función: Herramienta CLI que genera reportes Markdown profesionales para eventos y conferencias: conteo de visitantes, análisis de visitantes recurrentes, popularidad de sesiones, insights cross-event y portfolio de sesiones del año actual.
-- Flujo: Descubre eventos, solicita selección, ejecuta queries Cypher optimizadas, compila KPIs en resúmenes ejecutivos y guarda reportes con timestamp. Manejo robusto de errores y validación de conectividad, configuración y calidad de datos.
-- Configuración: Credenciales Neo4j vía `.env` o environment variables directas. Compatible con Neo4j 4.x/5.x sobre conexiones seguras Bolt/Neo4j+S.
-- Pruebas: Unit tests comprensivos (mocks) y optional integration tests; scripts para ejecutar pruebas y generar reportes. Exclusión de archivos y credenciales vía `.gitignore`.
-- Casos de uso: Equipos de analítica de eventos, planificación de conferencias e inteligencia de marketing que requieren análisis de retención, performance de sesiones y movimiento cross-event.

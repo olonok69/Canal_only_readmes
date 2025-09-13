@@ -30,7 +30,6 @@ A comprehensive collection of AI/ML projects showcasing cutting-edge implementat
 | **MCP Development** | Build MCP with LLMs | Comprehensive guide to accelerate MCP server development using language models like Claude, with practical PDF document processor example | [📖 English](mcp/Build%20MCP%20with%20LLMs/README.md) |
 | **MCP Search Platform** | AI-Powered Search MCP Integration Platform | Comprehensive full-stack application providing AI-powered interactions with Google Search and Perplexity AI through MCP servers with optional HTTPS security, user authentication, and advanced caching | [📖 English](mcp/Motor_busqueda_AI_google_perplexity/Readme.md) |
 | **Claude Desktop** | Claude Desktop Setup Guide | Complete guide for Claude Desktop installation and MCP configuration | [📖 English](mcp/claude_desktop/Readme.md) |
-
 | **MCP Client** | MCP Python Client/Server | Python reference implementation for MCP client/server (STDIO/SSE/HTTP) with tool examples and end-to-end flow | [📖 English](mcp/python_client_server/README.md) |
 | **MCP Platform** | MCP Server | Production-ready base MCP server with transport support (STDIO/SSE/HTTP) and authentication | [📖 English](mcp/mcp_server/readme_en.md) |
 | **MCP Tools** | Financial Markets Analysis MCP | MCP tool for technical/market analysis with strategies and backtesting | [📖 English](mcp/mcp_financial_markets_analysis_tool/readme_en.md) |
@@ -245,32 +244,3 @@ Individual projects may have specific licensing terms. Please review each projec
 
 **This repository represents the convergence of traditional domain expertise with cutting-edge AI capabilities, demonstrating how modern AI systems can be integrated into real-world applications while maintaining production-quality standards and best practices.**
 
-## Detailed Project Summaries
-
-### Azure Multi-Agent Solution (Support Ticket Triage)
-- Architecture: Multi-agent system using Azure AI Foundry connected agents. One coordinating Triage Agent delegates to three specialized agents: Priority (urgency), Team (assignment), and Effort (work estimation).
-- Communication: Function calling between agents via ConnectedAgentTool. Natural language routing, automatic function invocation, and response aggregation handled by Azure AI Foundry. Limitations include no local function calls from connected agents and non-guaranteed citation passing.
-- Key Features: Modular agent composition, no custom orchestration, scalable specialization, straightforward extensibility for additional agents (e.g., Research, Notification, Analytics, Translation).
-- Security: Azure Identity for authentication, service principal with least privilege, credentials via environment variables.
-- Operations: Python 3.8+, model deployment in Azure AI Foundry, .env-based configuration. Main entry point `main.py`. Suitable for parallel assessments and cost-optimized delegation.
-
-### NVIDIA Feature Engineering with GPU Acceleration (RAPIDS)
-- Scope: Three notebooks covering Target Encoding, Count Encoding, and model training (XGBoost, SVM) with GPU acceleration using RAPIDS cuDF/cuML. Focus on high-cardinality categorical features and tabular ML.
-- Techniques: Bayesian smoothing for Target Encoding, out-of-fold encoding to avoid leakage, group-wise Count Encoding, TF-IDF feature engineering for SVM pipelines, and XGBoost categorical handling.
-- Performance: Empirical 10–100x speedups vs CPU depending on task (e.g., Target Encoding ~20x, Count Encoding ~15x, SVM training 100x+). GPU configuration uses CUDA-enabled XGBoost and cuML.
-- Stack: RAPIDS cuDF/cuML, XGBoost GPU, scikit-learn interop. Docker image available for rapid setup; Conda environment suggested for local development.
-- Data: Designed for large-scale tabular datasets like Amazon Product Reviews; emphasizes out-of-fold validation, leakage prevention, and combined encodings for best AUC.
-
-### Claude AI MCP Custom Connector (MSSQL MCP Server)
-- Purpose: Production-grade MCP server exposing secure, OAuth 2.0–protected access to Microsoft SQL Server through Server-Sent Events (SSE) and Nginx reverse proxy. Designed for Claude.ai and MCP-compatible clients.
-- Capabilities: Full MCP lifecycle (initialize, tools/list, tools/call). Database tools include `list_tables`, `describe_table`, `execute_sql`, and `get_table_sample`, with JSON-safe serialization and transaction handling.
-- Security & Auth: OAuth 2.0 with dynamic client registration; short-lived tokens; TLS via Let’s Encrypt; least-privilege DB accounts recommended. Security headers and hardened Nginx configuration.
-- Deployment: Containerized with Docker and Nginx; health checks; Certbot auto-renewal; GCP reference setup with firewall rules. Includes discovery endpoints per RFC 9728 and production-grade logging.
-- Operations: Health endpoint, structured logs, and performance metrics (SSE connections, token generation rate, query latency). Documentation includes multi-tenant guidance and read-only mode notes.
-
-### Neo4j Tools MCP Copilot (Neo4j Report Generator)
-- Function: Command-line analytics tool generating professional Markdown reports for events and conferences: visitor counts, returning visitor analysis, session popularity, cross-event insights, and current-year session portfolios.
-- Workflow: Discovers events, prompts for selection, executes optimized Cypher queries, compiles executive summaries with KPIs, and saves timestamped reports. Robust error handling and validation across connectivity, configuration, and data quality.
-- Configuration: `.env`-driven Neo4j credentials; supports direct environment variable configuration. Compatible with Neo4j 4.x/5.x over secure Bolt/Neo4j+S protocols.
-- Testing: Comprehensive unit tests with mocks and optional integration tests; scripts provided for running tests and reports. Files and credentials excluded via `.gitignore`.
-- Use Cases: Event analytics teams, conference planners, and marketing intelligence needing retention analysis, session performance, and cross-event movement insights.
