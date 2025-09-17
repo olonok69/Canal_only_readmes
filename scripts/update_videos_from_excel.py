@@ -43,6 +43,13 @@ def load_maps():
     return to_map(en), to_map(es)
 
 
+def _normalize(text: str) -> str:
+    t = re.sub(r"\*\*|`|\(|\)|\[|\]|\.|,", '', text or '')
+    t = t.replace('-', ' ').replace('_', ' ').lower()
+    t = re.sub(r"\s+", ' ', t).strip()
+    return t
+
+
 def add_video_column(lines, lang='en', mapping=None, remove_projects=None, no_video_names=None):
     mapping = mapping or {}
     remove_projects = remove_projects or set()
@@ -51,18 +58,32 @@ def add_video_column(lines, lang='en', mapping=None, remove_projects=None, no_vi
     out = []
     in_table = False
     header_idx = None
+    header_has_video = False
+
+    # Build normalized mapping for fuzzy matching
+    normalized_map = { _normalize(k): v for k, v in mapping.items() }
 
     for i, line in enumerate(lines):
-        if not in_table and ((lang=='en' and HEADER_RE.match(line)) or (lang=='es' and ES_HEADER_RE.match(line))):
+        if not in_table and (
+            (lang=='en' and (HEADER_RE.match(line) or line.lower().startswith('| category | project | description | documentation')))
+            or (lang=='es' and (ES_HEADER_RE.match(line) or line.lower().startswith('| categoría | proyecto | descripción | documentación')))
+        ):
             in_table = True
             header_idx = len(out)
-            # extend header with Video
-            out.append(line[:-2] + ' | Video |')
+            header_has_video = ' video ' in line.lower()
+            # extend header with Video only if missing
+            if header_has_video:
+                out.append(line)
+            else:
+                out.append(line[:-2] + ' | Video |')
             continue
         if in_table:
             # divider row begins with |---
             if line.strip().startswith('|---'):
-                out.append(line[:-2] + ' |---|')
+                if header_has_video:
+                    out.append(line)
+                else:
+                    out.append(line[:-2] + ' |---|')
                 continue
             if not line.strip().startswith('|') or line.strip() == '|':
                 # table ended
@@ -81,6 +102,16 @@ def add_video_column(lines, lang='en', mapping=None, remove_projects=None, no_vi
             # Determine project key for mapping
             proj_key = re.sub(r"\*\*|`", '', project).strip()
             video = mapping.get(proj_key)
+            if not video:
+                # Try normalized lookup
+                nkey = _normalize(proj_key)
+                video = normalized_map.get(nkey)
+            if not video and ('cltv' in proj_key.lower() or 'combined' in proj_key.lower()):
+                # Fallback: search keys containing cltv/combined loan to value
+                for nk, v in normalized_map.items():
+                    if any(term in nk for term in ['cltv','combined loan to value','combined loan-to-value','combinedloan to value','combinedloan-to-value']):
+                        video = v
+                        break
             if (proj_key in no_video_names) or (video is None):
                 video_cell = ''
             else:
