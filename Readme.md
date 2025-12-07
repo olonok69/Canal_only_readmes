@@ -15,7 +15,7 @@ A comprehensive collection of AI/ML projects showcasing cutting-edge implementat
 | **NVIDIA GPU Computing** | Feature Engineering with GPU Acceleration | High-performance feature engineering for tabular data using RAPIDS cuDF and cuML with 100x+ speedup over traditional CPU-based approaches | [📖 English](Nvidia/Feature-Engineering-for-Tabular-Data-With-GPU-Acceleration/Readme.md) | [▶️ Video](https://youtu.be/AV6J__ZXEtk) |
 | **Distributed OCR** | NATS OCR System | Distributed OCR system with NATS messaging and RapidOCR | [📖 English](Nats/Readme_en.md) | [▶️ Video](https://youtu.be/_fqkiBLue4Q) |
 | **Financial RAG** | Financial Analysis | RAG system for fundamental financial analysis with real-time data | [📖 English](RAG/Intro/Readme.md) | [▶️ Video](https://youtu.be/Yh127JyQKk4) |
-| **Mortgage Analysis** | Combined-Loan-to-Value (CLTV) | Mortgage risk and qualification analysis with CLTV/DTI and AI-assisted assessment | [📖 English](RAG/Combined-Loan-to-Value/README.md) | [▶️ Video](https://youtu.be/GElkDW-AaiU)  |
+| **Mortgage Analysis** | Combined-Loan-to-Value (CLTV) | Mortgage risk and qualification analysis with CLTV/DTI and AI-assisted assessment | [📖 English](RAG/Combined-Loan-to-Value/README.md) | [▶️ Video](https://youtu.be/GElkDW-AaiU) |
 | **Trading Strategy** | Bollinger RSI Strategy | Trading strategy combining Bollinger Bands and RSI crossover | [📖 English](RAG/bollinger%20z-score%20rsi%20startegy/Readme.md) | [▶️ Video](https://youtu.be/AAt59vVByfg) |
 | **Trading Analysis** | Bollinger Z-Score | Financial trading analysis with Bollinger Bands and Z-Score | [📖 English](RAG/bollinger%20z-score/Readme.md) | [▶️ Video](https://youtu.be/J29pgkZl0Rg) |
 | **Trading Analysis** | Bollinger-Fibonacci Strategy | Advanced strategy merging volatility analysis (Bollinger Bands) with Fibonacci retracement levels for precise entry/exit points | [📖 English](RAG/bollinger-fibonacci_retracements/Readme.md) | [▶️ Video](https://youtu.be/InywJwiuVQA) |
@@ -24,7 +24,7 @@ A comprehensive collection of AI/ML projects showcasing cutting-edge implementat
 | **Trading Strategy** | Dual Moving Average Crossover | Classic institutional strategy featuring Golden Cross/Death Cross signals with AI-powered analysis and scoring | [📖 English](RAG/Dual_Moving_Average_Crossover_Strategy/README.md) | [▶️ Video](https://youtu.be/dHvJdmE-Xe4) |
 | **Neo4j RAG** | Neo4j RAG System | Natural language interface for graph databases enabling conversational data exploration and complex relationship analysis | [📖 English](RAG/speak%20with%20your%20Graph%20Database/Readme.md) | [▶️ Video](https://youtu.be/wb3nYR3i120) |
 | **MCP Client** | Financial Analysis MCP Client | Comprehensive MCP client with financial analysis tools and multi-server support | [📖 English](mcp/mcp-client/README.md) | [▶️ Video](https://youtu.be/N79AuX5Hn0U) |
-| **MCP Platform** | Claude AI MCP Custom Connector | Multi-tenant MCP server platform with SQL database integration, Docker deployment, and production-ready authentication | [📖 English](mcp/Claude_ai_mcp_custom_connector/readme.md) |  |
+| **MCP Platform** | Claude AI MCP Custom Connector | Multi-tenant MCP server platform with SQL database integration, Docker deployment, and production-ready authentication | [📖 English](mcp/Claude_ai_mcp_custom_connector/readme.md) | [▶️ Video](https://youtu.be/6DwHnDNIA8c) |
 | **MCP Tools** | Neo4j Tools MCP Copilot | Professional Neo4j report generator for event analytics with comprehensive visitor tracking, session analysis, and cross-event intelligence | [📖 English](mcp/tools-mcp-neo4j-tools-copilot/README.md) | [▶️ Video](https://youtu.be/ZcXWxoMSf5s) |
 | **MCP Platform** | Streamlit CRM & Graph Platform | Full-stack AI-powered platform integrating Neo4j, HubSpot CRM, and Yahoo Finance with enterprise authentication | [📖 English](mcp/Streamlit_chatbot/README.md) | [▶️ Video](https://youtu.be/HUqk1nscRfM) |
 | **MCP Development** | Build MCP with LLMs | Comprehensive guide to accelerate MCP server development using language models like Claude, with practical PDF document processor example | [📖 English](mcp/Build%20MCP%20with%20LLMs/README.md) | [▶️ Video](https://youtu.be/rxFowFcm1ZY) |
@@ -33,6 +33,16 @@ A comprehensive collection of AI/ML projects showcasing cutting-edge implementat
 | **MCP Client** | MCP Python Client/Server | Python reference implementation for MCP client/server (STDIO/SSE/HTTP) with tool examples and end-to-end flow | [📖 English](mcp/python_client_server/README.md) | [▶️ Video](https://youtu.be/PpRfyOVL_Gs) |
 | **MCP Platform** | MCP Server | Production-ready base MCP server with transport support (STDIO/SSE/HTTP) and authentication | [📖 English](mcp/mcp_server/readme_en.md) | [▶️ Video](https://youtu.be/FgCWM6SOsms) |
 | **MCP Tools** | Financial Markets Analysis MCP | MCP tool for technical/market analysis with strategies and backtesting | [📖 English](mcp/mcp_financial_markets_analysis_tool/readme_en.md) | [▶️ Video](https://youtu.be/t38dOJW1I0s) |
+| **Microsoft AI** | Copilot Assisted Order Management Tool | Power Platform solution with a Canvas App and Copilot Studio bot on Dataverse for end-to-end order lifecycle management | [📖 English](Microsoft_AI/Copilot/Assisted_Managed_tool/README.md) | [▶️ Video](https://youtu.be/G88myIILLS4) |
+| **Google AI** | Introduction to Google ADK, Agent Development Kit | Multi-agent FNOL claim triage pipeline built with Google ADK using Pydantic-validated tool calls | [📖 English](Google_AI/adk/multiagent_introduction/README.md) | [▶️ Video](https://youtu.be/eZycQQa7WoM) |
+| **Google AI** | MCP Toolbox for BigQuery and Databases with ADK | Model Context Protocol toolbox connecting BigQuery/cloud databases to Claude Desktop and Google ADK agents | [📖 English](Google_AI/mcp-toolbox/Readme.md) | [▶️ Video](https://youtu.be/FsEWxmN8Md4) |
+| **Agentic AI** | Deep Dive Advanced Reasoning Techniques (CoT & ReAct) | AgentsVille trip planner notebook showcasing CoT + ReAct reasoning with eval loops and tool calling | [📖 English](Agentic_AI/Deep_Dive_Reasoning_tecniques/README.md) | [▶️ Video](https://youtu.be/Vn_vKkn0dZA) |
+| **Agentic AI** | Build a Knowledge Graph with Google ADK and Neo4J | Agentic pipeline that ingests CSV/text to assemble a product–assembly–supplier knowledge graph in Neo4j | [📖 English](Agentic_AI/building_knowledge_graphs/README.md) | [▶️ Video](https://youtu.be/n64r9_Y6ZoI) |
+| **MCP Tools** | MSSQL MCP Server with OAuth 2.0 and ChatGPT Integration | OAuth2-enabled MCP server that exposes SQL Server via SSE with Claude/ChatGPT connectors and caching | [📖 English](mcp/chatgpt_mcp_server_connector/readme.md) | [▶️ Video](https://youtu.be/GQMwCczHQQ8) |
+| **Agentic AI** | How to Agentic Workflows | Agentic project-management workflow that turns product specs into user stories, features, tasks, and reports | [📖 English](Agentic_AI/Project_management_agentic_workflow/README.md) | [▶️ Video](https://youtu.be/uvLA5d0sx6s) |
+| **Google AI** | How to use OpenAPI tools with Google ADK agents | OpenAPI-powered ADK chatbot that auto-generates tools to explore a read-only SQL API | [📖 English](Google_AI/adk/apeanapi_mssql_server/README.md) | [▶️ Video](https://youtu.be/Jfk3uBA_ZCc) |
+| **Microsoft AI** | Connect Azure AI Foundry agents with OpenAPI tools | Azure AI Foundry agent wired to a read-only SQL OpenAPI tool with managed connection injection | [📖 English](Azure/Connect_Agents_OpenAPI_mssql/readme.md) | [▶️ Video](https://youtu.be/DnC3wfTQxg0) |
+| **OpenAPI / ChatGPT** | Connect private data with OpenAPI to custom GPTs | Production-ready OpenAPI 3.1 MSSQL server with bearer auth for ChatGPT Actions and other OpenAPI clients | [📖 English](OpenAI/Openapi_custom_GPT_connector_mssql/readme.md) | [▶️ Video](https://youtu.be/2ZQqWyhp8ew) |
 
 ## 🌟 Repository Overview
 
@@ -47,10 +57,17 @@ This repository represents a comprehensive exploration of modern AI/ML technolog
 ### 🧠 Google AI Integration
 - **Video Summarizer**: Intelligent video content analysis with Gemini Pro for automated transcription and summarization.
 - **Content Caching**: Advanced optimization techniques for Google AI Context Caching to improve response times and reduce costs for large document analysis.
+- **ADK Claim Triage**: Multi-agent FNOL claim triage pipeline built with Google ADK using Pydantic-validated tool calls and deterministic tool usage.
+- **ADK OpenAPI SQL Chatbot**: OpenAPI-powered ADK chatbot that auto-generates tools to explore a read-only SQL API with LiteLLM.
+- **MCP Toolbox for BigQuery**: Model Context Protocol toolbox that connects BigQuery/cloud databases to Claude Desktop and Google ADK agents via stdio or HTTP.
 
 ### ☁️ Azure AI Cloud Services
 - **Azure AI Foundry Agent**: Enterprise-grade Python application showcasing Azure AI Foundry Agent Service integration for specialized agricultural data analysis with automated wheat production forecasting capabilities and comprehensive markdown report generation.
 - **Multi-Agent Solution**: Advanced multi-agent system demonstrating connected agents architecture for complex business process automation, featuring specialized agents for ticket triage, technical analysis, and customer communication with scalable parallel processing capabilities.
+- **Azure AI Foundry + OpenAPI**: Agent that connects Azure AI Foundry Agents to a read-only SQL OpenAPI tool using managed connection injection.
+
+### 🏢 Microsoft Copilot & Power Platform
+- **Copilot Assisted Order Management Tool**: Canvas App plus Copilot Studio bot on Dataverse delivering end-to-end order lifecycle automation with managed solution packaging.
 
 ### 🚀 NVIDIA GPU Computing
 - **GPU-Accelerated Feature Engineering**: High-performance machine learning pipeline using RAPIDS ecosystem (cuDF, cuML) for tabular data processing. Demonstrates 100x+ speedup over traditional CPU approaches with advanced categorical encoding techniques, XGBoost GPU training, and comprehensive performance benchmarking on large-scale datasets.
@@ -76,6 +93,7 @@ This repository features an extensive collection of sophisticated trading strate
 ### 🕸️ Graph Database & Knowledge Systems
 - **Neo4j RAG System**: Natural language interface for graph databases enabling conversational data exploration and complex relationship analysis
 - **Neo4j Analytics Tools**: Professional event analytics and visitor tracking systems with comprehensive reporting capabilities
+- **Agentic Knowledge Graph Pipeline**: Google ADK-driven ingest of CSV/text to assemble product–assembly–supplier graphs in Neo4j with orchestrated agents and YAML configuration.
 
 ### 🤖 Model Context Protocol (MCP) Ecosystem
 Comprehensive MCP implementations demonstrating cutting-edge AI integration patterns:
@@ -84,6 +102,7 @@ Comprehensive MCP implementations demonstrating cutting-edge AI integration patt
 - **MCP Servers**: Production-ready servers for Claude AI integration with multiple transport mechanisms
 - **Python Client/Server**: Complete Python implementation with financial analysis capabilities
 - **Multi-Language Support**: TypeScript and Python server implementations with unified client interface
+- **OAuth2 SQL MCP Server**: SSE-capable MSSQL MCP server with OAuth 2.0, Claude/ChatGPT connectors, caching, and hardened TLS termination.
 
 #### **Financial Markets Analysis**
 - **Advanced Technical Analysis**: Comprehensive MCP server providing multiple trading strategies with performance backtesting
@@ -99,11 +118,19 @@ Comprehensive MCP implementations demonstrating cutting-edge AI integration patt
 - **Neo4j MCP Tools**: Professional graph database integration with schema discovery and query validation
 - **Conference Analytics**: Specialized tools for event management and visitor analytics
 - **Relationship Analysis**: Advanced graph-based relationship mapping and analysis
+- **BigQuery & Cloud DB MCP Toolbox**: Dual-mode MCP toolbox exposing BigQuery and cloud databases to Claude Desktop (stdio) and Google ADK (HTTP) clients.
 
 #### **Development Acceleration**
 - **LLM-Assisted Development**: Comprehensive guide for accelerating MCP server development using language models
 - **Custom Connector Framework**: Multi-tenant MCP server platform with enterprise-grade security
 - **Production Deployment**: Docker-based deployment with SSL termination and load balancing
+
+### 🔓 OpenAPI Integrations
+- **OpenAPI MSSQL Server (Bearer Auth)**: Production-ready OpenAPI 3.1 server for MSSQL with bearer token security, ChatGPT Actions compatibility, and Nginx/Certbot hardening.
+
+### 🧭 Agentic Workflows & Reasoning
+- **AgentsVille Trip Planner (CoT + ReAct)**: Notebook that applies Chain-of-Thought and ReAct with eval loops to build and revise itineraries using tool-calling guards.
+- **Agentic Project Management Workflow**: Library + orchestrated agents that convert product specs into user stories, features, and engineering tasks with bilingual documentation.
 
 ## 🛠️ Technology Stack
 
