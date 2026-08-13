@@ -1,39 +1,72 @@
-﻿Categoría,Proyecto,Descripción,Video
-Procesamiento de Video OpenAI,Traductor de Videos con IA,"Sistema completo de traducción de videos local impulsado por IA de español a inglés usando OpenAI Whisper, transformadores Helsinki-NLP y Edge TTS",https://youtu.be/T-KRxag4HXI
-IA Médica,Anonimización DICOM,Anonimización de imágenes médicas DICOM usando Microsoft Presidio,https://youtu.be/mQ4JI5dB2Pc
-Google AI,Resumidor de Videos,Transcripción y resumen de videos con IA usando Gemini Pro,https://youtu.be/8R76YbX9_s8
-Google AI,Caché de Contenido,Optimización de caché de contexto de Google AI con API Gemini,https://youtu.be/PKt6Fq-3Z1c
-Azure AI,Azure AI Foundry Agent,Aplicación Python que demuestra la integración con Azure AI Foundry Agent Service para pronósticos automatizados de producción de trigo con generación comprehensiva de reportes markdown,https://youtu.be/zE2KvVFm2VM
-Azure Multi-Agente,Solución Multi-Agente,"Sistema de agentes conectados de grado empresarial para procesamiento complejo de tickets con sub-agentes especializados para triaje, análisis técnico y comunicación con clientes usando Azure AI Foundry",https://youtu.be/TU2oQN5l_6Y
-NVIDIA GPU Computing,Feature Engineering con Aceleración GPU,"Pipeline de machine learning de alto rendimiento usando el ecosistema RAPIDS (cuDF, cuML) para procesamiento de datos tabulares con mejoras de rendimiento de 100x+ sobre enfoques tradicionales de CPU",https://youtu.be/1oAnPcjRJ2w
-OCR Distribuido,Sistema OCR NATS,Sistema OCR distribuido con mensajería NATS y RapidOCR,https://youtu.be/UgUaiorbal0
-RAG Financiero,Análisis Financiero,Sistema RAG para análisis financiero fundamental con datos en tiempo real,https://youtu.be/JKP1su1R1FA
-Estrategia Trading,Estrategia Bollinger RSI,Estrategia de trading combinando Bandas de Bollinger y cruce RSI,https://youtu.be/LGF9Bzpgx2E
-Análisis Trading,Z-Score Bollinger,Análisis de trading financiero con Bandas de Bollinger y Z-Score,https://youtu.be/5wd-RkDm7Cs
-Estrategia Trading,Estrategia Bollinger-Fibonacci,Estrategia avanzada que combina análisis de volatilidad (Bandas de Bollinger) con niveles de retroceso de Fibonacci para puntos de entrada/salida precisos,https://youtu.be/AlnwPdPVMlU
-Estrategia Trading,Estrategia Connors RSI,Oscilador de momentum mejorado con integración LangGraph para señales avanzadas de reversión a la media,https://youtu.be/MxC7zr1fLSI
-Estrategia Trading,Estrategia MACD-Donchian,Combinación de momentum y ruptura usando señales MACD con análisis de Canal de Donchian,https://youtu.be/QAuUczH_13U
-Estrategia Trading,Cruce de Medias Móviles Dual,Estrategia institucional clásica que presenta señales de Cruce Dorado/Cruce de la Muerte con análisis y puntuación potenciados por IA,https://youtu.be/12TGxveRCMI
-Neo4j RAG,Sistema RAG Neo4j,Interfaz de lenguaje natural para bases de datos de grafos que permite exploración conversacional de datos y análisis de relaciones complejas,https://youtu.be/4FxaTr2g178
-Cliente MCP,Cliente de Análisis Financiero MCP,Cliente MCP integral con herramientas de análisis financiero y soporte multi-servidor,https://youtu.be/SLlGUNTwVQc
-Plataforma MCP,Conector Personalizado MCP Claude AI,"Plataforma de servidor MCP multi-tenant con integración de base de datos SQL, despliegue Docker y autenticación lista para producción",https://youtu.be/ZKjTdAzlgts
-Herramientas MCP,Copiloto de Herramientas Neo4j MCP,"Generador profesional de reportes Neo4j para análisis de eventos con seguimiento comprehensivo de visitantes, análisis de sesiones e inteligencia cross-event",https://youtu.be/PWtXq3WV0So
-Chatbot MCP,Bot MCP Chainlit,Chatbot de IA conversacional integrando Neo4j y HubSpot a través del protocolo MCP,https://youtu.be/tJKqWOouuqA
-Plataforma MCP,Plataforma CRM y Grafos Streamlit,"Plataforma full-stack potenciada por IA integrando Neo4j, HubSpot CRM y Yahoo Finance con autenticación empresarial",https://youtu.be/XfENxpj77rA
-Desarrollo MCP,Construir MCP con LLMs,"Guía integral para acelerar el desarrollo de servidores MCP usando modelos de lenguaje como Claude, con ejemplo práctico de procesador de documentos PDF",https://youtu.be/wrcMdECsqxo
-Plataforma Búsqueda MCP,Plataforma de Integración MCP de Búsqueda Potenciada por IA,"Aplicación full-stack integral que proporciona interacciones potenciadas por IA con Google Search y Perplexity AI a través de servidores MCP con seguridad HTTPS opcional, autenticación de usuarios y caché avanzado",https://youtu.be/6Lo8esMJ_bc
-Claude Desktop,Guía de Configuración Claude Desktop,Guía completa para instalación de Claude Desktop y configuración MCP,https://youtu.be/2ui46J1Mluk
-Cliente MCP,Cliente/Servidor Python MCP,Implementación de referencia Python para cliente/servidor MCP (STDIO/SSE/HTTP) con ejemplos de herramientas y flujo end‑to‑end,https://youtu.be/PpRfyOVL_Gs
-Plataforma MCP,Servidor MCP,Servidor MCP base listo para producción con soporte de transporte (STDIO/SSE/HTTP) y autenticación,https://youtu.be/gHfL2hnBAWs
-Herramientas MCP,Análisis de Mercados Financieros MCP,Herramienta MCP para análisis técnico y de mercados con estrategias y backtesting,https://youtu.be/Oa8sQIqzi6E
-Mortgage Analysis,Combined-Loan-to-Value,,https://youtu.be/YurOhS5Cwq8
-Microsoft Ai,Herramienta Gestion Ordenes asistida por Copilot,,https://youtu.be/HSUeJGwfG
-Google AI,"Introducción a Google ADK, Agent Development Kit ",,https://youtu.be/I3L1_r8SvIM
-Google AI,MCP Toolbox para BigQuery y Bases de Datos con ADK,,https://youtu.be/fBDQyn_8AEA
-Agentic IA,Análisis  Técnicas Avanzadas de Razonamiento con LLMs. CoT and React ,,https://youtu.be/H6qsnakYLeQ
-Agentic IA,Crear Grafico de Conocimientos con  Google ADK y Neo4J,,https://youtu.be/MMBQdksQlJI
-Herramientas MCP,MSSQL MCP Server con OAuth 2.0 e Integración ChatGPT ,,https://youtu.be/0yNpz3AdpU8
-Agentic IA,Agentic Workflows,,https://youtu.be/HYKo53KGGYU
-Google AI,Como usar OpenaAPI tools en  Google ADK agents,,https://youtu.be/UW-iBRC7Vnw
-Microsoft Ai,Conectar Azure Ai Foundry agents con OpenAPI tools,,https://youtu.be/n1Mm9fZadGc
-OpenApi / ChatGPT,Conecte datos privados con OpenAPI a custos GPT con acciones en ChatGPT ,,https://youtu.be/ISaWVITPkZc
+﻿Categoría,Proyecto,Descripción,Video,Observation,Github
+Procesamiento de Video OpenAI,Traductor de Videos con IA,"Sistema completo de traducción de videos local impulsado por IA de español a inglés usando OpenAI Whisper, transformadores Helsinki-NLP y Edge TTS",https://youtu.be/T-KRxag4HXI,,
+IA Médica,Anonimización DICOM,Anonimización de imágenes médicas DICOM usando Microsoft Presidio,https://youtu.be/mQ4JI5dB2Pc,,
+Google AI,Resumidor de Videos,Transcripción y resumen de videos con IA usando Gemini Pro,https://youtu.be/8R76YbX9_s8,,
+Google AI,Caché de Contenido,Optimización de caché de contexto de Google AI con API Gemini,https://youtu.be/PKt6Fq-3Z1c,,
+Azure AI,Azure AI Foundry Agent,Aplicación Python que demuestra la integración con Azure AI Foundry Agent Service para pronósticos automatizados de producción de trigo con generación comprehensiva de reportes markdown,https://youtu.be/zE2KvVFm2VM,,
+Azure Multi-Agente,Solución Multi-Agente,"Sistema de agentes conectados de grado empresarial para procesamiento complejo de tickets con sub-agentes especializados para triaje, análisis técnico y comunicación con clientes usando Azure AI Foundry",https://youtu.be/TU2oQN5l_6Y,,
+NVIDIA GPU Computing,Feature Engineering con Aceleración GPU,"Pipeline de machine learning de alto rendimiento usando el ecosistema RAPIDS (cuDF, cuML) para procesamiento de datos tabulares con mejoras de rendimiento de 100x+ sobre enfoques tradicionales de CPU",https://youtu.be/1oAnPcjRJ2w,,
+OCR Distribuido,Sistema OCR NATS,Sistema OCR distribuido con mensajería NATS y RapidOCR,https://youtu.be/UgUaiorbal0,,
+RAG Financiero,Análisis Financiero,Sistema RAG para análisis financiero fundamental con datos en tiempo real,https://youtu.be/JKP1su1R1FA,,
+Estrategia Trading,Estrategia Bollinger RSI,Estrategia de trading combinando Bandas de Bollinger y cruce RSI,https://youtu.be/LGF9Bzpgx2E,,
+Análisis Trading,Z-Score Bollinger,Análisis de trading financiero con Bandas de Bollinger y Z-Score,https://youtu.be/5wd-RkDm7Cs,,
+Estrategia Trading,Estrategia Bollinger-Fibonacci,Estrategia avanzada que combina análisis de volatilidad (Bandas de Bollinger) con niveles de retroceso de Fibonacci para puntos de entrada/salida precisos,https://youtu.be/AlnwPdPVMlU,,
+Estrategia Trading,Estrategia Connors RSI,Oscilador de momentum mejorado con integración LangGraph para señales avanzadas de reversión a la media,https://youtu.be/MxC7zr1fLSI,,
+Estrategia Trading,Estrategia MACD-Donchian,Combinación de momentum y ruptura usando señales MACD con análisis de Canal de Donchian,https://youtu.be/QAuUczH_13U,,
+Estrategia Trading,Cruce de Medias Móviles Dual,Estrategia institucional clásica que presenta señales de Cruce Dorado/Cruce de la Muerte con análisis y puntuación potenciados por IA,https://youtu.be/12TGxveRCMI,,
+Neo4j RAG,Sistema RAG Neo4j,Interfaz de lenguaje natural para bases de datos de grafos que permite exploración conversacional de datos y análisis de relaciones complejas,https://youtu.be/4FxaTr2g178,,
+Cliente MCP,Cliente de Análisis Financiero MCP,Cliente MCP integral con herramientas de análisis financiero y soporte multi-servidor,https://youtu.be/SLlGUNTwVQc,,
+Plataforma MCP,Conector Personalizado MCP Claude AI,"Plataforma de servidor MCP multi-tenant con integración de base de datos SQL, despliegue Docker y autenticación lista para producción",https://youtu.be/ZKjTdAzlgts,,
+Herramientas MCP,Copiloto de Herramientas Neo4j MCP,"Generador profesional de reportes Neo4j para análisis de eventos con seguimiento comprehensivo de visitantes, análisis de sesiones e inteligencia cross-event",https://youtu.be/PWtXq3WV0So,,
+Chatbot MCP,Bot MCP Chainlit,Chatbot de IA conversacional integrando Neo4j y HubSpot a través del protocolo MCP,https://youtu.be/tJKqWOouuqA,,
+Plataforma MCP,Plataforma CRM y Grafos Streamlit,"Plataforma full-stack potenciada por IA integrando Neo4j, HubSpot CRM y Yahoo Finance con autenticación empresarial",https://youtu.be/XfENxpj77rA,,
+Desarrollo MCP,Construir MCP con LLMs,"Guía integral para acelerar el desarrollo de servidores MCP usando modelos de lenguaje como Claude, con ejemplo práctico de procesador de documentos PDF",https://youtu.be/wrcMdECsqxo,,
+Plataforma Búsqueda MCP,Plataforma de Integración MCP de Búsqueda Potenciada por IA,"Aplicación full-stack integral que proporciona interacciones potenciadas por IA con Google Search y Perplexity AI a través de servidores MCP con seguridad HTTPS opcional, autenticación de usuarios y caché avanzado",https://youtu.be/6Lo8esMJ_bc,,
+Claude Desktop,Guía de Configuración Claude Desktop,Guía completa para instalación de Claude Desktop y configuración MCP,https://youtu.be/2ui46J1Mluk,,
+Cliente MCP,Cliente/Servidor Python MCP,Implementación de referencia Python para cliente/servidor MCP (STDIO/SSE/HTTP) con ejemplos de herramientas y flujo end‑to‑end,https://youtu.be/PpRfyOVL_Gs,,
+Plataforma MCP,Servidor MCP,Servidor MCP base listo para producción con soporte de transporte (STDIO/SSE/HTTP) y autenticación,https://youtu.be/gHfL2hnBAWs,,
+Herramientas MCP,Análisis de Mercados Financieros MCP,Herramienta MCP para análisis técnico y de mercados con estrategias y backtesting,https://youtu.be/Oa8sQIqzi6E,,
+Mortgage Analysis,Combined-Loan-to-Value,,https://youtu.be/YurOhS5Cwq8,,
+Microsoft Ai,Herramienta Gestion Ordenes asistida por Copilot,,https://youtu.be/HSUeJGwfG,,
+Google AI,"Introducción a Google ADK, Agent Development Kit ",,https://youtu.be/I3L1_r8SvIM,,
+Google AI,MCP Toolbox para BigQuery y Bases de Datos con ADK,,https://youtu.be/fBDQyn_8AEA,,
+Agentic IA,Análisis  Técnicas Avanzadas de Razonamiento con LLMs. CoT and React ,,https://youtu.be/H6qsnakYLeQ,,
+Agentic IA,Crear Grafico de Conocimientos con  Google ADK y Neo4J,,https://youtu.be/MMBQdksQlJI,,
+Herramientas MCP,MSSQL MCP Server con OAuth 2.0 e Integración ChatGPT ,,https://youtu.be/0yNpz3AdpU8,,
+Agentic IA,Agentic Workflows,,https://youtu.be/HYKo53KGGYU,,
+Google AI,Como usar OpenaAPI tools en  Google ADK agents,,https://youtu.be/UW-iBRC7Vnw,,
+Microsoft Ai,Conectar Azure Ai Foundry agents con OpenAPI tools,,https://youtu.be/n1Mm9fZadGc,,
+OpenApi / ChatGPT,Conecte datos privados con OpenAPI a custos GPT con acciones en ChatGPT ,,https://youtu.be/ISaWVITPkZc,,
+Agentic AI,Agente Inteligente para hacer investigación con Deep Agents Langchain,,https://youtu.be/YuJ7AZXWWtI,,
+Agentic AI,Buscar y enriquecer data con Inteligencia Artificial,,https://youtu.be/tAqZ63Khi9Q,,
+Agentic AI,SharePoint MCP server con Microsoft Graph API. LLamaIdex Bot,,https://youtu.be/V9q_QTt5aFU,,
+Agentic AI,Herramienta Análisis Mercados Financieros Agentes Inteligentes SmolAgents,,https://youtu.be/9oaEwoijNU8,,
+Agentic AI,"Conector MCP personalizado para PostgreSQL, Streamable HTTP",,https://youtu.be/aUCceeKigd0,,
+Agentic AI,Conecta tu base de Datos MSSQL a Copilot con Conector OpenAPI,,https://youtu.be/5kblR0zL5KM,,
+Agentic AI,Crear un servidor MCP Http Streamable y conectarlo a agentes Copilot ,,https://youtu.be/dzojTw35KhI,,
+Agentic AI,Conectate a tus agentes Copilot usando Azure Bot Service,,https://youtu.be/Gj0UuVPAU6s,,
+Agentic AI,Introduccion como construir Agentes Inteligentes con Crewai,,https://youtu.be/y5ZLrBsRo1k,,
+Agentic AI,Conectate a tus agentes Copilot usando las SDK disponibles,,https://youtu.be/elNLrlZy3KU,,
+Agentic AI,Ai Foundry Agent con Sharepoint Tools,,https://youtu.be/VwNAOt0qigM,,
+Agentic AI,Reporting basado en Gráficos de Conocimiento con Deep Agents y Neo4J ,,https://youtu.be/v-gX_yvaI9Q,,
+Agentic AI,Acceso a datos SharePoint y Microsoft 365 con agentes Inteligentes y búsqueda semantica,,https://youtu.be/w28IIpDY0Qg,,
+Agentic AI,Herramienta de análisis de mercados financieros MCP,,https://youtu.be/NZ_BHUMEhyU,,
+Agentic AI,Owasp security Workbench con Multi-agentes creados en Crewai ,,https://youtu.be/amkcGtlfIQw,,
+Agentic AI,Introducción al Reinforcement Learning,,https://youtu.be/5xd_8cCAwSw,,
+Agentic AI,Gemini CLI. El agente IA Open Source,,https://youtu.be/_JOCT6-sE5U,,
+Reinforcement Learning,Q-learning y Deep Q-Networks,,https://youtu.be/Ri-_FJ6Ham4,,
+Reinforcement Learning,"Mejorando vanilla DQN , Objetivo Rainbow DQN",,https://youtu.be/TYROO9StwSE,,
+Reinforcement Learning,"Algoritmos avanzados Q-Learning, Rainbow DQN ",,https://youtu.be/T_0fYKN07Qc,,
+Reinforcement Learning,Introduccion a Policy Optimization. Reinforce,,https://youtu.be/CZgASJmRLvg,,
+Reinforcement Learning,"Policy Optimization Avanzada. A2C, A3C, PPO y TRPO ",,https://youtu.be/LxMhGWlckqA,,
+Agentic AI,"Evaluación de Agentes DeepEval, Inspect AI y Azure AI Evaluation SDK ",,https://youtu.be/b2ixu-lt1Ac,,
+Reinforcement Learning,"Control Continuo, Métodos Actor-Critic Off-Policy",,https://youtu.be/nUCvGLtzZeQ,,
+Reinforcement Learning,Librerias y RL aplicado al Trading ,,https://youtu.be/_YTG3rBLmMM,,
+Reinforcement Learning,"Post-Training LLM,s. SFT, DPO, ORPO, PPO, GRPO Parte 1",,https://youtu.be/18eyk6_ZLZg,,
+Reinforcement Learning,"Post-Training LLM,s. SFT, DPO, ORPO, PPO, GRPO Parte 2",,https://youtu.be/JnGS4_h0FgY,,
+Reinforcement Learning,RL aplicado al Trading Parte 1,,https://youtu.be/BBavzqb_PpQ,,
+Reinforcement Learning,RL aplicado al Trading Parte 2,,https://youtu.be/kex4t7I24RY,,
+MLOPS,"UV, el gestor de paquetes y proyectos Python rápido y eficaz",,https://youtu.be/4s_qGfANJew,,
+Agentic AI,Building an Agent Framework Application. Red Team Intro PyRIT,,https://youtu.be/ZogVxrHhWsQ,,
+Reinforcement Learning,"Gemma 4 Post-Training SFT, DPO and GRPO",,https://youtu.be/lJHkX4yKzM4,,
+Computer Vision,De la interpolación clásica a la Super-Resolución con Deep Learning y Transformers,,https://youtu.be/KLF4h83KGTM,,
