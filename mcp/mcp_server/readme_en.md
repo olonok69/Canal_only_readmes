@@ -1,320 +1,174 @@
-# MCP Servers Demo with Claude AI - Complete Guide
+# Complete Tutorial: MCP (Model Context Protocol) and Server Configuration
 
 ## Table of Contents
-1. [Introduction to Model Context Protocol (MCP)](#introduction)
-2. [Transport Mechanisms: SSE vs STDIO](#transport-mechanisms)
-3. [Prerequisites and Setup](#prerequisites)
-4. [MCP Server Configurations](#mcp-server-configurations)
-5. [Google Search MCP Server](#google-search-mcp-server)
-6. [Gmail API MCP Server](#gmail-api-mcp-server)
-7. [Brave Search MCP Server](#brave-search-mcp-server)
-8. [Microsoft Office Word MCP Server](#microsoft-office-word-mcp-server)
-9. [Claude Desktop Configuration](#claude-desktop-configuration)
-10. [Testing and Validation](#testing-and-validation)
-11. [Best Practices and Security](#best-practices)
-12. [Troubleshooting](#troubleshooting)
-13. [Additional Resources](#additional-resources)
+1. [What is MCP (Model Context Protocol)?](#1-what-is-mcp-model-context-protocol)
+2. [Client Connection Protocols](#2-client-connection-protocols)
+3. [Claude Desktop Application](#3-claude-desktop-application)
+4. [Specific MCP Server Configurations](#4-specific-mcp-server-configurations)
+5. [Complete Configuration Example](#5-complete-configuration-example)
+6. [Verification and Troubleshooting](#6-verification-and-troubleshooting)
+7. [Best Practices](#7-best-practices)
+8. [Advanced MCP Concepts](#8-advanced-mcp-concepts)
+9. [Community and Ecosystem](#9-community-and-ecosystem)
+10. [Additional Resources](#10-additional-resources)
 
-## Introduction to Model Context Protocol (MCP) {#introduction}
+## 1. What is MCP (Model Context Protocol)?
 
-The **Model Context Protocol (MCP)** is an open standard developed by Anthropic that enables seamless integration between AI assistants like Claude and external data sources, tools, and systems. MCP addresses the challenge of AI models being isolated from data—trapped behind information silos and legacy systems, by providing a universal, open standard for connecting AI systems with data sources, replacing fragmented integrations with a single protocol.
+The Model Context Protocol (MCP) is an open standard developed by Anthropic that enables AI models to communicate with external data sources, tools, and resources in a standardized way. MCP addresses one of the most significant limitations of current AI systems: their isolation from real-time data and external systems.
 
-### Key Components
+### Fundamental MCP Concepts
 
-MCP adopts a client-server architecture with three main components:
-- **Hosts**: AI applications that initiate connections (e.g., Claude Desktop)
-- **Clients**: Systems that maintain one-to-one connections with servers within the host application
-- **Servers**: Systems that provide context, tools, and prompts to clients
+MCP servers can provide three main types of capabilities:
 
-### Benefits of MCP
+- **Resources**: File-like data that can be read by clients (such as API responses or file contents)
+- **Tools**: Functions that can be called by the LLM (with user approval)
+- **Prompts**: Predefined templates that help users perform specific tasks
 
-- **Standardized Integration**: MCP replaces fragmented approaches with a single, standardized protocol, accelerating development and reducing maintenance burden
-- **Flexibility**: Easy switching between different AI models and vendors
-- **Security**: Keeps data within your infrastructure while interacting with AI
-- **Scalability**: Supports various transports like stdio, WebSockets, HTTP SSE, and UNIX sockets
+### MCP Advantages
 
-## Transport Mechanisms: SSE vs STDIO {#transport-mechanisms}
+- **Standardization**: Common protocol for connecting AI with external tools
+- **Security**: Granular control over which tools AI can use
+- **Extensibility**: Easy addition of new capabilities
+- **Interoperability**: Works with different clients and servers
+- **Ecosystem Growth**: Rapid development of community-driven servers
 
-MCP currently defines two standard transport mechanisms for client-server communication: stdio (communication over standard input and output) and HTTP with Server-Sent Events (SSE)
+### Architecture Overview
 
-### STDIO Transport
+MCP follows a client-server architecture where:
+- **Hosts** (like Claude Desktop) manage the overall application
+- **Clients** maintain connections to MCP servers
+- **Servers** provide capabilities to clients through the standardized protocol
 
-**Characteristics:**
-- Enables communication through standard input and output streams, particularly useful for local integrations and command-line tools
-- The client launches the MCP server as a subprocess, with the server receiving JSON-RPC messages on stdin and writing responses to stdout
-- Low latency for local communication
-- Recommended by the specification: "Clients SHOULD support stdio whenever possible"
+This architecture enables a plug-and-play ecosystem where developers can create servers for specific use cases, and these servers can work with any MCP-compatible client.
 
-**Use Cases:**
-- Local development environments
-- Command-line tools
-- In-process integrations
-- Local connections where communication occurs within the same machine
+## 2. Client Connection Protocols
 
-**Configuration Example:**
+### 2.1. STDIO (Standard Input/Output)
+- **Description**: Communication through standard input and output
+- **Use**: Most common for desktop applications like Claude Desktop
+- **Configuration**: Runs as a child process of the client
+- **Advantages**: 
+  - Low latency
+  - Simple setup
+  - Secure (local only)
+  - Recommended by MCP specification
+- **Limitations**: 
+  - Limited to local machine
+  - One-to-one client-server relationship
+
+### 2.2. HTTP/SSE (Server-Sent Events)
+- **Description**: HTTP-based communication with server-sent events
+- **Use**: For remote servers and web applications
+- **Configuration**: Requires port and URL configuration
+- **Advantages**:
+  - Multi-client support
+  - Remote deployment capability
+  - Web-compatible
+  - Authentication support
+- **Limitations**:
+  - Higher latency
+  - Security considerations (DNS rebinding attacks)
+  - More complex setup
+
+### 2.3. WebSocket
+- **Description**: Bidirectional real-time communication
+- **Use**: For applications requiring low latency
+- **Status**: In active development
+- **Future**: Expected to become more prominent for real-time applications
+
+## 3. Claude Desktop Application
+
+### 3.1. Claude Desktop Installation
+
+You can download Claude Desktop from [claude.ai/download](https://claude.ai/download). The application is available for:
+
+- **macOS**: Native version for Apple Silicon and Intel
+- **Windows**: Version for Windows 10/11
+- **Linux**: Currently not officially available (community builds exist)
+
+#### System Requirements
+- **Node.js**: Version 16 or higher
+- **Python**: 3.8 or higher (for Python servers)
+- **Java**: 17 or higher (for Java servers)
+- **Memory**: At least 4GB RAM recommended
+- **Storage**: 500MB for Claude Desktop plus space for MCP servers
+
+#### Installation Tips
+1. Always download from the official source
+2. Check system compatibility before installation
+3. Ensure Node.js is installed and accessible from PATH
+4. Consider using a package manager like Homebrew (macOS) or Chocolatey (Windows)
+
+### 3.2. Configuration File Setup
+
+The configuration file is located at:
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%/Claude/claude_desktop_config.json`
+
+#### Basic Configuration File Structure
+
 ```json
 {
-  "command": "npx",
-  "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/directory"]
+  "mcpServers": {
+    "server-name": {
+      "command": "command-to-execute",
+      "args": ["argument1", "argument2"],
+      "env": {
+        "ENVIRONMENT_VARIABLE": "value"
+      }
+    }
+  }
 }
 ```
 
-### SSE (Server-Sent Events) Transport
+#### Configuration Best Practices
+- Always backup your configuration before making changes
+- Use absolute paths when possible
+- Validate JSON syntax before saving
+- Test configurations incrementally
+- Document your server purposes with comments (in a separate file)
 
-**Characteristics:**
-- Enables server-to-client streaming with HTTP POST requests for client-to-server communication
-- Uses HTTP with Server-Sent Events, and when hosted on HTTPS endpoints, supports encrypted connections via TLS
-- Real-time, web-based scenarios
-- Seamlessly integrates with OpenAPI endpoints and supports distributed systems with its HTTP foundation
+## 4. Specific MCP Server Configurations
 
-**Use Cases:**
-- Remote server connections
-- Web-based applications
-- Real-time data streaming
-- Distributed systems
+### 4.1. MCP Google Search
 
-**Security Considerations:**
-SSE transports can be vulnerable to DNS rebinding attacks if not properly secured. To prevent this:
-- Always validate Origin headers on incoming SSE connections
-- Avoid binding servers to all network interfaces (0.0.0.0) - bind only to localhost (127.0.0.1)
-- Implement proper authentication for all SSE connections
-
-### Comparison Summary
-
-| Feature | STDIO | SSE |
-|---------|-------|-----|
-| **Latency** | Low (local) | Higher (network) |
-| **Setup Complexity** | Simple | Moderate |
-| **Security** | Local only | Requires HTTPS/auth |
-| **Scalability** | Limited to local | High (distributed) |
-| **Real-time** | Yes | Yes |
-| **OpenAPI Compatible** | Requires proxy | Native |
-| **Remote Access** | Requires proxy | Native |
-
-While SSE aligns naturally with modern client tools demanding web-accessible APIs, stdio's local focus necessitates additional steps for broader accessibility
-
-## Prerequisites and Setup {#prerequisites}
-
-### Required Software
-
-1. **Node.js**: Download from [nodejs.org](https://nodejs.org/en/download/)
-   ```bash
-   # Verify installation
-   node --version
-   npm --version
-   ```
-
-2. **Claude Desktop App**: Download the latest version
-   - Ensure it's updated to support MCP
-   - Available for macOS and Windows (Linux support via client building)
-
-3. **Python (for Word MCP Server)**: Python 3.10+ required
-   ```bash
-   # Install uv package manager (Mac/Linux)
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
-
-### System Requirements
-
-- Operating System: macOS, Windows, or Linux
-- Internet connection for API services
-- Administrative privileges for installation
-
-## MCP Server Configurations {#mcp-server-configurations}
-
-## Google Search MCP Server {#google-search-mcp-server}
-
-### Overview
-The Google Search MCP server enables Claude to perform web searches using Google's Custom Search API.
+An MCP server that provides web search capabilities using Google's Custom Search API and web page content extraction functionality.
 
 **Repository**: [https://github.com/adenot/mcp-google-search](https://github.com/adenot/mcp-google-search)
 
-### Setup Process
+#### Prerequisites
 
-#### 1. Create Google Cloud Project
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing one
-3. Enable billing for your project
+1. **Create a Google Cloud Project**:
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select an existing one
+   - Enable billing for your project
 
-#### 2. Enable Custom Search API
-1. Navigate to [API Library](https://console.cloud.google.com/apis/library)
-2. Search for "Custom Search API"
-3. Click "Enable"
+2. **Enable Custom Search API**:
+   - Go to [API Library](https://console.cloud.google.com/apis/library)
+   - Search for "Custom Search API"
+   - Click "Enable"
 
-#### 3. Generate API Key
-1. Go to [Credentials](https://console.cloud.google.com/apis/credentials)
-2. Click "Create Credentials" > "API Key"
-3. Copy your API key
-4. (Optional) Restrict the API key to Custom Search API only
+3. **Get API Key**:
+   - Go to [Credentials](https://console.cloud.google.com/apis/credentials)
+   - Click "Create Credentials" > "API Key"
+   - Copy your API key
+   - (Recommended) Restrict the key to Custom Search API only
 
-#### 4. Create Custom Search Engine
-1. Visit [Programmable Search Engine](https://programmablesearchengine.google.com/create/new)
-2. Enter sites to search (use `www.google.com` for general web search)
-3. Click "Create"
-4. On the next page, click "Customize"
-5. In settings, enable "Search the entire web"
-6. Copy your Search Engine ID (cx parameter)
+4. **Create Custom Search Engine**:
+   - Go to [Programmable Search Engine](https://programmablesearchengine.google.com/)
+   - Enter sites you want to search (use `www.google.com` for general web search)
+   - Click "Create"
+   - In settings, enable "Search the entire web"
+   - Copy your Search Engine ID (cx)
 
-### Installation
+#### Installation and Configuration
+
 ```bash
-# Install via npm
-npx -y @adenot/mcp-google-search
+# Automatic installation via Smithery
+npx -y @smithery/cli install @adenot/mcp-google-search --client claude
 ```
 
-### Configuration
-```json
-{
-  "google-search": {
-    "command": "npx",
-    "args": ["-y", "@adenot/mcp-google-search"],
-    "env": {
-      "GOOGLE_API_KEY": "your_api_key_here",
-      "GOOGLE_SEARCH_ENGINE_ID": "your_search_engine_id_here"
-    }
-  }
-}
-```
-
-## Gmail API MCP Server {#gmail-api-mcp-server}
-
-### Overview
-Enables Claude to interact with Gmail, providing email management capabilities.
-
-**Repository**: [https://github.com/GongRzhe/Gmail-MCP-Server](https://github.com/GongRzhe/Gmail-MCP-Server)
-
-### Setup Process
-
-#### 1. Enable Gmail API
-1. In Google Cloud Console, go to "APIs & Services" > "Credentials"
-2. Click "Create Credentials" > "OAuth client ID"
-3. Choose "Desktop app" or "Web application"
-4. For Web application, add `http://localhost:3000/oauth2callback` to authorized redirect URIs
-5. Download the JSON file with OAuth keys
-6. Rename file to `gcp-oauth.keys.json`
-
-#### 2. Install and Configure
-```bash
-# Install MCP server
-npx -y @smithery/cli install @gongrzhe/server-gmail-autoauth-mcp --client claude
-
-# Authenticate client
-npx @gongrzhe/server-gmail-autoauth-mcp auth
-```
-
-### Configuration
-```json
-{
-  "gmail": {
-    "command": "npx",
-    "args": ["@gongrzhe/server-gmail-autoauth-mcp"]
-  }
-}
-```
-
-### Capabilities
-- Search emails using Gmail search syntax
-- Read email content
-- Send and draft emails
-- Modify email labels
-- Batch operations for multiple emails
-- Create and manage Gmail labels
-
-## Brave Search MCP Server {#brave-search-mcp-server}
-
-### Overview
-Provides web search capabilities using Brave Search API with enhanced privacy features.
-
-**Repository**: [https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search](https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search)
-
-### Setup Process
-
-#### 1. Get Brave Search API Key
-1. Sign up for Brave Search API account
-2. Choose a plan (Free tier: 2,000 queries/month)
-3. Generate API key from developer dashboard
-
-#### 2. Installation
-```bash
-# Install via npm
-npx -y @modelcontextprotocol/server-brave-search
-```
-
-### Configuration
-```json
-{
-  "brave-search": {
-    "command": "npx",
-    "args": ["-y", "@modelcontextprotocol/server-brave-search"],
-    "env": {
-      "BRAVE_API_KEY": "your_brave_api_key_here"
-    }
-  }
-}
-```
-
-### Features
-- General web search
-- Local business search  
-- News search
-- Image search (if supported by API plan)
-- Enhanced privacy compared to other search engines
-
-## Microsoft Office Word MCP Server {#microsoft-office-word-mcp-server}
-
-### Overview
-Enables Claude to create, edit, and manage Microsoft Word documents programmatically.
-
-**Repository**: [https://github.com/GongRzhe/Office-Word-MCP-Server](https://github.com/GongRzhe/Office-Word-MCP-Server)
-
-### Setup Process
-
-#### 1. Clone Repository
-```bash
-git clone https://github.com/GongRzhe/Office-Word-MCP-Server.git
-cd Office-Word-MCP-Server
-```
-
-#### 2. Install Dependencies
-```bash
-# Using uvx (recommended)
-uvx --from office-word-mcp-server word_mcp_server
-```
-
-### Configuration
-```json
-{
-  "word-document-server": {
-    "command": "uvx",
-    "args": [
-      "--from",
-      "office-word-mcp-server", 
-      "word_mcp_server"
-    ],
-    "env": {}
-  }
-}
-```
-
-### Capabilities
-- Create new Word documents
-- Add paragraphs, headings, tables
-- Insert images and page breaks
-- Format text (bold, italic, colors, fonts)
-- Search and replace text
-- Add footnotes and endnotes
-- Convert documents to PDF
-- Password protection
-- Document templating
-
-## Claude Desktop Configuration {#claude-desktop-configuration}
-
-### Complete Configuration File
-
-Create or edit `claude_desktop_config.json` in your Claude Desktop application support directory:
-
-**Location:**
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+**Configuration in claude_desktop_config.json**:
 
 ```json
 {
@@ -326,8 +180,284 @@ Create or edit `claude_desktop_config.json` in your Claude Desktop application s
         "@adenot/mcp-google-search"
       ],
       "env": {
-        "GOOGLE_API_KEY": "your_google_api_key",
-        "GOOGLE_SEARCH_ENGINE_ID": "your_search_engine_id"
+        "GOOGLE_API_KEY": "your-api-key-here",
+        "GOOGLE_SEARCH_ENGINE_ID": "your-search-engine-id-here"
+      }
+    }
+  }
+}
+```
+
+#### Available Tools
+
+- **search**: Perform web searches using Google Custom Search API
+- **read_webpage**: Extract content from any web page
+
+#### Usage Tips
+- Optimize search queries for better results
+- Respect Google's API rate limits (100 searches/day for free tier)
+- Consider upgrading to paid plans for higher volume usage
+- Use specific search operators when needed (site:, filetype:, etc.)
+
+### 4.2. MCP Server Brave Search
+
+An MCP server implementation that integrates Brave Search API, providing web and local search capabilities.
+
+**Repository**: [https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search](https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search)
+
+#### Prerequisites
+
+1. Sign up for a Brave Search API account at [Brave Search API](https://api.search.brave.com/)
+2. Choose a plan (free plan available with 2,000 queries/month)
+3. Generate your API key from the developer dashboard
+
+#### Configuration
+
+```json
+{
+  "mcpServers": {
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "YOUR_API_KEY_HERE"
+      }
+    }
+  }
+}
+```
+
+#### Available Tools
+
+- **brave_web_search**: Execute web searches with pagination and filtering
+- **brave_local_search**: Search for local businesses and services
+
+#### Advantages of Brave Search
+- Privacy-focused search engine
+- No tracking or profiling
+- Independent search index
+- Good performance for privacy-conscious users
+
+### 4.3. MCP Server Gmail
+
+An MCP server for Gmail integration in Claude Desktop with automatic authentication support. This server allows AI assistants to manage Gmail through natural language interactions.
+
+**Repository**: [https://github.com/GongRzhe/Gmail-MCP-Server](https://github.com/GongRzhe/Gmail-MCP-Server)
+
+#### Key Features
+
+- Send emails with subject, content, attachments, and recipients
+- Full support for international characters
+- Read email messages by ID
+- View attachment information
+- Search emails with various criteria
+- Complete label management
+- Batch operations for efficient processing
+
+#### Configuration
+
+**1. Create Google Cloud Project and obtain credentials**:
+
+a. Create a Google Cloud Project:
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select an existing one
+   - Enable the Gmail API for your project
+
+b. Create OAuth 2.0 Credentials:
+   - Go to "APIs & Services" > "Credentials"
+   - Click "Create Credentials" > "OAuth client ID"
+   - Choose "Desktop app" or "Web application" as application type
+   - For web application, add `http://localhost:3000/oauth2callback` to authorized redirect URIs
+   - Download the JSON file with OAuth keys
+   - Rename the file to `gcp-oauth.keys.json`
+
+**2. Run Authentication**:
+
+```bash
+# Global authentication (Recommended)
+mkdir -p ~/.gmail-mcp
+mv gcp-oauth.keys.json ~/.gmail-mcp/
+npx @gongrzhe/server-gmail-autoauth-mcp auth
+```
+
+**3. Configure in Claude Desktop**:
+
+```json
+{
+  "mcpServers": {
+    "gmail": {
+      "command": "npx",
+      "args": [
+        "@gongrzhe/server-gmail-autoauth-mcp"
+      ]
+    }
+  }
+}
+```
+
+#### Main Tools
+
+- **send_message**: Sends a new email immediately
+- **create_draft**: Creates an email draft without sending it
+- **read_message**: Retrieves the content of a specific email by its ID
+- **search_emails**: Search emails using Gmail search syntax
+- **modify_labels**: Add or remove labels from emails
+- **delete_message**: Permanently delete an email
+
+#### Gmail Search Syntax Examples
+```
+# Search for unread emails
+is:unread
+
+# Search for emails from specific sender
+from:example@domain.com
+
+# Search for emails with attachments
+has:attachment
+
+# Search for emails in a date range
+after:2024/01/01 before:2024/12/31
+
+# Search for emails with specific subject
+subject:"Important Meeting"
+```
+
+### 4.4. MCP Server Word
+
+An MCP server for creating, reading, and manipulating Microsoft Word documents. This server allows AI assistants to work with Word documents through a standardized interface.
+
+**Repository**: [https://github.com/GongRzhe/Office-Word-MCP-Server](https://github.com/GongRzhe/Office-Word-MCP-Server)
+
+#### Key Features
+
+- Create new Word documents with metadata
+- Extract text and analyze document structure
+- Add headers with different levels
+- Insert paragraphs with optional styling
+- Create tables with custom data
+- Add images with proportional scaling
+- Format specific text (bold, italic, underline)
+- Search and replace text
+- Export to different formats (PDF, HTML)
+
+#### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/GongRzhe/Office-Word-MCP-Server.git
+cd Office-Word-MCP-Server
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+#### Configuration
+
+**Option 1: Local installation**
+```json
+{
+  "mcpServers": {
+    "word-document-server": {
+      "command": "python",
+      "args": [
+        "/absolute/path/to/word_server.py"
+      ]
+    }
+  }
+}
+```
+
+**Option 2: Using uvx (Recommended)**
+```json
+{
+  "mcpServers": {
+    "word-document-server": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "office-word-mcp-server",
+        "word_mcp_server"
+      ],
+      "env": {}
+    }
+  }
+}
+```
+
+#### Main Tools
+
+- **create_document**: Create new document with optional metadata
+- **add_paragraph**: Add paragraph to document
+- **add_heading**: Add heading with specific level
+- **add_table**: Add table with custom data
+- **format_text**: Format specific text range
+- **search_and_replace**: Search and replace text throughout document
+- **insert_image**: Add images with scaling options
+- **export_pdf**: Convert document to PDF format
+
+### 4.5. Additional Popular MCP Servers
+
+#### Filesystem Server
+**Purpose**: Local file system access
+**Repository**: [https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem)
+
+```json
+{
+  "filesystem": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/directory"]
+  }
+}
+```
+
+#### SQLite Server
+**Purpose**: Database operations
+**Repository**: [https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite](https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite)
+
+```json
+{
+  "sqlite": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sqlite", "/path/to/database.db"]
+  }
+}
+```
+
+#### GitHub Server
+**Purpose**: GitHub repository interaction
+**Repository**: [https://github.com/modelcontextprotocol/servers/tree/main/src/github](https://github.com/modelcontextprotocol/servers/tree/main/src/github)
+
+```json
+{
+  "github": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-github"],
+    "env": {
+      "GITHUB_PERSONAL_ACCESS_TOKEN": "your-token-here"
+    }
+  }
+}
+```
+
+## 5. Complete Configuration Example
+
+Based on the provided configuration file, here's the complete explained configuration:
+
+```json
+{
+  "mcpServers": {
+    "google-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@adenot/mcp-google-search"
+      ],
+      "env": {
+        "GOOGLE_API_KEY": "your-google-api-key",
+        "GOOGLE_SEARCH_ENGINE_ID": "your-search-engine-id"
       }
     },
     "gmail": {
@@ -343,7 +473,7 @@ Create or edit `claude_desktop_config.json` in your Claude Desktop application s
         "@modelcontextprotocol/server-brave-search"
       ],
       "env": {
-        "BRAVE_API_KEY": "your_brave_api_key"
+        "BRAVE_API_KEY": "your-brave-api-key"
       }
     },
     "word-document-server": {
@@ -354,230 +484,360 @@ Create or edit `claude_desktop_config.json` in your Claude Desktop application s
         "word_mcp_server"
       ],
       "env": {}
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/username/Documents"
+      ]
     }
   }
 }
 ```
 
-### Configuration Steps
-
-1. **Backup Existing Config**: Always backup your existing configuration
-2. **Replace API Keys**: Fill in your actual API keys and credentials
-3. **Validate JSON**: Ensure proper JSON formatting
-4. **Restart Claude Desktop**: Required for changes to take effect
-
-## Testing and Validation {#testing-and-validation}
-
-### Verification Steps
-
-#### 1. Check MCP Server Status
-After restarting Claude Desktop, look for:
-- Slider icon in bottom-left corner of input box
-- Available tools listed when clicking the slider
-
-#### 2. Test Each Server
-
-**Google Search Server:**
-```
-Search for "latest AI developments 2025"
-```
-
-**Gmail Server:**
-```
-Show me my recent emails from this week
-```
-
-**Brave Search Server:**
-```
-Search for "sustainable technology trends" using Brave
-```
-
-**Word Document Server:**
-```
-Create a new Word document with a title "MCP Demo" and add a paragraph about MCP benefits
-```
-
-#### 3. Manual Server Testing
-Test servers individually from command line:
-
-```bash
-# Test Google Search server
-npx -y @adenot/mcp-google-search
-
-# Test Gmail server  
-npx @gongrzhe/server-gmail-autoauth-mcp
-
-# Test Brave Search server
-npx -y @modelcontextprotocol/server-brave-search
-
-# Test Word server
-uvx --from office-word-mcp-server word_mcp_server
-```
-
-### Log Checking
-
-**macOS/Linux:**
-```bash
-# Check server logs
-ls -la ~/Library/Application\ Support/Claude/logs/
-tail -f ~/Library/Application\ Support/Claude/logs/mcp-server-*.log
-```
-
-**Windows:**
-```cmd
-# Check logs in AppData/Claude/logs/
-dir %APPDATA%\Claude\logs\
-```
-
-## Best Practices and Security {#best-practices}
-
-### Security Guidelines
-
-#### 1. API Key Management
-- **Never commit API keys** to version control
+### Configuration Tips
+- Replace placeholder API keys with actual values
 - Use environment variables for sensitive data
-- Regularly rotate API keys
-- Apply principle of least privilege to API permissions
+- Test each server individually before adding to main config
+- Keep a backup of working configurations
+- Document the purpose of each server
 
-#### 2. Transport Security
-For SSE servers:
-- Always use HTTPS in production
-- Validate Origin headers
-- Implement proper authentication
-- Bind only to localhost for local development
+## 6. Verification and Troubleshooting
 
-#### 3. Server Permissions
-- Claude Desktop runs commands with your user account permissions and file access. Only add commands if you understand and trust the source
-- Review server code before installation
-- Use sandboxed environments when possible
+### 6.1. Verify Configuration
 
-### Performance Optimization
+After configuring, restart Claude Desktop and verify:
 
-#### 1. Resource Management
-- Monitor memory usage of MCP servers
-- Implement connection pooling for high-traffic servers
-- Use caching for frequently accessed data
+1. **MCP Icon**: You should see the hammer icon in the interface
+2. **Developer Settings**: Go to Settings > Developer to see logs
+3. **Connection Status**: Verify that servers appear as "connected"
 
-#### 2. Transport Selection
-While stdio is great for simple, local developments, SSE offers more in terms of scalability and real-time interaction, making it more suitable for fully-fledged applications
+### 6.2. Common Issues
 
-Choose based on your needs:
-- **Local development**: Use stdio for simplicity
-- **Production/Remote**: Use SSE with proper security
-- **High performance**: Consider custom transports
+**1. Servers not connecting**
+- Verify absolute paths in configuration
+- Check that dependencies are installed
+- Review developer logs for specific errors
+- Ensure proper JSON formatting
 
-## Troubleshooting {#troubleshooting}
+**2. Environment variables not recognized**
+- Verify API keys are correctly configured
+- Check credential file permissions
+- Ensure environment variables are properly set
 
-### Common Issues
+**3. Commands not working**
+- Verify Node.js installation: `node --version`
+- Check npm works: `npm --version`
+- Test commands manually in terminal
+- Check PATH environment variable
 
-#### 1. MCP Tools Not Appearing
-**Symptoms**: No slider icon or tools visible in Claude Desktop
+**4. Permission issues**
+- Ensure Claude Desktop has necessary permissions
+- Check file and directory access rights
+- Verify API key permissions and quotas
 
-**Solutions:**
-1. Verify JSON syntax in configuration file
-2. Check that all required dependencies are installed
-3. Restart Claude Desktop completely
-4. Verify API keys and credentials
+### 6.3. Debugging
 
-#### 2. Server Connection Failures
-**Symptoms**: Error messages about server connectivity
-
-**Solutions:**
-1. Test servers manually from command line
-2. Check network connectivity
-3. Verify firewall settings
-4. Review server logs for specific errors
-
-#### 3. Authentication Issues
-**Symptoms**: "Authentication failed" or "Unauthorized" errors
-
-**Solutions:**
-1. Re-run authentication commands
-2. Check API key validity and permissions
-3. Verify OAuth credentials and redirect URIs
-4. Check API quotas and billing status
-
-#### 4. Node.js/Python Issues
-**Symptoms**: "Command not found" or module errors
-
-**Solutions:**
-```bash
-# Verify Node.js installation
-node --version
-npm --version
-
-# Verify Python installation  
-python --version
-uv --version
-
-# Reinstall if necessary
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-### Debug Commands
+For advanced debugging, you can use the MCP Inspector:
 
 ```bash
-# Test individual servers
-npx -y @adenot/mcp-google-search --help
-npx @gongrzhe/server-gmail-autoauth-mcp --version
+# Install MCP Inspector
+npm install -g @modelcontextprotocol/inspector
 
-# Check Claude Desktop logs
-tail -f ~/Library/Application\ Support/Claude/logs/mcp-server-*.log
-
-# Validate JSON configuration
-python -m json.tool claude_desktop_config.json
+# Run inspector
+mcp-inspector
 ```
 
-### Getting Help
+The Inspector will provide a URL to access debugging tools in your browser.
 
-If issues persist:
-1. Check the [MCP debugging guide](https://modelcontextprotocol.io/quickstart/debugging)
-2. Review server-specific documentation
-3. Join the MCP community discussions
-4. Report issues to respective GitHub repositories
+### 6.4. Logging and Monitoring
 
-## Additional Resources {#additional-resources}
+**Enable verbose logging**:
+```json
+{
+  "mcpServers": {
+    "server-name": {
+      "command": "your-command",
+      "args": ["--verbose"],
+      "env": {
+        "DEBUG": "mcp:*"
+      }
+    }
+  }
+}
+```
 
-### Official Documentation
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/)
-- [Anthropic MCP Announcement](https://www.anthropic.com/news/model-context-protocol)
-- [Claude Desktop MCP Guide](https://support.anthropic.com/en/articles/10949351-getting-started-with-model-context-protocol-mcp-on-claude-for-desktop)
+**Log locations**:
+- **macOS**: `~/Library/Application Support/Claude/logs/`
+- **Windows**: `%APPDATA%\Claude\logs\`
 
-### Community Resources
-- [MCP Servers Repository](https://github.com/modelcontextprotocol/servers)
-- [Claude MCP Community](https://www.claudemcp.com/)
-- [MCP Client Boot Starters](https://spring.io/projects/spring-ai)
+## 7. Best Practices
 
-### Development Tools
-- [MCP Inspector Tool](https://github.com/modelcontextprotocol/inspector) - Debug MCP servers
-- [mcp-proxy](https://github.com/sparfenyuk/mcp-proxy) - Bridge between SSE and stdio transports
-- [MCP Remote](https://github.com/modelcontextprotocol/mcp-remote) - Adapter for remote MCP servers
+### 7.1. Security
+- Never commit credentials to version control
+- Use environment variables for sensitive API keys
+- Regularly review access permissions in your accounts
+- Implement least privilege access for API keys
+- Monitor API usage for unusual activity
+- Use secure credential storage solutions
 
-### Example Projects
-- [DataCamp MCP Tutorial](https://www.datacamp.com/tutorial/mcp-model-context-protocol) - PR Review Server
-- [Weather Server Tutorial](https://modelcontextprotocol.io/quickstart/server) - Basic MCP server implementation
+### 7.2. Performance
+- Limit the number of simultaneous MCP servers
+- Use batch configurations for mass operations
+- Monitor API usage to avoid limits
+- Implement caching where appropriate
+- Optimize server startup times
+- Consider server resource requirements
 
-### API Documentation
-- [Google Custom Search API](https://developers.google.com/custom-search/v1/overview)
-- [Gmail API](https://developers.google.com/gmail/api/guides)
-- [Brave Search API](https://api.search.brave.com/app/documentation)
+### 7.3. Maintenance
+- Regularly update MCP servers
+- Keep backups of your configurations
+- Document custom configurations
+- Monitor server health and availability
+- Plan for API deprecations and changes
+- Test configurations after updates
 
----
+### 7.4. Development
+- Start with simple configurations
+- Test servers individually before combining
+- Use version control for configuration files
+- Implement proper error handling
+- Follow semantic versioning for custom servers
+- Contribute back to the community
+
+## 8. Advanced MCP Concepts
+
+### 8.1. Custom Server Development
+
+You can create your own MCP servers using the official SDKs:
+
+**Python SDK**: [https://github.com/modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk)
+**TypeScript SDK**: [https://github.com/modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk)
+
+#### Basic Python Server Example
+
+```python
+import asyncio
+from mcp.server import Server
+from mcp.server.stdio import stdio_server
+
+app = Server("my-custom-server")
+
+@app.list_tools()
+async def list_tools() -> list[Tool]:
+    return [
+        Tool(
+            name="hello",
+            description="Say hello",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"}
+                }
+            }
+        )
+    ]
+
+@app.call_tool()
+async def call_tool(name: str, arguments: dict) -> list[TextContent]:
+    if name == "hello":
+        name = arguments.get("name", "World")
+        return [TextContent(type="text", text=f"Hello, {name}!")]
+
+async def main():
+    async with stdio_server() as (read_stream, write_stream):
+        await app.run(read_stream, write_stream, app.create_initialization_options())
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### 8.2. Transport Layer Considerations
+
+#### Choosing the Right Transport
+
+**STDIO (Recommended for most use cases)**:
+- Local development
+- Simple desktop integrations
+- High performance requirements
+- Security-sensitive applications
+
+**SSE (Server-Sent Events)**:
+- Remote server deployments
+- Multi-client scenarios
+- Web-based applications
+- Cloud integrations
+
+**WebSockets** (Future):
+- Real-time bidirectional communication
+- Low latency requirements
+- Interactive applications
+
+### 8.3. Resource Management
+
+#### Resource Types
+- **Static resources**: Configuration files, documentation
+- **Dynamic resources**: API responses, database queries
+- **Streaming resources**: Large files, real-time data
+
+#### Resource Implementation Example
+
+```python
+@app.list_resources()
+async def list_resources() -> list[Resource]:
+    return [
+        Resource(
+            uri="config://settings",
+            name="Application Settings",
+            mimeType="application/json"
+        )
+    ]
+
+@app.read_resource()
+async def read_resource(uri: str) -> str:
+    if uri == "config://settings":
+        return json.dumps({"setting1": "value1"})
+```
+
+### 8.4. Prompt Templates
+
+Prompt templates provide reusable, parameterized prompts for common tasks:
+
+```python
+@app.list_prompts()
+async def list_prompts() -> list[Prompt]:
+    return [
+        Prompt(
+            name="summarize-email",
+            description="Summarize an email",
+            arguments=[
+                PromptArgument(
+                    name="email_content",
+                    description="The email content to summarize",
+                    required=True
+                )
+            ]
+        )
+    ]
+
+@app.get_prompt()
+async def get_prompt(name: str, arguments: dict) -> GetPromptResult:
+    if name == "summarize-email":
+        email_content = arguments["email_content"]
+        return GetPromptResult(
+            description="Email summary prompt",
+            messages=[
+                PromptMessage(
+                    role="user",
+                    content=TextContent(
+                        type="text",
+                        text=f"Please summarize this email: {email_content}"
+                    )
+                )
+            ]
+        )
+```
+
+## 9. Community and Ecosystem
+
+### 9.1. Official Resources
+
+**MCP Specification**: [https://modelcontextprotocol.io/](https://modelcontextprotocol.io/)
+**Official Servers Repository**: [https://github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+**Python SDK**: [https://github.com/modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk)
+**TypeScript SDK**: [https://github.com/modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk)
+
+### 9.2. Community Servers
+
+**Awesome MCP Servers**: [https://github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+
+Popular community servers include:
+- **Database connectors**: PostgreSQL, MySQL, MongoDB
+- **Cloud services**: AWS, Azure, Google Cloud
+- **Development tools**: Git, Docker, Kubernetes
+- **Communication**: Slack, Discord, Teams
+- **Productivity**: Notion, Todoist, Calendar integrations
+
+### 9.3. Server Discovery
+
+**Smithery**: Package manager for MCP servers
+```bash
+# Install Smithery
+npm install -g @smithery/cli
+
+# Search for servers
+smithery search email
+
+# Install a server
+smithery install @author/server-name --client claude
+```
+
+### 9.4. Contributing to the Ecosystem
+
+1. **Create useful servers** for underserved use cases
+2. **Contribute to existing servers** with bug fixes and features
+3. **Write documentation** and tutorials
+4. **Share configurations** and best practices
+5. **Report issues** and provide feedback
+
+## 10. Additional Resources
+
+### 10.1. Official Documentation
+- **MCP Specification**: [https://modelcontextprotocol.io/](https://modelcontextprotocol.io/)
+- **Anthropic MCP Announcement**: [https://www.anthropic.com/news/model-context-protocol](https://www.anthropic.com/news/model-context-protocol)
+- **Claude Desktop MCP Guide**: [https://support.anthropic.com/en/articles/10949351-getting-started-with-model-context-protocol-mcp-on-claude-for-desktop](https://support.anthropic.com/en/articles/10949351-getting-started-with-model-context-protocol-mcp-on-claude-for-desktop)
+
+### 10.2. Development Resources
+- **MCP Debugging Guide**: [https://modelcontextprotocol.io/quickstart/debugging](https://modelcontextprotocol.io/quickstart/debugging)
+- **Server Development Tutorial**: [https://modelcontextprotocol.io/quickstart/server](https://modelcontextprotocol.io/quickstart/server)
+- **Client Development Guide**: [https://modelcontextprotocol.io/quickstart/client](https://modelcontextprotocol.io/quickstart/client)
+
+### 10.3. Tools and Utilities
+- **MCP Inspector**: [https://github.com/modelcontextprotocol/inspector](https://github.com/modelcontextprotocol/inspector) - Debug MCP servers
+- **MCP Proxy**: Bridge between SSE and stdio transports
+- **MCP Remote**: Adapter for remote MCP servers
+
+### 10.4. API Documentation
+- **Google Custom Search API**: [https://developers.google.com/custom-search/v1/overview](https://developers.google.com/custom-search/v1/overview)
+- **Gmail API**: [https://developers.google.com/gmail/api/guides](https://developers.google.com/gmail/api/guides)
+- **Brave Search API**: [https://api.search.brave.com/app/documentation](https://api.search.brave.com/app/documentation)
+
+### 10.5. Community Resources
+- **MCP Community Discord**: Join discussions and get help
+- **Reddit r/ModelContextProtocol**: Community discussions and sharing
+- **Stack Overflow**: Technical questions tagged with `model-context-protocol`
+- **YouTube Tutorials**: Video guides and demonstrations
+
+### 10.6. Learning Resources
+- **MCP Workshop Series**: Hands-on learning sessions
+- **Case Studies**: Real-world MCP implementations
+- **Best Practices Guide**: Community-driven recommendations
+- **Performance Benchmarks**: Server performance comparisons
+
+### 10.7. Enterprise and Advanced Usage
+- **Enterprise Deployment Guide**: Large-scale MCP deployments
+- **Security Considerations**: Advanced security configurations
+- **Scaling Strategies**: High-availability MCP setups
+- **Integration Patterns**: Common architectural patterns
 
 ## Conclusion
 
-This comprehensive guide covers the setup and configuration of multiple MCP servers with Claude AI, demonstrating the power and flexibility of the Model Context Protocol. MCP provides a universal, open standard for connecting AI systems with data sources, replacing fragmented integrations with a single protocol, enabling more intelligent and context-aware AI interactions.
+The Model Context Protocol represents a significant advancement in how AI models can interact with external tools and data. With proper configuration of MCP servers, Claude Desktop becomes a powerful tool capable of managing emails, creating documents, performing web searches, and much more, all through natural conversational interfaces.
 
-The combination of Google Search, Gmail, Brave Search, and Word document servers showcases how MCP can connect Claude to various external services and tools, significantly expanding its capabilities beyond text generation to include web search, email management, and document creation.
+The key to success lies in careful configuration, secure credential handling, and understanding the specific capabilities of each MCP server you install. As the MCP ecosystem continues to grow, we can expect to see even more innovative servers and integrations that will further expand the capabilities of AI assistants.
 
-Remember to prioritize security, follow best practices, and regularly update your MCP servers and Claude Desktop application to benefit from the latest features and security improvements.
+The combination of standardization, security, and extensibility makes MCP a foundational technology for the future of AI-tool integration. Whether you're a developer creating new servers or a user configuring existing ones, MCP provides the tools and framework needed to create powerful, context-aware AI interactions.
 
-**Next Steps:**
-1. Experiment with the configured servers
-2. Explore additional MCP servers from the community repository
-3. Consider developing custom MCP servers for your specific needs
-4. Share your experiences with the MCP community
+### Next Steps
+
+1. **Start Simple**: Begin with one or two servers to understand the basics
+2. **Experiment**: Try different combinations of servers to discover new workflows
+3. **Contribute**: Share your configurations and experiences with the community
+4. **Develop**: Consider creating custom servers for your specific needs
+5. **Stay Updated**: Follow the MCP ecosystem for new developments and servers
 
 ---
 
-*This guide represents the current state of MCP technology as of May 2025. The MCP ecosystem is rapidly evolving, so check official documentation for the latest updates and features.*
+*This guide represents the current state of MCP technology as of June 2025. The MCP ecosystem is rapidly evolving, so check official documentation for the latest updates and features.*

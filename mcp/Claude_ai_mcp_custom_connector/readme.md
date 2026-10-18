@@ -1,218 +1,269 @@
-# MSSQL MCP Server - Technical Documentation
+# MSSQL MCP Server with OAuth 2.0 & ChatGPT Integration
 
-## Table of Contents
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Technical Stack](#technical-stack)
-- [System Components](#system-components)
-- [Authentication Flow](#authentication-flow)
-- [API Endpoints](#api-endpoints)
-- [Database Tools](#database-tools)
-- [Deployment](#deployment)
-- [Security](#security)
-- [Monitoring and Maintenance](#monitoring-and-maintenance)
-- [Troubleshooting](#troubleshooting)
+A production-ready Model Context Protocol (MCP) server that provides secure, AI-powered interactions with Microsoft SQL Server databases. This server implements OAuth 2.0 authentication, SSL/TLS encryption, and seamless integration with both Claude.ai and ChatGPT (Deep Research).
 
-## Overview
+## 🚀 Features
 
-The MSSQL MCP Server is a production-grade Model Context Protocol (MCP) implementation that provides secure, OAuth 2.0-authenticated access to Microsoft SQL Server databases through Claude.ai and other MCP-compatible clients. The server implements the MCP specification version 2025-06-18, enabling natural language database interactions through AI assistants.
+### **Dual-Mode Support**
+- **Claude.ai Integration**: OAuth 2.0 authenticated MCP server for Claude Desktop
+- **ChatGPT Integration**: Custom connector compatible with ChatGPT Deep Research
+- **Universal Database Access**: Query MSSQL databases through natural language
 
-### Key Features
-- Full MCP protocol implementation with SSE transport
-- OAuth 2.0 authentication with dynamic client registration
-- Comprehensive SQL Server operations (SELECT, INSERT, UPDATE, DELETE)
-- TLS/SSL encryption with Let's Encrypt certificates
-- Container-based deployment with Docker
-- Nginx reverse proxy with optimized SSE handling
-- Production-ready health monitoring
+### **Database Operations**
+- **Table Management**: List all tables, describe structure, get sample data
+- **SQL Execution**: Execute SELECT, INSERT, UPDATE, DELETE queries
+- **Schema Discovery**: Automatic table and column information retrieval
+- **Data Exploration**: Sample data retrieval with configurable limits
+- **Read-Only Mode**: Optional read-only operations for production safety
 
-## Architecture
+### **Security Features**
+- **OAuth 2.0 Authentication**: Dynamic client registration with authorization code flow
+- **SSL/TLS Encryption**: Let's Encrypt certificates with automatic renewal
+- **Token Management**: Short-lived access tokens (1 hour expiration)
+- **Secure Connections**: TLS 1.2+ with ODBC Driver 18 for SQL Server
+- **Host Whitelisting**: Restricted OAuth redirect URIs to trusted domains
 
-### System Architecture Diagram
+### **Transport Layer**
+- **Server-Sent Events (SSE)**: Persistent, efficient streaming connection
+- **Nginx Reverse Proxy**: Production-grade proxying with SSE optimization
+- **Health Monitoring**: Built-in health check endpoints
+- **Auto-Reconnection**: Robust connection handling
+
+### **ChatGPT-Specific Features**
+- **Search Tool**: Multi-purpose database search (list tables, describe, sample, query)
+- **Fetch Tool**: Retrieve specific records by ID with caching
+- **Result Caching**: TTL-based caching for improved performance
+- **Discovery Endpoints**: Full OAuth 2.0 and OIDC discovery support
+
+## 📋 Architecture
+
 ```
-┌─────────────┐         HTTPS/TLS            ┌──────────────┐
-│  Claude.ai  │ ◄──────────────────────────► │    Nginx     │
-│   Client    │         Port 443             │ Reverse Proxy│
-└─────────────┘                              └──────┬───────┘
-                                                    │
-                                             ┌──────▼───────┐
-                                             │  MCP Server  │
-                                             │   (Python)   │
-                                             │   Port 8008  │
-                                             └──────┬───────┘
-                                                    │
-                                             ┌──────▼───────┐
-                                             │ MSSQL Server │
-                                             │   Database   │
-                                             └──────────────┘
-```
-
-### Component Interaction Flow
-1. Claude.ai initiates HTTPS connection to the server
-2. Nginx handles SSL termination and proxies to MCP server
-3. MCP server authenticates requests via OAuth 2.0
-4. Authorized requests execute database operations
-5. Results stream back through SSE connection
-
-![Process Architecture](docs/mcp-architecture-diagram.svg)
-
-### Multi-tenant Implementation
-
-[How to add a new Mcp-Server](docs/multi-tenant-implementation-guide.md)
-## Technical Stack
-
-### Core Technologies
-- **Language**: Python 3.11
-- **Framework**: Starlette ASGI
-- **Database**: Microsoft SQL Server 2019+
-- **Driver**: ODBC Driver 18 for SQL Server
-- **Protocol**: Model Context Protocol (MCP) 2025-06-18
-- **Transport**: Server-Sent Events (SSE)
-- **Authentication**: OAuth 2.0 with RFC 9728 discovery
-
-### Infrastructure
-- **Container**: Docker with multi-stage builds
-- **Proxy**: Nginx 1.24+ with SSE optimization
-- **SSL**: Let's Encrypt with Certbot auto-renewal
-- **Platform**: Google Cloud Platform (GCP)
-
-## System Components
-
-### 1. MCP Server (`server_oauth.py`)
-
-The core application server implementing:
-
-#### Protocol Handlers
-```python
-# MCP Method Implementations
-- initialize: Server capability negotiation
-- tools/list: Available tool discovery
-- tools/call: Tool execution
-- notifications/initialized: Session establishment
+┌─────────────┐         ┌─────────────┐         ┌──────────────┐         ┌──────────────┐
+│  Claude.ai  │◄─HTTPS─►│    Nginx    │◄─HTTP──►│  MCP Server  │◄─ODBC──►│  SQL Server  │
+│  /ChatGPT   │   443   │  (SSL/TLS)  │   8008  │ (OAuth 2.0)  │         │   Database   │
+└─────────────┘         └─────────────┘         └──────────────┘         └──────────────┘
+                             │
+                             │
+                        ┌────▼────┐
+                        │ Certbot │
+                        │  Auto   │
+                        │ Renewal │
+                        └─────────┘
 ```
 
-#### Database Connection Management
-```python
-def get_db_config() -> tuple[dict, str]:
-    """
-    Constructs ODBC connection string from environment variables.
-    Returns configuration dict and connection string.
-    """
+### Components
+
+1. **MCP Server** (`server_oauth.py` / `server_chatgpt.py`)
+   - Python 3.11 with Starlette (ASGI)
+   - MCP protocol implementation
+   - OAuth 2.0 authentication
+   - Database connectivity via pyodbc
+
+2. **Nginx Reverse Proxy**
+   - SSL/TLS termination
+   - SSE-optimized proxying
+   - Request routing and load balancing
+   - Security headers
+
+3. **Certbot**
+   - Automatic certificate issuance
+   - Renewal checks every 12 hours
+   - ACME protocol (Let's Encrypt)
+
+## 🛠️ Installation & Setup
+
+### Prerequisites
+
+- **Infrastructure**:
+  - Docker Engine 20.10+
+  - Docker Compose 2.0+
+  - Public domain with DNS A record
+  - VM with ports 80, 443, 8008 accessible
+
+- **Database**:
+  - Microsoft SQL Server 2019+
+  - ODBC Driver 18 for SQL Server
+  - Database user with appropriate permissions
+
+### 1. Environment Configuration
+
+Create a `.env` file in the project root:
+
+```bash
+# Database Configuration
+MSSQL_HOST=your-sql-server.database.windows.net
+MSSQL_USER=your_username
+MSSQL_PASSWORD=your_secure_password
+MSSQL_DATABASE=your_database
+MSSQL_DRIVER=ODBC Driver 18 for SQL Server
+
+# Security Settings
+TrustServerCertificate=yes
+Trusted_Connection=no
+READ_ONLY_MODE=true
+
+# OAuth Configuration
+ALLOWED_REDIRECT_HOSTS=chatgpt.com,openai.com,claude.ai,anthropic.com
+
+# Optional: Development/Testing Only
+ALLOW_UNAUTH_METHODS=false
+ALLOW_UNAUTH_TOOLS_CALL=false
+
+# ChatGPT Settings
+MAX_SEARCH_RESULTS=50
+CACHE_TTL_SECONDS=3600
 ```
 
-#### Data Serialization
-```python
-def serialize_row_data(data) -> Any:
-    """
-    Converts pyodbc Row objects and SQL Server types to JSON-compatible format.
-    Handles: Decimal, DateTime, Date, Row objects
-    """
+### 2. SSL Certificate Setup
+
+Run the automated Let's Encrypt setup:
+
+```bash
+# Make script executable
+chmod +x setup-letsencrypt.sh
+
+# Run setup
+./setup-letsencrypt.sh
+
+# Follow prompts:
+# - Enter domain: data.forensic-bot.com
+# - Enter email: your-email@example.com
+# - Choose production (0) or staging (1)
 ```
 
-### 2. Database Tools
+The script will:
+1. Check prerequisites (Docker, Docker Compose)
+2. Create required directories
+3. Download TLS parameters
+4. Configure Nginx
+5. Request Let's Encrypt certificate
+6. Set up automatic renewal
 
-#### Available Tools
+### 3. Docker Deployment
 
-| Tool | Purpose | Parameters |
-|------|---------|------------|
-| `list_tables` | Enumerate all database tables | None |
-| `describe_table` | Get table schema and metadata | `table_name: str` |
-| `execute_sql` | Execute arbitrary SQL queries | `query: str` |
-| `get_table_sample` | Retrieve sample data from table | `table_name: str`, `limit: int` |
+#### Production Deployment
 
-#### Tool Implementation Example
-```python
-def execute_sql_impl(query: str) -> str:
-    """
-    Executes SQL query with proper transaction handling.
-    Returns JSON-formatted results for SELECT queries,
-    or affected row count for DML operations.
-    """
+```bash
+# Build and start all services
+docker-compose -f docker-compose.prod.yml up -d
+
+# View logs
+docker-compose -f docker-compose.prod.yml logs -f
+
+# Check service health
+curl https://your-domain.com/health
 ```
 
-### 3. OAuth 2.0 Implementation
+#### Development Deployment
 
-#### Discovery Endpoints (RFC 9728)
-- `/.well-known/oauth-authorization-server`: AS metadata
-- `/.well-known/oauth-protected-resource`: RS metadata
+```bash
+# Start with hot-reload
+docker-compose up --build
 
-#### OAuth Flow
-1. **Dynamic Registration**: `/register` - Client registration
-2. **Authorization**: `/authorize` - Authorization code grant
-3. **Token Exchange**: `/token` - Access token issuance
-4. **Token Validation**: In-memory token store with expiration
-
-### 4. Nginx Configuration
-
-#### SSE Optimization
-```nginx
-location /sse {
-    proxy_pass http://mcp-server:8008;
-    
-    # Critical SSE configurations
-    proxy_http_version 1.1;
-    proxy_set_header Connection '';
-    proxy_buffering off;
-    chunked_transfer_encoding off;
-    proxy_read_timeout 24h;
-    
-    # Response headers
-    add_header Content-Type text/event-stream;
-    add_header Cache-Control no-cache;
-    add_header X-Accel-Buffering no;
-}
+# Access locally
+curl http://localhost:8008/health
 ```
 
-## Authentication Flow
+### 4. Verify Installation
 
-### OAuth 2.0 Sequence
-```
-Client                  Server                  Resource
-  │                       │                         │
-  ├──► POST /register     │                         │
-  │◄── client_id/secret   │                         │
-  │                       │                         │
-  ├──► GET /authorize     │                         │
-  │◄── authorization_code │                         │
-  │                       │                         │
-  ├──► POST /token        │                         │
-  │◄── access_token       │                         │
-  │                       │                         │
-  ├──► GET /sse + Bearer  │                         │
-  │                       ├──► Validate Token       │
-  │◄── SSE Stream         │◄── Database Results     │
+```bash
+# Test HTTPS connection
+curl https://your-domain.com/health
+
+# Test OAuth discovery
+curl https://your-domain.com/.well-known/oauth-authorization-server
+
+# Test SSE capability (requires authentication)
+curl -I https://your-domain.com/sse
 ```
 
-## API Endpoints
+## 🔧 Integration Guides
 
-### Public Endpoints
+### Claude.ai Integration
 
-| Endpoint | Method | Purpose |
-|----------|--------|---------|
-| `/health` | GET | Health check and status |
-| `/.well-known/oauth-authorization-server` | GET | OAuth AS discovery |
-| `/.well-known/oauth-protected-resource` | GET | OAuth RS discovery |
+1. **Register Your Server**:
+   ```json
+   POST https://your-domain.com/register
+   {
+     "client_name": "Claude Desktop",
+     "redirect_uris": ["https://claude.ai/api/mcp/auth_callback"]
+   }
+   ```
+
+2. **Configure Claude Desktop** (`claude_desktop_config.json`):
+   ```json
+   {
+     "mcpServers": {
+       "mssql": {
+         "url": "https://your-domain.com/sse",
+         "oauth": {
+           "authorization_url": "https://your-domain.com/authorize",
+           "token_url": "https://your-domain.com/token",
+           "client_id": "your_client_id",
+           "client_secret": "your_client_secret"
+         }
+       }
+     }
+   }
+   ```
+
+3. **Authenticate**: Claude Desktop will handle OAuth flow automatically
+
+### ChatGPT Integration (Deep Research)
+
+1. **Add Custom Connector** in ChatGPT Settings:
+   - Name: `MSSQL Database`
+   - Type: `Custom Connector`
+   - URL: `https://your-domain.com/chatgpt/sse`
+
+2. **Discovery URL**: `https://your-domain.com/chatgpt/.well-known/oauth-authorization-server`
+
+3. **OAuth Settings**: ChatGPT auto-discovers from well-known endpoints
+
+4. **Authorize**: Follow ChatGPT's OAuth flow
+
+5. **Use with Deep Research**:
+   ```
+   Query: "Search the database for top 10 customers by revenue"
+   ChatGPT will:
+   1. Call search tool to execute query
+   2. Process results
+   3. Call fetch tool for detailed records if needed
+   ```
+
+## 📚 API Reference
 
 ### OAuth Endpoints
 
-| Endpoint | Method | Purpose | Request Body |
-|----------|--------|---------|--------------|
-| `/register` | POST | Dynamic client registration | `{client_name, redirect_uris}` |
-| `/authorize` | GET | Authorization code grant | Query: `client_id, redirect_uri, state` |
-| `/token` | POST | Token exchange | `{grant_type, code, client_id, client_secret}` |
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/.well-known/oauth-authorization-server` | GET | OAuth AS discovery |
+| `/.well-known/openid-configuration` | GET | OIDC discovery (alias) |
+| `/.well-known/oauth-protected-resource` | GET | OAuth RS discovery |
+| `/register` | POST | Dynamic client registration |
+| `/authorize` | GET | Authorization code grant |
+| `/token` | POST | Token exchange |
 
 ### MCP Endpoints
 
 | Endpoint | Method | Purpose | Authentication |
 |----------|--------|---------|----------------|
 | `/sse` | HEAD | SSE capability check | Optional |
-| `/sse` | POST | MCP message handling | Bearer token |
+| `/sse` | POST | MCP message handling | Required (Bearer token) |
+| `/health` | GET | Server health status | None |
 
-## Database Tools
+### ChatGPT Endpoints
 
-### Tool Specifications
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/chatgpt/sse` | POST | ChatGPT SSE endpoint |
+| `/chatgpt/.well-known/*` | GET | Discovery endpoints |
 
-#### list_tables
+## 🔨 Available Tools
+
+### Claude.ai Tools
+
+#### 1. list_tables
 ```json
 {
   "name": "list_tables",
@@ -225,7 +276,7 @@ Client                  Server                  Resource
 }
 ```
 
-#### describe_table
+#### 2. describe_table
 ```json
 {
   "name": "describe_table",
@@ -243,11 +294,11 @@ Client                  Server                  Resource
 }
 ```
 
-#### execute_sql
+#### 3. execute_sql
 ```json
 {
   "name": "execute_sql",
-  "description": "Execute SQL query",
+  "description": "Execute SQL query (SELECT only in read-only mode)",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -261,105 +312,102 @@ Client                  Server                  Resource
 }
 ```
 
-### SQL Server Compatibility
-[Read final Read/Only Implementation](docs/read_only.md)
-
-#### Supported Operations
-- Data Query: SELECT with TOP, JOINs, CTEs
-- Data Manipulation: INSERT, UPDATE, DELETE
-- Schema Discovery: INFORMATION_SCHEMA queries
-- Transactions: Automatic commit/rollback
-
-#### Data Type Mapping
-| SQL Server Type | Python Type | JSON Serialization |
-|----------------|-------------|-------------------|
-| INT, BIGINT | int | number |
-| DECIMAL, NUMERIC | Decimal | number (float) |
-| VARCHAR, NVARCHAR | str | string |
-| DATETIME, DATE | datetime | ISO 8601 string |
-| BIT | bool | boolean |
-
-## Deployment
-
-### Prerequisites
-- Docker Engine 20.10+
-- Docker Compose 2.0+
-- Domain with DNS A record
-- GCP VM with firewall rules configured
-
-### Environment Configuration
-
-Create `.env` file:
-```bash
-# Database Configuration
-MSSQL_HOST=your-sql-server.database.windows.net
-MSSQL_USER=your_username
-MSSQL_PASSWORD=your_secure_password
-MSSQL_DATABASE=your_database
-MSSQL_DRIVER=ODBC Driver 18 for SQL Server
-
-# Security
-TrustServerCertificate=yes
-Trusted_Connection=no
+#### 4. get_table_sample
+```json
+{
+  "name": "get_table_sample",
+  "description": "Get sample data from a table",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "table_name": {
+        "type": "string",
+        "description": "Name of the table"
+      },
+      "limit": {
+        "type": "integer",
+        "description": "Number of rows to return",
+        "default": 10
+      }
+    },
+    "required": ["table_name"]
+  }
+}
 ```
 
-### Docker Deployment
+### ChatGPT Tools
 
-#### Build and Run
-```bash
-# Build containers
-docker compose build
+#### 1. search
+Multi-purpose database search tool that handles:
+- List tables: `"list tables"`
+- Describe table: `"describe Customers"`
+- Sample data: `"sample Orders limit 10"`
+- SQL queries: `"SELECT TOP 5 * FROM Products WHERE Price > 100"`
 
-# Start services
-docker compose up -d
-
-# View logs
-docker compose logs -f mcp-server
+```json
+{
+  "name": "search",
+  "description": "Search database: list tables, describe schema, sample data, or execute queries",
+  "parameters": {
+    "query": {
+      "type": "string",
+      "description": "Natural language query or SQL statement"
+    }
+  }
+}
 ```
 
-#### Container Configuration
-```yaml
-services:
-  mcp-server:
-    build: .
-    expose:
-      - "8008"
-    environment:
-      - MSSQL_HOST=${MSSQL_HOST}
-      - MSSQL_USER=${MSSQL_USER}
-      - MSSQL_PASSWORD=${MSSQL_PASSWORD}
-      - MSSQL_DATABASE=${MSSQL_DATABASE}
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8008/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+#### 2. fetch
+Retrieve specific records by ID (from search results):
+
+```json
+{
+  "name": "fetch",
+  "description": "Fetch a specific record by its ID from previous search results",
+  "parameters": {
+    "id": {
+      "type": "string",
+      "description": "Record ID from search results"
+    }
+  }
+}
 ```
 
-### SSL Certificate Setup
+## 🔒 Security
 
-#### Initial Setup
-```bash
-# Run setup script
-./setup-letsencrypt.sh
+### Authentication Flow
 
-# Verify certificate
-openssl s_client -connect data.forensic-bot.com:443 -servername data.forensic-bot.com
+```mermaid
+sequenceDiagram
+    participant Client as AI Client (Claude/ChatGPT)
+    participant Server as MCP Server
+    participant DB as SQL Server
+    
+    Client->>Server: POST /register
+    Server-->>Client: {client_id, client_secret}
+    
+    Client->>Server: GET /authorize?client_id=...
+    Server-->>Client: Redirect with code
+    
+    Client->>Server: POST /token (code, client_id, client_secret)
+    Server-->>Client: {access_token, expires_in: 3600}
+    
+    Client->>Server: POST /sse (Authorization: Bearer token)
+    Server->>Server: Validate token
+    Server-->>Client: SSE connection established
+    
+    Client->>Server: MCP: initialize
+    Server-->>Client: initialized
+    
+    Client->>Server: MCP: tools/call (execute_sql)
+    Server->>DB: Execute query
+    DB-->>Server: Results
+    Server-->>Client: Serialized results
 ```
-
-#### Automatic Renewal
-Certbot container runs renewal checks every 12 hours:
-```yaml
-certbot:
-  image: certbot/certbot
-  entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-```
-
-## Security
 
 ### Network Security
 
-#### GCP Firewall Rules
+#### GCP Firewall Rules (Example)
 ```bash
 # HTTPS traffic
 gcloud compute firewall-rules create allow-mcp-https \
@@ -367,228 +415,312 @@ gcloud compute firewall-rules create allow-mcp-https \
     --source-ranges 0.0.0.0/0 \
     --target-tags mcp-server
 
-# HTTP for Let's Encrypt
+# HTTP (Let's Encrypt only)
 gcloud compute firewall-rules create allow-letsencrypt \
     --allow tcp:80 \
     --source-ranges 0.0.0.0/0 \
+    --target-tags mcp-server
+
+# SSH (management)
+gcloud compute firewall-rules create allow-ssh \
+    --allow tcp:22 \
+    --source-ranges YOUR_IP/32 \
     --target-tags mcp-server
 ```
 
 ### Application Security
 
-#### OAuth 2.0 Protection
-- Dynamic client registration
-- Short-lived access tokens (1 hour)
-- Secure token generation using `secrets.token_urlsafe()`
+- **OAuth 2.0**: RFC 6749 compliant authorization
+- **Token Expiration**: 1-hour access tokens
+- **Secure Generation**: `secrets.token_urlsafe()` for tokens
+- **Host Whitelisting**: Restricted redirect URIs
+- **Read-Only Mode**: Optional database read-only operations
+- **Parameterized Queries**: SQL injection protection via pyodbc
+- **TLS 1.2+**: Modern cipher suites only
 
-#### Database Security
-- Parameterized queries (via pyodbc)
-- Read-only user recommended for production
-- Connection string credentials from environment variables
-- TLS encryption for database connections
+### Security Headers (Nginx)
 
-#### TLS Configuration
-```nginx
-ssl_protocols TLSv1.2 TLSv1.3;
-ssl_ciphers HIGH:!aNULL:!MD5;
-ssl_prefer_server_ciphers off;
-ssl_session_cache shared:SSL:10m;
-```
-
-### Security Headers
 ```nginx
 add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 add_header X-Content-Type-Options nosniff;
 add_header X-Frame-Options DENY;
+add_header X-XSS-Protection "1; mode=block";
+add_header Referrer-Policy "strict-origin-when-cross-origin";
 ```
 
-## Monitoring and Maintenance
+## 📊 Monitoring & Maintenance
 
-### Health Monitoring
+### Health Checks
 
-#### Health Check Endpoint
 ```bash
-curl https://data.forensic-bot.com/health
-```
+# Server health
+curl https://your-domain.com/health
 
-Response:
-```json
+# Expected response:
 {
   "status": "healthy",
   "transport": "sse",
   "oauth": "enabled",
-  "database": "your_database"
+  "database": "your_database",
+  "mcp_version": "2025-06-18",
+  "read_only": true
 }
 ```
 
 ### Logging
 
-#### Application Logs
-```python
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-```
-
-#### Container Logs
 ```bash
 # View all logs
-docker compose logs
+docker-compose logs -f
 
-# Follow specific service
-docker compose logs -f mcp-server
+# MCP server logs
+docker-compose logs -f mcp-server-http
 
-# Last 100 lines
-docker compose logs --tail=100 mcp-server
+# Nginx logs
+docker-compose logs -f nginx
+
+# Filter by level
+docker-compose logs -f | grep ERROR
+```
+
+### Certificate Management
+
+```bash
+# Check certificate expiration
+echo | openssl s_client -servername your-domain.com -connect your-domain.com:443 2>/dev/null | openssl x509 -noout -dates
+
+# Test renewal (dry run)
+docker-compose exec certbot certbot renew --dry-run
+
+# Force renewal
+docker-compose exec certbot certbot renew --force-renewal
+
+# View certificates
+docker-compose exec certbot certbot certificates
 ```
 
 ### Performance Monitoring
 
-#### Key Metrics
-- Response time per tool execution
-- Active SSE connections
-- OAuth token generation rate
-- Database query performance
-
-#### Monitoring Commands
 ```bash
-# Container resource usage
-docker stats mcp-server
+# Container stats
+docker stats
 
 # Nginx connections
-docker exec nginx-container nginx -T | grep worker_connections
+docker exec nginx cat /var/log/nginx/access.log | tail -100
 
-# Database connections
-docker exec mcp-server python -c "import pyodbc; print(pyodbc.drivers())"
+# Database connection test
+docker exec mcp-server-http python -c "
+from server_oauth import get_db_config
+config, conn_str = get_db_config()
+print(f'Connected to: {config[\"database\"]}')"
 ```
 
-## Troubleshooting
+## 🐛 Troubleshooting
 
 ### Common Issues
 
-#### 1. Database Connection Failures
+#### 1. Certificate Validation Failed
 ```bash
-# Test ODBC installation
-docker exec mcp-server odbcinst -j
+# Check certificate
+openssl s_client -connect your-domain.com:443 -servername your-domain.com
 
-# Verify environment variables
-docker exec mcp-server env | grep MSSQL
+# Verify DNS
+nslookup your-domain.com
 
-# Test connection
-docker exec mcp-server python -c "
-import pyodbc
-from os import getenv
-conn_str = f\"Driver={{ODBC Driver 18 for SQL Server}};Server={getenv('MSSQL_HOST')};...\"
-conn = pyodbc.connect(conn_str)
-print('Connected successfully')
-"
+# Check certbot logs
+docker-compose logs certbot
 ```
 
-#### 2. SSE Connection Issues
+#### 2. OAuth Token Invalid
 ```bash
-# Test SSE endpoint
-curl -N -H "Accept: text/event-stream" https://data.forensic-bot.com/sse
+# Check token expiration
+# Tokens expire after 1 hour
 
-# Check Nginx buffering
-docker exec nginx-container cat /etc/nginx/conf.d/default.conf | grep proxy_buffering
-```
-
-#### 3. OAuth Authentication Failures
-```bash
-# Test OAuth discovery
-curl https://data.forensic-bot.com/.well-known/oauth-authorization-server
-
-# Register test client
-curl -X POST https://data.forensic-bot.com/register \
+# Re-register client
+curl -X POST https://your-domain.com/register \
   -H "Content-Type: application/json" \
   -d '{"client_name": "test"}'
 ```
 
-#### 4. Certificate Renewal Issues
+#### 3. Database Connection Failed
 ```bash
-# Test renewal (dry run)
-docker compose exec certbot certbot renew --dry-run
+# Test ODBC driver
+docker exec mcp-server-http odbcinst -j
 
-# Force renewal
-docker compose exec certbot certbot renew --force-renewal
+# Verify environment variables
+docker exec mcp-server-http env | grep MSSQL
 
-# Check certificate expiration
-echo | openssl s_client -servername data.forensic-bot.com -connect data.forensic-bot.com:443 2>/dev/null | openssl x509 -noout -dates
+# Test connection
+docker exec mcp-server-http python -c "
+import pyodbc
+conn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER=your-server;...')
+print('Success')
+"
+```
+
+#### 4. SSE Connection Issues
+```bash
+# Test SSE endpoint (with token)
+curl -N -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Accept: text/event-stream" \
+  https://your-domain.com/sse
+
+# Check Nginx SSE config
+docker exec nginx cat /etc/nginx/conf.d/default.conf | grep -A 10 "location /sse"
 ```
 
 ### Debug Mode
 
-Enable detailed logging:
+Enable detailed logging in `.env`:
+```bash
+LOG_LEVEL=DEBUG
+```
+
+Or modify the server code:
 ```python
-# In server_oauth.py
-logging.basicConfig(level=logging.DEBUG)
-
-# Add request/response logging
-logger.debug(f"Request: {method} - Body: {json.dumps(body)}")
-logger.debug(f"Response: {json.dumps(response)}")
+# In server_oauth.py or server_chatgpt.py
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 ```
 
-### Performance Optimization
+## 📖 Documentation
 
-#### Database Optimization
-```sql
--- Add indexes for frequently queried columns
-CREATE INDEX idx_table_column ON table_name(column_name);
-
--- Update statistics
-UPDATE STATISTICS table_name;
+### Project Structure
+```
+.
+├── server_oauth.py              # Claude.ai MCP server
+├── server_chatgpt.py            # ChatGPT-compatible server
+├── Dockerfile                   # HTTP server image
+├── Dockerfile.https             # HTTPS server image
+├── Dockerfile.chatgpt           # ChatGPT server image
+├── docker-compose.yml           # Development compose
+├── docker-compose.prod.yml      # Production compose
+├── setup-letsencrypt.sh         # SSL setup script
+├── requirements.txt             # Python dependencies
+├── .env                         # Environment variables
+├── nginx/
+│   ├── nginx.conf              # Main Nginx config
+│   └── conf.d/
+│       └── default.conf        # Site configuration
+├── certbot/
+│   ├── conf/                   # SSL certificates
+│   └── www/                    # ACME challenge
+├── docs/
+│   ├── chatgpt-connector-setup.md
+│   ├── security.md
+│   ├── explanation_en.md
+│   └── read_only.md
+└── README.md                    # This file
 ```
 
-#### Nginx Optimization
-```nginx
-# Increase worker connections
-worker_connections 4096;
+### Related Documentation
 
-# Enable HTTP/2
-listen 443 ssl http2;
+- [ChatGPT Connector Setup Guide](docs/chatgpt-connector-setup.md)
+- [Security Best Practices](docs/security.md)
+- [Technical Explanation](docs/explanation_en.md)
+- [Read-Only Mode Guide](docs/read_only.md)
 
-# Optimize SSL session cache
-ssl_session_cache shared:SSL:50m;
-ssl_session_timeout 1d;
+### External Resources
+
+- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io)
+- [OAuth 2.0 RFC 6749](https://tools.ietf.org/html/rfc6749)
+- [Let's Encrypt Documentation](https://letsencrypt.org/docs/)
+- [Nginx SSE Guide](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)
+
+## 🔄 Deployment Workflow
+
+### Initial Deployment
+```bash
+1. Clone repository
+2. Configure .env file
+3. Run setup-letsencrypt.sh
+4. Start services: docker-compose -f docker-compose.prod.yml up -d
+5. Verify health: curl https://your-domain.com/health
+6. Configure AI clients (Claude/ChatGPT)
 ```
 
-## Appendix
+### Updates
+```bash
+# Pull latest changes
+git pull
 
-### MCP Protocol Reference
-- Specification: https://modelcontextprotocol.io/specification
-- Version: 2025-06-18
-- Transport: Server-Sent Events (SSE)
+# Rebuild containers
+docker-compose -f docker-compose.prod.yml build
 
-### SQL Server Function Reference
-| SQL Server | Description |
-|------------|-------------|
-| TOP n | Limit results |
-| GETDATE() | Current timestamp |
-| LEN() | String length |
-| CHARINDEX() | Find substring |
-| ISNULL() | Null handling |
+# Restart services (zero-downtime)
+docker-compose -f docker-compose.prod.yml up -d
 
-### Environment Variables Reference
-| Variable | Description | Example |
-|----------|-------------|---------|
-| MSSQL_HOST | Database server | server.database.windows.net |
-| MSSQL_USER | Database username | sa |
-| MSSQL_PASSWORD | Database password | SecurePass123! |
-| MSSQL_DATABASE | Database name | production |
-| MSSQL_DRIVER | ODBC driver | ODBC Driver 18 for SQL Server |
-| TrustServerCertificate | SSL certificate trust | yes |
+# Verify
+curl https://your-domain.com/health
+```
 
-### Port Reference
-| Port | Service | Purpose |
-|------|---------|---------|
-| 80 | HTTP | Let's Encrypt validation |
-| 443 | HTTPS | Production traffic |
-| 8008 | MCP Server | Internal API |
+### Rollback
+```bash
+# Stop services
+docker-compose -f docker-compose.prod.yml down
+
+# Checkout previous version
+git checkout <previous-commit>
+
+# Rebuild and restart
+docker-compose -f docker-compose.prod.yml up --build -d
+```
+
+## 🧪 Testing
+
+### Unit Tests
+```bash
+# Run pytest
+pytest tests/
+
+# With coverage
+pytest --cov=server_oauth --cov=server_chatgpt tests/
+```
+
+### Integration Tests
+```bash
+# Test OAuth flow
+python tests/test_oauth_flow.py
+
+# Test database connectivity
+python tests/test_database.py
+
+# Test MCP protocol
+python tests/test_mcp.py
+```
+
+### Load Testing
+```bash
+# Using Apache Bench
+ab -n 1000 -c 10 -H "Authorization: Bearer TOKEN" \
+  https://your-domain.com/sse
+
+# Using hey
+hey -n 1000 -c 10 -H "Authorization: Bearer TOKEN" \
+  https://your-domain.com/sse
+```
+
+
+## 📝 License
+
+MIT License - See LICENSE file for details
+
+## 📧 Support
+
+For issues and questions:
+- GitHub Issues: [repository-url]
+- Email: support@your-domain.com
+- Documentation: https://your-domain.com/docs
 
 ---
 
-Version: 2.0.0  
-Last Updated: August 2025  
-Protocol: MCP 2025-06-18  
-Compatibility: SQL Server 2019+, Python 3.11+, Docker 20.10+
+**Version**: 2.0.0  
+**Last Updated**: October 2025  
+**Protocol**: MCP 2025-06-18  
+**Compatibility**: SQL Server 2019+, Python 3.11+, Docker 20.10+  
+**Platforms**: Claude.ai, ChatGPT (Deep Research)  
+**Transport**: Server-Sent Events (SSE)  
+**Authentication**: OAuth 2.0 (Authorization Code Flow)  
+**Encryption**: TLS 1.2+ with Let's Encrypt

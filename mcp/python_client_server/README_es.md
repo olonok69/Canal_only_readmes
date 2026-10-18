@@ -1,352 +1,648 @@
-# Servidor MCP de Análisis Financiero en Python
+# MCP: El protocolo que revoluciona la interacción de la IA con el mundo digital
 
-Una implementación completa del Protocolo de Contexto de Modelo (MCP) que incluye herramientas de análisis financiero, comunicación por eventos enviados por el servidor (SSE) y un cliente chatbot inteligente. Este proyecto demuestra el poder del MCP como el "USB-C para integraciones de IA" proporcionando acceso estandarizado a datos y capacidades de análisis financiero.
+El Model Context Protocol (MCP) es un estándar abierto desarrollado por Anthropic a finales de 2024 que funciona como un "puerto USB-C para aplicaciones de IA", proporcionando una forma estandarizada para que los modelos de inteligencia artificial se conecten con fuentes de datos externas, herramientas y sistemas. MCP resuelve el problema de integración "M×N" transformándolo en un problema "M+N", permitiendo que cualquier modelo de IA pueda interactuar con cualquier herramienta o fuente de datos a través de un protocolo común, sin necesidad de desarrollar integraciones personalizadas para cada combinación. Este enfoque ha ganado rápida adopción por parte de empresas como Block (Square), Apollo, Replit y Sourcegraph, con más de 1,000 servidores MCP construidos por la comunidad para principios de 2025.
 
-## 🌟 Descripción General
+## Los fundamentos del MCP
 
-El Protocolo de Contexto de Modelo (MCP) es un estándar abierto desarrollado por Anthropic que estandariza cómo las aplicaciones de IA se conectan con fuentes de datos externas, herramientas y sistemas. Este proyecto implementa un ecosistema MCP completo con:
+El MCP surge como respuesta a una limitación fundamental de los modelos de lenguaje: aunque son potentes para generar texto, carecen de capacidad nativa para interactuar con el mundo exterior. Antes de MCP, cada integración entre un modelo de IA y una herramienta externa requería desarrollo personalizado, creando un problema de escala cuando múltiples modelos necesitaban conectarse con múltiples herramientas.
 
-- **Servidor de Análisis Financiero**: Servidor MCP que expone herramientas sofisticadas de análisis financiero
-- **Transporte SSE**: Comunicación bidireccional en tiempo real usando Server-Sent Events
-- **Cliente Inteligente**: Chatbot impulsado por IA que puede descubrir y usar herramientas financieras
-- **Múltiples Indicadores**: Análisis MACD, Canales de Donchian, Bandas de Bollinger y Fibonacci
+La arquitectura MCP se compone de tres elementos principales:
 
-## 🚀 Características Principales
+1. **MCP Host**: La aplicación donde se ejecuta el modelo de IA (como Claude Desktop, IDEs o herramientas empresariales).
+2. **MCP Client**: Componentes que mantienen conexiones con los servidores MCP.
+3. **MCP Server**: Programas ligeros que exponen capacidades específicas a través del protocolo MCP estandarizado.
 
-### Herramientas de Análisis Financiero
-- **Calculadora de Puntuación MACD**: Análisis de Convergencia y Divergencia de Medias Móviles con puntuación por componentes
-- **Análisis de Canales de Donchian**: Análisis de posición de precios y dirección del canal
-- **Puntuación Combinada MACD-Donchian**: Indicadores integrados de momentum y rango
-- **Estrategia Bollinger-Fibonacci**: Análisis técnico avanzado combinando múltiples indicadores
-- **Z-Score de Bollinger**: Análisis estadístico de posición de precios
+Este diseño se inspiró en el Language Server Protocol (LSP), que resolvió un problema similar para editores de código e IDEs.
 
-### Componentes de Arquitectura MCP
-- **Servidor**: Expone herramientas financieras a través del protocolo MCP estandarizado
-- **Recursos**: Acceso a datos estructurados para configuración e información de la aplicación
-- **Herramientas**: Funciones ejecutables para análisis financiero impulsado por IA
-- **Prompts**: Plantillas de interacción reutilizables para patrones de análisis comunes
-- **Contexto**: Gestión inteligente de información para interacciones con LLM
+### Principios clave que guían el MCP:
 
-### Transporte y Comunicación
-- **SSE (Server-Sent Events)**: Comunicación bidireccional en tiempo real
-- **Transporte HTTP**: Endpoints de API RESTful para verificaciones de salud y mensajería
-- **JSON-RPC 2.0**: Protocolo estándar para comunicación MCP
+- **Estandarización**: Formato común para la comunicación entre aplicaciones de IA y herramientas externas
+- **Apertura**: Estándar abierto que cualquier desarrollador puede implementar
+- **Interoperabilidad**: Independencia del modelo, permitiendo que cualquier IA utilice servidores MCP
+- **Seguridad**: Control de acceso y protección de datos incorporados en el diseño
+- **Descubrimiento dinámico**: Los modelos pueden descubrir herramientas disponibles sin configuración previa
 
-## 📁 Estructura del Proyecto
+## Server: El puente entre la IA y los sistemas externos
 
-```
-mcp/python_client_server/
-├── main.py                              # Punto de entrada para ejecutar el servidor
-├── server.py                           # Instancia compartida del servidor MCP
-├── mcp_server_sse.py                   # Servidor FastAPI con transporte SSE
-├── mcp_client_sse_chat.py              # Cliente chatbot básico
-├── mcp_client_sse_chat_improved.py     # Chatbot mejorado con mejor análisis
-├── tools/                              # Herramientas de análisis financiero
-│   ├── bollinger_bands_score.py        # Calculadora de Z-Score de Bollinger
-│   ├── bollinger_fibonacci_tools.py    # Estrategia combinada Bollinger-Fibonacci
-│   ├── macd_donchian_combined_score.py # Análisis MACD y Donchian
-│   ├── csv_tools.py                    # Herramientas de procesamiento CSV
-│   └── parquet_tools.py                # Herramientas de procesamiento Parquet
-├── utils/                              # Funciones utilitarias
-│   ├── yahoo_finance_tools.py          # Procesamiento de datos de Yahoo Finance
-│   └── file_reader.py                  # Utilidades de lectura de archivos
-├── keys/                               # Configuración y credenciales
-│   └── .env                           # Variables de entorno
-├── data/                               # Archivos de datos
-├── pyproject.toml                      # Dependencias del proyecto
-└── README.md                           # Este archivo
-```
+El servidor MCP actúa como intermediario entre los modelos de IA y los sistemas externos, exponiendo capacidades a través de una interfaz estandarizada. **Funciona como traductor bidireccional**, convirtiendo las peticiones del modelo en acciones específicas sobre sistemas externos y devolviendo resultados en un formato que el modelo puede comprender.
 
-## 🛠️ Instalación
+Los servidores implementan el protocolo JSON-RPC 2.0 y soportan múltiples mecanismos de transporte:
+- **stdio** (entrada/salida estándar) para servidores locales
+- **SSE** (Server-Sent Events) y **WebSockets** para comunicación remota
 
-### Prerequisitos
-- Python 3.12 o superior
-- Gestor de paquetes [uv](https://github.com/astral-sh/uv)
+```javascript
+// Ejemplo básico de un servidor MCP en TypeScript
+import { Server } from "@modelcontextprotocol/sdk/server";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio";
 
-### Instrucciones de Configuración
+const server = new Server({
+  name: "mi-servidor-mcp",
+  version: "1.0.0"
+}, { capabilities: { tools: {} } });
 
-1. **Instalar el gestor de paquetes uv**:
-   ```bash
-   # Linux/Mac
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   
-   # Windows
-   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-   ```
+// Registrar una herramienta
+server.tool({
+  name: "saludar",
+  description: "Genera un saludo personalizado",
+  parameters: {
+    nombre: {
+      type: "string",
+      description: "Nombre de la persona a saludar"
+    }
+  },
+  handler: async (params) => {
+    return `Hola, ${params.nombre}!`;
+  }
+});
 
-2. **Clonar y configurar el proyecto**:
-   ```bash
-   git clone <url-del-repositorio>
-   cd mcp/python_client_server
-   ```
-
-3. **Crear entorno virtual**:
-   ```bash
-   uv venv
-   
-   # Activar entorno
-   # Linux/Mac:
-   source .venv/bin/activate
-   
-   # Windows:
-   .venv\Scripts\activate
-   ```
-
-4. **Instalar dependencias**:
-   ```bash
-   uv add "mcp[cli]" pandas pyarrow yfinance langchain langchain_mcp_adapters langgraph langchain_google_genai google-generativeai python-dotenv fastapi loguru numpy openai
-   ```
-
-5. **Configurar variables de entorno**:
-   ```bash
-   # Crear archivo keys/.env con tus claves API
-   echo "OPENAI_API_KEY=tu_clave_api_openai_aqui" > keys/.env
-   ```
-
-## 🚀 Uso
-
-### Ejecutar el Servidor MCP
-
-Iniciar el servidor de análisis financiero con transporte SSE:
-
-```bash
-python mcp_server_sse.py
+// Iniciar el servidor con transporte stdio
+const transport = new StdioServerTransport();
+server.listen(transport);
 ```
 
-El servidor se iniciará en `http://localhost:8100` con los siguientes endpoints:
-- `GET /sse` - Conexión Server-Sent Events
-- `POST /messages/` - Manejo de mensajes MCP
-- `GET /health` - Verificación de salud
+En la práctica, existen servidores MCP para diversos sistemas como bases de datos (PostgreSQL, MongoDB), sistemas de control de versiones (GitHub, GitLab), y aplicaciones de productividad (Slack, Google Drive).
 
-### Usar el Cliente Interactivo
+## Resources: Las fuentes de datos estructurados
 
-Iniciar el cliente chatbot inteligente:
+Los recursos en MCP son fuentes de datos estructurados, **similares a endpoints GET en una API REST**. Proporcionan información sin realizar cálculos significativos y forman parte del contexto que el modelo utiliza para generar respuestas precisas.
 
-```bash
-# Cliente básico
-python mcp_client_sse_chat.py
+Características principales de los resources:
+- Se acceden mediante una ruta única en formato nombre/identificador
+- Pueden tener parámetros opcionales para personalizar la consulta
+- Devuelven datos estructurados en formato JSON
+- No modifican el estado de los sistemas externos (sin efectos secundarios)
 
-# Cliente mejorado (recomendado)
-python mcp_client_sse_chat_improved.py
+```javascript
+// Ejemplo de definición de un recurso en un servidor MCP
+server.resource({
+  name: "documentos",
+  description: "Accede a documentos almacenados",
+  parameters: {
+    carpeta: {
+      type: "string",
+      description: "Carpeta donde buscar"
+    }
+  },
+  handler: async (params) => {
+    // Lógica para obtener documentos de la carpeta especificada
+    const documentos = await obtenerDocumentos(params.carpeta);
+    return documentos;
+  }
+});
 ```
 
-### Consultas de Ejemplo
+Los recursos facilitan el acceso a información como listados de archivos, registros de bases de datos, mensajes de canales de chat o documentación de APIs.
 
-Prueba estas consultas de ejemplo con el chatbot:
+## Tools: Las funciones ejecutables
 
+Las herramientas en MCP son funciones que los modelos pueden invocar para ejecutar acciones específicas, **similares a métodos POST en una API REST**. Permiten que el modelo vaya más allá de la generación de texto, actuando sobre sistemas externos.
+
+Características de las tools:
+- Tienen un nombre único y una descripción clara
+- Definen un esquema de parámetros de entrada con tipos y descripciones
+- Pueden devolver resultados estructurados
+- Admiten gestión de errores y validación de parámetros
+
+```javascript
+// Ejemplo de definición de una herramienta en un servidor MCP
+server.tool({
+  name: "enviar_email",
+  description: "Envía un correo electrónico",
+  parameters: {
+    destinatario: {
+      type: "string",
+      description: "Dirección de correo del destinatario"
+    },
+    asunto: {
+      type: "string",
+      description: "Asunto del correo"
+    },
+    cuerpo: {
+      type: "string",
+      description: "Contenido del correo"
+    }
+  },
+  handler: async (params) => {
+    // Lógica para enviar el correo
+    await enviarEmail(params.destinatario, params.asunto, params.cuerpo);
+    return { success: true, message: "Correo enviado correctamente" };
+  }
+});
 ```
-"¿Cuál es la puntuación MACD para AAPL durante el último año?"
 
-"Calcula el Z-score de Bollinger para TSLA con un período de 20 días"
+Estas herramientas pueden realizar diversas operaciones como manipulación de archivos, interacción con APIs externas, consultas a bases de datos o generación de contenido multimedia.
 
-"Dame un análisis combinado MACD-Donchian para MSFT usando 6 meses de datos"
+## Prompts: Las plantillas predefinidas
 
-"Analiza NVDA usando la estrategia Bollinger-Fibonacci para los últimos 3 días"
+Los prompts en MCP son plantillas predefinidas que estructuran las interacciones entre el usuario, el modelo y las herramientas disponibles. **Actúan como guías estandarizadas** que optimizan las consultas para casos de uso específicos.
 
-"¿Cuál es la recomendación para comprar o vender AAPL basada en indicadores técnicos?"
+Características de los prompts:
+- Tienen un nombre único y una descripción
+- Pueden aceptar argumentos personalizables
+- Generan secuencias de mensajes estructurados
+- Son controlados por el usuario en el flujo de MCP
+
+```javascript
+// Ejemplo de definición de un prompt en un servidor MCP
+server.prompt({
+  name: "analizar_codigo",
+  description: "Analiza un fragmento de código para mejoras",
+  arguments: [
+    {
+      name: "lenguaje",
+      description: "Lenguaje de programación",
+      required: true
+    },
+    {
+      name: "codigo",
+      description: "Código a analizar",
+      required: true
+    }
+  ],
+  handler: async (args) => {
+    return [
+      {
+        role: "system",
+        content: {
+          type: "text",
+          text: `Eres un experto en ${args.lenguaje}. Analiza el siguiente código y sugiere mejoras.`
+        }
+      },
+      {
+        role: "user",
+        content: {
+          type: "text",
+          text: `Aquí está el código a analizar:\n\n\`\`\`${args.lenguaje}\n${args.codigo}\n\`\`\``
+        }
+      }
+    ];
+  }
+});
 ```
 
-## 🔧 Componentes Principales Explicados
+Los prompts se utilizan para casos como análisis de código, generación de resúmenes, plantillas para correos o informes, y flujos de revisión de proyectos.
 
-### Implementación del Servidor MCP
+## Images: El componente visual
 
-El servidor usa FastMCP para una implementación MCP simplificada:
+El componente de imágenes en MCP permite a los modelos de IA procesar, generar y manipular contenido visual. **Extiende las capacidades del modelo al dominio visual**, facilitando interacciones multimodales.
+
+Características técnicas:
+- Maneja imágenes en formatos estándar (PNG, JPEG, etc.)
+- Utiliza codificación Base64 para transmitir imágenes a través del protocolo
+- Permite operaciones de procesamiento como redimensionado y filtrado
+- Soporta integración con APIs de generación de imágenes (DALL-E, Stable Diffusion)
+
+```javascript
+// Ejemplo de una herramienta para generar imágenes en un servidor MCP
+server.tool({
+  name: "generar_imagen",
+  description: "Genera una imagen a partir de una descripción",
+  parameters: {
+    prompt: {
+      type: "string",
+      description: "Descripción de la imagen a generar"
+    },
+    ancho: {
+      type: "number",
+      description: "Ancho de la imagen en píxeles",
+      default: 512
+    },
+    alto: {
+      type: "number",
+      description: "Alto de la imagen en píxeles",
+      default: 512
+    }
+  },
+  handler: async (params) => {
+    // Lógica para generar la imagen usando un modelo de IA
+    const imagenBase64 = await generarImagen(params.prompt, params.ancho, params.alto);
+    return {
+      image: imagenBase64,
+      mimeType: "image/png",
+      width: params.ancho,
+      height: params.alto
+    };
+  }
+});
+```
+
+El procesamiento de imágenes se implementa a través de servidores especializados como MCP-DALL-E, herramientas OCR, o procesadores para diagramas y visualizaciones.
+
+## Context: El entorno informativo
+
+El contexto en MCP es el entorno informativo en el que opera el modelo de IA, incluyendo los datos, herramientas y recursos disponibles durante una interacción. **Funciona como la memoria de trabajo del sistema**, proporcionando la información necesaria para generar respuestas precisas.
+
+Características del context:
+- Incluye información de múltiples fuentes (recursos, historial de conversación)
+- Es dinámico y puede actualizarse durante una sesión
+- Se gestiona eficientemente para optimizar la ventana de contexto del modelo
+- Incluye metadatos sobre disponibilidad y permisos de herramientas
+
+```javascript
+// Ejemplo de solicitud de sampling (contexto adicional) desde un servidor MCP
+server.setRequestHandler(SamplingRequestSchema, async (request) => {
+  // El servidor solicita que el modelo genere texto adicional basado en un contexto
+  const resultado = await client.sampling({
+    messages: [
+      {
+        role: "user",
+        content: { type: "text", text: "Por favor resume este documento." }
+      }
+    ],
+    systemPrompt: "Eres un asistente experto en resúmenes.",
+    includeContext: "thisServer", // Solo incluye el contexto de este servidor
+    maxTokens: 300
+  });
+  
+  return resultado;
+});
+```
+
+La gestión del contexto se implementa a nivel de arquitectura, con hosts MCP gestionando el contexto global, clientes MCP manteniendo el contexto específico de cada servidor, y actualizaciones dinámicas con los resultados de las herramientas.
+
+## La orquesta digital: Cómo interactúan los componentes
+
+El poder real de MCP emerge cuando todos sus componentes trabajan juntos en un flujo coordinado:
+
+1. El **Host** (Claude Desktop, Cursor, etc.) inicia la comunicación a través del **Cliente MCP**
+2. El **Cliente MCP** se conecta al **Servidor MCP** (GitHub, Google Drive, etc.)
+3. El **Servidor MCP** expone **tools**, **resources** y **prompts** al cliente
+4. El **Host** presenta estas capacidades al usuario y al modelo de IA
+5. Cuando el modelo necesita usar una herramienta, solicita permiso al usuario
+6. Con aprobación, la solicitud pasa del **Cliente** al **Servidor** para ejecución
+7. Los resultados regresan al **Host** a través del **Cliente**
+8. El modelo incorpora esta información en su **contexto** para generar respuestas
+
+Este flujo se observa en implementaciones reales como:
+
+- **Cursor IDE**: Cuando un usuario hace una pregunta sobre código en GitHub, Cursor identifica que necesita el servidor GitHub MCP, el modelo solicita permiso para usar herramientas específicas, y con aprobación, ejecuta las operaciones necesarias para obtener la información.
+
+- **Claude Desktop**: Al interactuar con documentos en Google Drive, Claude utiliza el servidor MCP correspondiente para acceder a los archivos necesarios, manteniendo los datos dentro de la infraestructura del usuario.
+
+- **Block (Square)**: Como señala su CTO, Dhanji R. Prasanna: "Las tecnologías abiertas como el Model Context Protocol son los puentes que conectan la IA con aplicaciones del mundo real."
+
+## La comunidad MCP: Implementación y casos de uso
+
+El ecosistema MCP ha crecido rápidamente, con numerosos servidores oficiales y comunitarios:
+
+**Servidores oficiales**:
+- Filesystem (operaciones de archivos locales)
+- PostgreSQL y SQLite (bases de datos)
+- Google Drive (archivos en la nube)
+- Git, GitHub y GitLab (control de versiones)
+- Sentry (gestión de errores)
+- Brave Search (búsqueda web)
+
+**Implementaciones empresariales**:
+- **Confluent**: Servidor MCP para Kafka que permite interacciones en lenguaje natural con datos en tiempo real
+- **Visual Studio Code**: Integración con GitHub Copilot mediante MCP
+- **Zed y Replit**: Editores de código con soporte MCP para mejoras en asistencia de IA
+
+El impacto de MCP se observa en múltiples sectores, desde desarrollo de software hasta aplicaciones empresariales, demostrando su versatilidad y potencial para transformar la forma en que las aplicaciones de IA interactúan con sistemas externos.
+
+## Una revolución silenciosa en la integración de IA
+
+El Model Context Protocol representa un avance fundamental en cómo las inteligencias artificiales interactúan con datos y sistemas externos. Al proporcionar un estándar común para estas interacciones, MCP elimina la necesidad de integraciones personalizadas, permite la portabilidad entre diferentes modelos, y facilita un ecosistema rico de herramientas que cualquier IA puede utilizar.
+
+A medida que crece la adopción de MCP, podemos esperar asistentes de IA más capaces, contextuales e integrados con nuestros sistemas digitales, transformando la forma en que trabajamos con la tecnología. Esta "capa de traducción universal" para IA marca un paso crucial hacia asistentes verdaderamente útiles que pueden no solo generar texto, sino actuar efectivamente en el mundo digital en nuestro nombre.
+
+# Python Examples
+
+Python's Model Context Protocol implementation offers a cleaner, simpler syntax while maintaining all the power of the TypeScript version. This guide shows you the Python equivalents for key MCP components with practical, production-ready examples.
+
+## The fundamentals: setting up a basic MCP server
+
+TypeScript's more verbose class-based approach transforms into Python's cleaner decorator pattern. The Python SDK provides `FastMCP` which dramatically simplifies server creation:
 
 ```python
 from mcp.server.fastmcp import FastMCP
 
-# Crear servidor MCP
-mcp = FastMCP(name="Finance Tools")
+# Create a named MCP server
+mcp = FastMCP(name="SimpleMCPServer")
 
-# Definir una herramienta de análisis financiero
+# Add a basic tool
 @mcp.tool()
-def calculate_macd_score(symbol: str, period: str = "1y") -> str:
-    """Calcular puntuación MACD para un símbolo dado"""
-    # Implementación aquí
-    return f"Análisis MACD para {symbol}"
+def add(a: int, b: int) -> int:
+    """Add two numbers and return the result."""
+    return a + b
+
+# Run the server if executed directly
+if __name__ == "__main__":
+    mcp.run()
 ```
 
-### Capa de Transporte SSE
+Python's implementation streamlines MCP server creation with cleaner type hints, automatic schema generation, and built-in runtime support.
 
-Los Server-Sent Events permiten comunicación bidireccional en tiempo real:
+## Defining resources: data access made simple
+
+Resources in MCP provide data to LLMs (like GET endpoints). While TypeScript requires explicit schema objects, Python leverages type annotations and decorators:
 
 ```python
-from mcp.server.sse import SseServerTransport
+# Static resource path
+@mcp.resource("config://app")
+def get_app_config() -> str:
+    """Serve application configuration as a resource"""
+    return """
+    {
+        "version": "1.0.0",
+        "environment": "development",
+        "features": {
+            "dark_mode": true,
+            "beta_features": false
+        }
+    }
+    """
 
-transport = SseServerTransport("/messages/")
-
-async def handle_sse(request):
-    async with transport.connect_sse(request.scope, request.receive, request._send) as (in_stream, out_stream):
-        await mcp._mcp_server.run(in_stream, out_stream, mcp._mcp_server.create_initialization_options())
+# Dynamic path with parameters
+@mcp.resource("users://{user_id}")
+def get_user(user_id: str) -> dict:
+    """Return user data as a dictionary (automatically JSON-serialized)"""
+    # Simulate database lookup
+    user_data = {
+        "id": user_id,
+        "name": f"User {user_id}",
+        "email": f"user{user_id}@example.com",
+        "active": True
+    }
+    return user_data  # SDK handles JSON serialization
 ```
 
-### Arquitectura del Cliente Inteligente
+The Python SDK automatically handles serialization of return values while providing intelligent URI pattern matching and parameter extraction.
 
-El cliente implementa varios componentes especializados:
+## Creating powerful tools: from functions to LLM capabilities
 
-- **LLMClient**: Gestiona interacciones con los modelos GPT de OpenAI
-- **PromptGenerator**: Crea prompts especializados para selección de herramientas y procesamiento de respuestas
-- **ResponseParser**: Maneja análisis JSON y recuperación de errores
-- **AgentProcessor**: Orquesta el flujo de descubrimiento y ejecución de herramientas
-
-## 📊 Herramientas de Análisis Financiero
-
-### Calculadora de Puntuación MACD
-Calcula una puntuación MACD integral (-100 a +100) combinando:
-- **Línea MACD vs Línea de Señal (40%)**: Dirección del momentum
-- **Línea MACD vs Cero (30%)**: Fuerza de la tendencia
-- **Momentum del Histograma (30%)**: Aceleración/desaceleración
-
-### Análisis de Canales de Donchian
-Evalúa la posición del precio dentro de los Canales de Donchian:
-- **Posición del Precio (50%)**: Ubicación dentro de las bandas del canal
-- **Dirección del Canal (30%)**: Identificación de tendencia
-- **Ancho del Canal (20%)**: Evaluación de volatilidad
-
-### Estrategia Bollinger-Fibonacci
-Análisis multi-indicador avanzado:
-- **Posición de Bandas de Bollinger (30%)**: Precio relativo a las bandas
-- **Evaluación de Volatilidad (15%)**: Ancho de bandas y cambios
-- **Interacción con Niveles de Fibonacci (35%)**: Niveles clave de soporte/resistencia
-- **Momentum del Precio (20%)**: Indicador de momentum tipo RSI
-
-### Sistema de Puntuación Combinado
-Todas las herramientas proporcionan puntuación estandarizada con señales de trading claras:
-- **+75 a +100**: Compra Fuerte
-- **+50 a +75**: Compra
-- **+25 a +50**: Compra Débil
-- **-25 a +25**: Neutral (Mantener)
-- **-50 a -25**: Venta Débil
-- **-75 a -50**: Venta
-- **-100 a -75**: Venta Fuerte
-
-## 🔌 Detalles del Protocolo MCP
-
-### Recursos
-Endpoints de datos estructurados para configuración:
+Tools in MCP execute actions and produce results (similar to POST endpoints). Python's implementation uses type annotations to generate input schemas:
 
 ```python
-@mcp.resource("config://app-version")
-def get_app_version() -> str:
-    return "v2.1.0"
+# Basic tool with docstring
+@mcp.tool()
+def echo(message: str) -> str:
+    """Echo back the provided message."""
+    return f"Echo: {message}"
 
+# Tool with complex parameters
+@mcp.tool()
+def process_file(
+    file_path: str, 
+    columns: list[str], 
+    options: dict[str, str] = None,
+    limit: int = None
+) -> dict:
+    """Process a file with the given parameters."""
+    options = options or {}
+    
+    # Simulated processing logic
+    return {
+        "status": "success",
+        "columns_processed": len(columns),
+        "options_applied": list(options.keys()),
+        "limit_used": limit
+    }
+```
+
+For async operations, Python's implementation is particularly elegant:
+
+```python
+@mcp.tool()
+async def fetch_weather(city: str, ctx: Context) -> dict:
+    """Fetch current weather for a city."""
+    # Log operation to client
+    await ctx.info(f"Fetching weather for {city}...")
+    
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f"https://api.example.com/weather/{city}")
+        response.raise_for_status()
+        
+        # Report progress
+        await ctx.report_progress(1, 1)
+        
+        return response.json()
+```
+
+## Defining prompts: structured interaction templates
+
+Prompts define reusable interaction patterns for LLMs. Python's implementation is more intuitive:
+
+```python
+# Simple prompt returning a string
+@mcp.prompt()
+def analyze_code(code: str) -> str:
+    """Generate a prompt asking for code analysis."""
+    return f"Please analyze the following code and suggest improvements:\n\n```python\n{code}\n```"
+
+# Advanced prompts with multiple messages
+from mcp.server.fastmcp.prompts import base
+
+@mcp.prompt()
+def debug_error(error: str) -> list[base.Message]:
+    """Create a debugging workflow with multiple messages."""
+    return [
+        base.UserMessage("I'm seeing this error in my application:"),
+        base.UserMessage(error),
+        base.AssistantMessage("I'll help debug that error. What have you tried so far?")
+    ]
+```
+
+## Handling images: seamless multimodal support
+
+The Python SDK provides elegant handling of images through its `Image` class:
+
+```python
+from mcp.server.fastmcp import FastMCP, Image
+from PIL import Image as PILImage
+import io
+
+@mcp.tool()
+def create_thumbnail(image_path: str, size: int = 100) -> Image:
+    """Create a thumbnail from an image file."""
+    # Open the source image with PIL
+    img = PILImage.open(image_path)
+    img.thumbnail((size, size))
+    
+    # Convert to bytes and return using Image helper 
+    buffer = io.BytesIO()
+    img.save(buffer, format='PNG')
+    buffer.seek(0)
+    
+    return Image(
+        data=buffer.getvalue(),
+        format="png",
+        width=img.width,
+        height=img.height
+    )
+```
+
+Python's implementation handles both receiving and returning images with clean integration with PIL (Pillow):
+
+```python
+@mcp.tool()
+def analyze_image(image: Image) -> dict:
+    """Analyze an image and return information about it."""
+    # Convert image data to PIL Image for processing
+    img_data = io.BytesIO(image.data)
+    img = PILImage.open(img_data)
+    
+    # Return analysis results
+    return {
+        "format": image.format,
+        "width": image.width or img.width,
+        "height": image.height or img.height,
+        "mode": img.mode
+    }
+```
+
+## Sampling: adding AI capabilities to your server
+
+Sampling allows MCP servers to request completions from the client's LLM. The Python implementation uses the context object:
+
+```python
+@mcp.tool()
+async def summarize_text(text: str, ctx: Context) -> str:
+    """Summarize the provided text using the LLM."""
+    # Log a message to the client
+    await ctx.info("Summarizing text...")
+    
+    # Request a summary from the client's LLM
+    summary = await ctx.sample(
+        messages=[
+            {"role": "user", "content": f"Please provide a concise summary of the following text:\n\n{text}"}
+        ],
+        system_prompt="You are a helpful assistant that specializes in creating concise summaries.",
+        max_tokens=200
+    )
+    
+    # Return the summary text
+    return summary.text
+```
+
+The Python implementation allows for extensive customization of sampling parameters:
+
+```python
+# Advanced sampling with more configuration
+response = await ctx.sample(
+    messages=[
+        {"role": "user", "content": query}
+    ],
+    system_prompt="You are an expert programmer.",
+    max_tokens=1000,
+    temperature=0.7,
+    stop_sequences=["\n\n"],
+    include_context="thisServer",
+    model_preferences={
+        "hints": [{"name": "claude-3-opus"}],
+        "intelligencePriority": 0.9
+    }
+)
+```
+
+## Using the context API
+
+The Context object provides access to session capabilities within tools, resources, or prompts:
+
+```python
+@mcp.tool()
+async def process_items(items: list[str], ctx: Context) -> dict:
+    """Process a list of items with progress reporting."""
+    total = len(items)
+    results = []
+    
+    for i, item in enumerate(items):
+        # Report progress to the client
+        await ctx.report_progress(i, total)
+        
+        # Log processing step
+        await ctx.info(f"Processing item {i+1}/{total}: {item}")
+        
+        # Add to results
+        results.append(f"Processed: {item}")
+    
+    # Final progress update
+    await ctx.report_progress(total, total)
+    
+    return {
+        "status": "success",
+        "processed": total,
+        "results": results
+    }
+```
+
+## Complete server example
+
+Here's a complete example of a Python MCP server implementation:
+
+```python
+from mcp.server.fastmcp import FastMCP, Context, Image
+from PIL import Image as PILImage
+import httpx
+import io
+
+# Create MCP server
+mcp = FastMCP("Complete Example Server")
+
+# Define resources
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
-    return f"¡Hola, {name}!"
-```
+    """Get a personalized greeting."""
+    return f"Hello, {name}!"
 
-### Herramientas
-Funciones ejecutables para análisis de IA:
+@mcp.resource("config://app")
+def get_config() -> dict:
+    """Get application configuration."""
+    return {
+        "version": "1.0.0",
+        "debug": True,
+        "features": ["search", "analytics"]
+    }
 
-```python
+# Define tools
 @mcp.tool()
-def calculate_z_score(symbol: str, period: int = 20) -> str:
-    """Calcular Z-Score de Bollinger para análisis técnico"""
-    # Implementación
-    return analysis_result
-```
+def add(a: int, b: int) -> int:
+    """Add two numbers."""
+    return a + b
 
-### Prompts
-Plantillas de interacción reutilizables:
+@mcp.tool()
+async def fetch_data(url: str, ctx: Context) -> dict:
+    """Fetch data from a URL."""
+    await ctx.info(f"Fetching data from {url}...")
+    
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url)
+        response.raise_for_status()
+        return response.json()
 
-```python
+@mcp.tool()
+def process_image(image: Image) -> dict:
+    """Analyze an image."""
+    img_data = io.BytesIO(image.data)
+    img = PILImage.open(img_data)
+    
+    return {
+        "format": image.format,
+        "dimensions": f"{img.width}x{img.height}",
+        "mode": img.mode
+    }
+
+# Define prompts
 @mcp.prompt()
-def analyze_stock(symbol: str) -> str:
-    return f"Por favor analiza {symbol} usando los indicadores técnicos disponibles"
+def code_review(code: str) -> str:
+    """Generate a prompt for code review."""
+    return f"Please review this code and suggest improvements:\n\n```\n{code}\n```"
+
+# Run the server
+if __name__ == "__main__":
+    mcp.run()
 ```
 
-## 🤖 Integración con IA
+## Conclusion: Python's streamlined approach
 
-El proyecto demuestra cómo MCP permite una integración perfecta con IA:
+Python's implementation of the Model Context Protocol offers several advantages over TypeScript:
 
-1. **Descubrimiento de Herramientas**: La IA descubre automáticamente las herramientas financieras disponibles
-2. **Selección Inteligente**: GPT-4o-mini selecciona las herramientas apropiadas basándose en las consultas del usuario
-3. **Extracción de Parámetros**: Las consultas en lenguaje natural se convierten en llamadas estructuradas a herramientas
-4. **Interpretación de Resultados**: Las respuestas de las herramientas se formatean en explicaciones amigables para el usuario
-5. **Flujos Multi-Herramienta**: Los análisis complejos pueden encadenar múltiples herramientas juntas
+1. **More concise syntax** through decorators and type annotations
+2. **Simpler setup and configuration** with the FastMCP helper class
+3. **Cleaner async support** with Python's native async/await
+4. **Elegant error handling** with Python's exception mechanisms
+5. **Better integration** with Python's rich ecosystem for data processing and AI
 
-## 🔧 Configuración
+By using Python's implementation, developers can build robust MCP servers with less code while maintaining all the functionality of the TypeScript implementation.
 
-### Variables de Entorno
-Crear `keys/.env` con:
-
-```bash
-OPENAI_API_KEY=tu_clave_api_openai_aqui
-# Agregar otras claves API según sea necesario
-```
-
-### Configuración del Servidor
-Modificar `mcp_server_sse.py` para personalizar:
-- Número de puerto (por defecto: 8100)
-- Herramientas disponibles
-- Fuentes de datos
-- Parámetros de análisis
-
-## 🏗️ Beneficios de la Arquitectura
-
-### Integración Estandarizada
-- **Protocolo Universal**: Un protocolo para todas las integraciones IA-herramientas
-- **Interoperabilidad**: Las herramientas funcionan a través de diferentes modelos de IA y plataformas
-- **Escalabilidad**: Fácil agregar nuevas herramientas y fuentes de datos
-
-### Seguridad y Control
-- **Autorización del Usuario**: Las herramientas requieren permiso del usuario antes de la ejecución
-- **Aislamiento de Datos**: Cada servidor mantiene su propio contexto de datos
-- **Registro de Auditoría**: Todas las llamadas a herramientas se registran y son rastreables
-
-### Experiencia del Desarrollador
-- **Implementación Simple**: FastMCP reduce el código repetitivo
-- **Seguridad de Tipos**: Generación automática de esquemas desde type hints de Python
-- **Manejo de Errores**: Recuperación de errores y validación incorporadas
-
-## 🔮 Mejoras Futuras
-
-### Características Planificadas
-- **Análisis de Portfolio**: Herramientas de optimización de carteras multi-activo
-- **Gestión de Riesgo**: VaR, pruebas de estrés y métricas de riesgo
-- **Aprendizaje Automático**: Modelos predictivos y reconocimiento de patrones
-- **Datos en Tiempo Real**: Feeds de datos de mercado en vivo y alertas
-- **Backtesting**: Análisis de rendimiento histórico de estrategias
-
-### Oportunidades de Integración
-- **Conectividad de Base de Datos**: Servidores MCP para PostgreSQL, MongoDB
-- **Servicios en la Nube**: Integraciones con AWS, GCP, Azure
-- **Plataformas de Trading**: Conexiones con APIs de brokers
-- **Noticias y Sentimiento**: Herramientas de análisis de noticias financieras
-
-## 🤝 Contribuir
-
-1. Hacer fork del repositorio
-2. Crear una rama de característica
-3. Agregar tus herramientas MCP o mejoras
-4. Incluir pruebas comprehensivas
-5. Enviar un pull request
-
-### Pautas de Desarrollo
-- Seguir type hints de Python
-- Usar decoradores FastMCP para herramientas/recursos
-- Incluir docstrings con descripciones de parámetros
-- Agregar manejo de errores para llamadas a APIs externas
-- Probar con múltiples modelos de IA
-
-## 📚 Recursos Adicionales
-
-- [Especificación MCP](https://modelcontextprotocol.io/docs)
-- [Documentación FastMCP](https://github.com/pydantic/fastmcp)
-- [Indicadores de Análisis Técnico](https://www.investopedia.com/technical-analysis/)
-- [Guía de Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
-
-## 📄 Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
-
-## 🙏 Reconocimientos
-
-- [Anthropic](https://www.anthropic.com/) por desarrollar el estándar MCP
-- [FastMCP](https://github.com/pydantic/fastmcp) por la implementación en Python
-- [Yahoo Finance](https://finance.yahoo.com/) por los datos financieros
-- [OpenAI](https://openai.com/) por la integración con modelos GPT
-
----
-
-**El Protocolo de Contexto de Modelo representa un cambio fundamental en la interoperabilidad de sistemas de IA. Al proporcionar una forma estandarizada para que los modelos de IA accedan a datos y funcionalidad externa, MCP habilita asistentes de IA más conscientes del contexto y capaces, mientras reduce la complejidad de integración.**
+Whether you're building tools, resources, or working with images and sampling, the Python SDK provides an intuitive and powerful way to integrate with the Model Context Protocol ecosystem.
