@@ -1,0 +1,16 @@
+# Course Reinforcement Learning
+
+Every video on this list can be watched. When the code is for paid subscribers, the table says so.
+
+[YouTube playlist](https://www.youtube.com/playlist?list=PLw-i55H2Io6jpkV4Z0RAWLgQPzA1LCYhM)
+
+| Category | Project | Description | Documentation | Video |
+|----------|---------|-------------|-------------- |---|
+| **Reinforcement Learning** | Libraries and RL in financial Trading | In this video we go through the ecosystem of available Reinforcement Learning libraries in Python, then we will use Stable-Baselines3 to rebuild a stock trading agent on live data… | [📖 English](../Reinforcement_Learning/RL_libraries_financial_demo/README.md) | [▶️ Video](https://youtu.be/7Ja9TOv2nIg) |
+| **Reinforcement Learning** | Continuous Control, Actor-Critic Off-Policy Methods | In this video, we'll explore Continuous Reinforcement Learning Control algorithms, specifically Actor-Critic Off-Policy methods. | [📖 English](../Reinforcement_Learning/Reinforcement-Learning-Hybrid-algorithms/README.md) | [▶️ Video](https://youtu.be/BULfoeeYWT8) |
+| **Reinforcement Learning** | Advanced Policy Optimization. A2C, A3C, PPO and TRPO | In this video, we'll explore the most advanced Policy Optimization algorithms: A2C, A3C, PPO, and TRPO. We'll also give a brief introduction to GRPO. | [📖 English](../Reinforcement_Learning/Reinforcement_Learning_Policy_Optimization/README.md) | [▶️ Video](https://youtu.be/JYGg_U3UVgg) |
+| **Reinforcement Learning** | Policy Optimization Introduction. Reinforce to PPO to RLHF | In this video, we'll explore RL Policy Optimization — REINFORCE from scratch: math, code, and connection to RLHF. We'll build from the ground up how REINFORCE works — the policy g… | [📖 English](../Reinforcement_Learning/Reinforcement_Learning_Policy_Optimization/README.md) | [▶️ Video](https://youtu.be/mfjWWOsCNIo) |
+| **Reinforcement Learning** | Advanced algorithms Q-Learning, Rainbow DQN | In this video, we explore distributional reinforcement learning (C51, QR-DQN), Rainbow DQN, and Replay of Hindsight Experience (PER). | [📖 English](../Reinforcement_Learning/Reinforcement_Learning_q-learning_playground/README_part3.md) | [▶️ Video](https://youtu.be/rnw8qE0fisw) |
+| **Reinforcement Learning** | Improving vanilla DQN, Road to Rainbow DQN | In this video, we explore the five main extensions of DQN (Deep Q-Network), the learning DQN algorithm introduced in Part 1 of this series. | [📖 English](../Reinforcement_Learning/Reinforcement_Learning_q-learning_playground/README_part2.md) | [▶️ Video](https://youtu.be/WngI9vc6ahE) |
+| **Reinforcement Learning** | Q-learning and Deep Q-Networks | In this video we'll see what Q-learning is, its fundamentals, and how to solve the problem of creating a Q-table with an approximation function using a Neural Network, which we kn… | [📖 English](../Reinforcement_Learning/Reinforcement_Learning_q-learning_playground/README.md) | [▶️ Video](https://youtu.be/7RhGK68olVc) |
+| **Agentic AI** | Reinforcement Learning Introduction | In this video, we're launching a new section and a new course dedicated to Reinforcement Learning. | [📖 English](../Agentic_AI/Introduction_to_Reinforcement_Learning/README.md) | [▶️ Video](https://youtu.be/6ZK3RIKc-H8) |

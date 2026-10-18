@@ -1,223 +1,29 @@
-# AI & ML Repository - Comprehensive Guide
+# AI & ML Repository
 
-A collection of AI and ML projects documented with the matching English video from the channel. The table is generated from `data/links_english.csv`.
+Channel videos are public. For some projects the code is for paid subscribers; each list page says which ones. Shorts are not included. Courses are lists.
 
-## 📋 Table of Contents
+[The Machine Learning Engineer](https://www.youtube.com/channel/UCqAi1lTsd2wj7p05-Oos4ug)
 
-| Category | Project | Description | Documentation | Video |
-|----------|---------|-------------|-------------- |---|
-| **OpenAI Video Processing** | AI Video Translator | Complete local AI-powered video translation system from Spanish to English using OpenAI Whisper, Helsinki-NLP transformers, and Edge TTS | [📖 English](OpenAI/Video_Translation/README.md) | [▶️ Video](https://youtu.be/7vLL4m7pgto) |
-| **Medical AI** | DICOM Anonymization | DICOM medical image anonymization using Microsoft Presidio | [📖 English](DICOM_FHIR/Readme_en.md) | [▶️ Video](https://youtu.be/dK9Q0fnlEwU) |
-| **Google AI** | Video Summarizer | AI-powered video transcription and summarization with Gemini Pro | [📖 English](Google_AI/Video_summarizer/Readme.md) | [▶️ Video](https://youtu.be/4RqgILHWPqM) |
-| **Google AI** | Content Caching | Google AI Context Caching optimization with Gemini API | [📖 English](Google_AI/content_caching/Readme_en.md) | [▶️ Video](https://youtu.be/DEeXu66e5fA) |
-| **Azure AI** | Azure AI Foundry Agent | Python application demonstrating Azure AI Foundry Agent Service for specialized agricultural data analysis with automated wheat production forecasting capabilities and comprehensive markdown report generation | [📖 English](Azure/AI_Foundry/Readme.md) | [▶️ Video](https://youtu.be/gDVphfrnryg) |
-| **Azure Multi-Agent** | Multi-Agent Solution | Enterprise-grade connected agents system for complex ticket processing with specialized sub-agents for triage, technical analysis, and customer communication using Azure AI Foundry | [📖 English](Azure/multi-agent-solution/readme.md) | [▶️ Video](https://youtu.be/cQgHtXCKHDc) |
-| **NVIDIA GPU Computing** | Feature Engineering with GPU Acceleration | High-performance feature engineering for tabular data using RAPIDS cuDF and cuML with 100x+ speedup over traditional CPU-based approaches | [📖 English](Nvidia/Feature-Engineering-for-Tabular-Data-With-GPU-Acceleration/Readme.md) | [▶️ Video](https://youtu.be/AV6J__ZXEtk) |
-| **Distributed OCR** | NATS OCR System | Distributed OCR system with NATS messaging and RapidOCR | [📖 English](Nats/Readme_en.md) | [▶️ Video](https://youtu.be/_fqkiBLue4Q) |
-| **Financial RAG** | Financial Analysis | RAG system for fundamental financial analysis with real-time data | [📖 English](RAG/Intro/Readme.md) | [▶️ Video](https://youtu.be/Yh127JyQKk4) |
-| **Trading Strategy** | Bollinger RSI Strategy | Trading strategy combining Bollinger Bands and RSI crossover | [📖 English](RAG/bollinger%20z-score%20rsi%20startegy/Readme.md) | [▶️ Video](https://youtu.be/AAt59vVByfg) |
-| **Trading Analysis** | Bollinger Z-Score | Financial trading analysis with Bollinger Bands and Z-Score | [📖 English](RAG/bollinger%20z-score/Readme.md) | [▶️ Video](https://youtu.be/J29pgkZl0Rg) |
-| **Trading Analysis** | Bollinger-Fibonacci Strategy | Advanced strategy merging volatility analysis (Bollinger Bands) with Fibonacci retracement levels for precise entry/exit points | [📖 English](RAG/bollinger-fibonacci_retracements/Readme.md) | [▶️ Video](https://youtu.be/InywJwiuVQA) |
-| **Trading Strategy** | Connors RSI Strategy | Enhanced momentum oscillator with LangGraph integration for advanced mean reversion signals | [📖 English](RAG/connor-rsi/Readme.md) | [▶️ Video](https://youtu.be/cqKCr87u3io) |
-| **Trading Strategy** | MACD-Donchian Strategy | Momentum and breakout combination using MACD signals with Donchian Channel analysis | [📖 English](RAG/macd_downchain%20startegy/Readme.md) | [▶️ Video](https://youtu.be/3b2E65YJOb8) |
-| **Trading Strategy** | Dual Moving Average Crossover | Classic institutional strategy featuring Golden Cross/Death Cross signals with AI-powered analysis and scoring | [📖 English](RAG/Dual_Moving_Average_Crossover_Strategy/README.md) | [▶️ Video](https://youtu.be/dHvJdmE-Xe4) |
-| **Neo4j RAG** | Neo4j RAG System | Natural language interface for graph databases enabling conversational data exploration and complex relationship analysis | [📖 English](RAG/speak%20with%20your%20Graph%20Database/Readme.md) | [▶️ Video](https://youtu.be/wb3nYR3i120) |
-| **MCP** | Financial Analysis MCP Client | Comprehensive MCP client with financial analysis tools and multi-server support | [📖 English](mcp/mcp-client/README.md) | [▶️ Video](https://youtu.be/N79AuX5Hn0U) |
-| **MCP** | Claude AI MCP Custom Connector | Multi-tenant MCP server platform with SQL database integration, Docker deployment, and production-ready authentication | [📖 English](mcp/Claude_ai_mcp_custom_connector/readme.md) | [▶️ Video](https://youtu.be/6DwHnDNIA8c) |
-| **MCP** | Neo4j Tools MCP Copilot | Professional Neo4j report generator for event analytics with comprehensive visitor tracking, session analysis, and cross-event intelligence | [📖 English](mcp/tools-mcp-neo4j-tools-copilot/README.md) | [▶️ Video](https://youtu.be/ZcXWxoMSf5s) |
-| **MCP** | Streamlit CRM & Graph Platform | Full-stack AI-powered platform integrating Neo4j, HubSpot CRM, and Yahoo Finance with enterprise authentication | [📖 English](mcp/Streamlit_chatbot/README.md) | [▶️ Video](https://youtu.be/HUqk1nscRfM) |
-| **MCP** | Build MCP with LLMs | Comprehensive guide to accelerate MCP server development using language models like Claude, with practical PDF document processor example | [📖 English](mcp/Build%20MCP%20with%20LLMs/README.md) | [▶️ Video](https://youtu.be/rxFowFcm1ZY) |
-| **MCP** | AI-Powered Search MCP Integration Platform | Comprehensive full-stack application providing AI-powered interactions with Google Search and Perplexity AI through MCP servers with optional HTTPS security, user authentication, and advanced caching | [📖 English](mcp/Motor_busqueda_AI_google_perplexity/Readme.md) | [▶️ Video](https://youtu.be/vHGWd4BqVBc) |
-| **MCP** | Claude Desktop Setup Guide | Complete guide for Claude Desktop installation and MCP configuration | [📖 English](mcp/claude_desktop/Readme.md) | [▶️ Video](https://youtu.be/YFQrBxj1qpY) |
-| **MCP** | MCP Python Client/Server | Python reference implementation for MCP client/server (STDIO/SSE/HTTP) with tool examples and end-to-end flow | [📖 English](mcp/python_client_server/README.md) | [▶️ Video](https://youtu.be/PpRfyOVL_Gs) |
-| **MCP** | MCP Server | Production-ready base MCP server with transport support (STDIO/SSE/HTTP) and authentication | [📖 English](mcp/mcp_server/readme_en.md) | [▶️ Video](https://youtu.be/FgCWM6SOsms) |
-| **MCP** | Financial Markets Analysis MCP | MCP tool for technical/market analysis with strategies and backtesting | [📖 English](mcp/mcp_financial_markets_analysis_tool/readme_en.md) | [▶️ Video](https://youtu.be/t38dOJW1I0s) |
-| **Mortgage Analysis** | Combined-Loan-to-Value | In this video, we will create a comprehensive mortgage loan analysis application that combines traditional Combined Loan-to-Value (CLTV) calculations with AI-driven risk assessment and borrower scoring. | [📖 English](RAG/Combined-Loan-to-Value/README.md) | [▶️ Video](https://youtu.be/GElkDW-AaiU) |
-| **Microsoft Ai** | Copilot Assisted Order Management Tool | In this video, we'll demonstrate how to create a Microsoft solution on the Office 365 Copilot Power Platform. This application, which we'll call the "Copilot Assisted Order Management Tool," is a Microsoft Power Platform-based application designed to manage the order lifecycle t… | [📖 English](Microsoft_AI/Copilot/Assisted_Managed_tool/README.md) | [▶️ Video](https://youtu.be/G88myIILLS4) |
-| **Google AI** | Introduction to Google ADK, Agent Development Kit | In this video, I'll show you a multi-agent application built with the Google Agent Development Kit (ADK) that transforms First Notice of Loss (FNOL) narratives into structured data, assigns a severity level, and routes the claim to the appropriate processing queue. | [📖 English](Google_AI/adk/multiagent_introduction/README.md) | [▶️ Video](https://youtu.be/eZycQQa7WoM) |
-| **MCP** | MCP Toolbox for BigQuery and Databases with ADK | In this video, I'll show you the Google MCP Toolbox for BigQuery and Cloud Databases. | [📖 English](Google_AI/mcp-toolbox/Readme.md) | [▶️ Video](https://youtu.be/FsEWxmN8Md4) |
-| **Agentic AI** | Deep Dive Advanced Reasoning Techniques with LLMs. CoT and React | In this video, I'll show you an artificial intelligence application that demonstrates advanced reasoning techniques with LLMs. | [📖 English](Agentic_AI/Deep_Dive_Reasoning_tecniques/README.md) | [▶️ Video](https://youtu.be/Vn_vKkn0dZA) |
-| **Agentic AI** | Build a Knowledge Graph with Google ADK and Neo4J | In this video, we'll show you how to create a modular application that uses AI Agents to create a Knowledge Graph using OpenAI LLM, Google ADK( Agents Development Kit) , and Neo4j. | [📖 English](Agentic_AI/building_knowledge_graphs/README.md) | [▶️ Video](https://youtu.be/n64r9_Y6ZoI) |
-| **MCP** | MSSQL MCP Server with OAuth 2.0 and ChatGPT Integration | In this video, I'll show you how to create an MSSQL MCP Server with OAuth 2.0 and ChatGPT integration. | [📖 English](mcp/chatgpt_mcp_server_connector/readme.md) | [▶️ Video](https://youtu.be/GQMwCczHQQ8) |
-| **Agentic AI** | How to Agentic Workflows | In today's video, we'll dive into one of the most exciting developments in AI: agentic workflows. Unlike traditional interactions where you type a prompt and get a response, we're talking about AI systems that can autonomously plan, reflect, collaborate, and execute complex, mul… | [📖 English](Agentic_AI/Project_management_agentic_workflow/README.md) | [▶️ Video](https://youtu.be/uvLA5d0sx6s) |
-| **Google AI** | How to use OpenAPI tools with Google ADK agents | In this video, I'll show you how to create a conversational assistant built with the Google Agent Development Kit (ADK). The agent leverages the OpenAPI specification (`schema.json`) to generate tools that interact with a read-only SQL API. With natural language questions, you c… | [📖 English](Google_AI/adk/apeanapi_mssql_server/README.md) | [▶️ Video](https://youtu.be/Jfk3uBA_ZCc) |
-| **Microsoft Ai** | Connect Azure Ai Foundry agents with OpenAPI tools | In this video, we'll see how to create a command-line chatbot that runs on Azure AI Foundry Agents and uses an OpenAPI tool that exposes a read-only SQL database. Azure AI Foundry Agents provide a managed orchestration layer for building, running, and scaling AI assistants capab… | [📖 English](Azure/Connect_Agents_OpenAPI_mssql/readme.md) | [▶️ Video](https://youtu.be/DnC3wfTQxg0) |
-| **OpenApi / ChatGPT** | Connect private data with OpenAPI to custom GPTs using actions in ChatGPT | In this video, I'll show you how to create an OpenAPI MSSQL Server with Bearer Token authentication. This MSSQL OpeanAPI Server with OAuth 2.0 and ChatGPT integration includes the GPT,s option, allowing you to create your own custom models. | [📖 English](OpenAI/Openapi_custom_GPT_connector_mssql/readme.md) | [▶️ Video](https://youtu.be/2ZQqWyhp8ew) |
-| **Agentic AI** | Intelligent Agent for conducting research with Deep Agents Langchain | In this video, we'll see how to create a production-ready Intelligent Agent for research, built on the [deepagents](https://github.com/langchain-ai/deepagents) stack. The project includes a complete example that implements TODO scheduling, file-based memory management, sub-agent… | [📖 English](Agentic_AI/deep-agents-olonok/README.md) | [▶️ Video](https://youtu.be/BzS0WD86qL4) |
-| **Agentic AI** | Search and enrich data with Artificial Intelligence | In this video, we'll explain how to enrich a data catalog by using different AI-powered research/ search pipelines AI-powered by LLMs, in this case, Azure OpenAI. It offers several interchangeable strategies for gathering evidence (Perplexity, Firecrawl, Google Custom Search) al… | [📖 English](Agentic_AI/Filling-up-and-enriching-Data-with-Ai-Powered-Search/README.md) | [▶️ Video](https://youtu.be/uYF4kqcwcXo) |
-| **Agentic AI** | SharePoint MCP server with Microsoft Graph API. LLamaIdex Bot | In this video, I'll show you how to create a SharePoint MCP Server and a bot to use with LlamaIndex, an MCP client, and Streamlit as the front end. | [📖 English](Agentic_AI/bot-sharepoint-mcp/README.md) | [▶️ Video](https://youtu.be/8vEG_nmNhJQ) |
-| **Agentic AI** | Financial Market Analysis Tool build with Intelligent Agents (SmolAgents) | In this video, I'll show you how to build a Financial Market Analysis Tool with Intelligent Agents. | [📖 English](Agentic_AI/agentic_mcp_financial_markets_analysis_tool/readme.md) | [▶️ Video](https://youtu.be/OaC8QeAYAa0) |
-| **Agentic AI** | Custom MCP Streamable HTTP connector for PostgreSQL database | In this video, I'll show you how to create a PostgreSQL MCP Server that uses the transport protocol (Streamable HTTP) and a Agentic Ai bot which use LangGraph, with a MCP client, and Streamlit as a front end. | [📖 English](Agentic_AI/postgres_agent_mcp/readme.md) | [▶️ Video](https://youtu.be/5HaEU4vMPZw) |
-| **Agentic AI** | Connect your MSSQL database to Copilot with OpenAPI Connector | In this video, I'll show you how to create an OpenAPI version 2 connector to connect an MSSQL database to your Agents in Copilot Studio. We'll also create the Docker container with the Swagger OpenAPI 2 REST server, configure our Nginx reverse proxy, and set up a custom connecto… | [📖 English](Agentic_AI/openapi_copilot_api_mssql/readme.md) | [▶️ Video](https://youtu.be/NrdDAR-qkrk) |
-| **Agentic AI** | Create an MCP Http Streamable server and connect it to Copilot agents | In this video, I'll show you how to create a custom MCP connector from your MSSQL database to your Agents in Copilot Studio. We'll also create the Docker container with an MCP server implementing Streamable HTTP, OAuth v2, and auto-registration. We'll configure our Nginx reverse… | [📖 English](Agentic_AI/mcp_server_copilot_streamable/readme.md) | [▶️ Video](https://youtu.be/jSMBeDFdZkI) |
-| **Agentic AI** | Connect to your Copilot Agents with Azure Bot Service | In this video, I'll show you how to build a custom Direct Line client to chat with your Microsoft Copilot Studio agents through Azure Bot Service. We'll create both a web-based UI using Django and a CLI client that connects to Copilot agents via the Direct Line REST API, complet… | [📖 English](Agentic_AI/copilot_client_direct_line/README.md) | [▶️ Video](https://youtu.be/TE6pRBioi5E) |
-| **Agentic AI** | Introduction to the CrewAI Framework | In this video, we'll introduce CrewAI, an open-source Python framework designed to orchestrate autonomous AI agents to work collaboratively. This allows them to tackle complex, multi-step tasks by acting as a team with specialized roles. In the demonstration, we'll see how to bu… | [📖 English](Agentic_AI/introduction_crewai/README.md) | [▶️ Video](https://youtu.be/MbjTa3vNr-o) |
-| **Agentic AI** | Connect to your Copilot agents using available SDKs | In this video, I'll show you how to create a Django application that demonstrates four different ways to integrate with Microsoft Copilot Studio agents and Microsoft Graph semantic search: | [📖 English](Agentic_AI/copilot_agents_client_sdk/README.md) | [▶️ Video](https://youtu.be/LFZPyU35ppc) |
-| **Agentic AI** | Build AI Foundry Agent with SharePoint as tools | In this video, I'll show you how to create an AI Foundry Agent and connect it to SharePoint as tools. | [📖 English](Agentic_AI/foundry_sharepoint_bot/readme.md) | [▶️ Video](https://youtu.be/RPujS9mpbu8) |
-| **Agentic AI** | Knowledge Graph-based Reporting with Deep Agents and Neo4J | In this video, we'll see how to create an Intelligent Agent that prepares and executes an analytical report on the performance of events. Using DeepAgents, Knowledge Graphs in Neo4j, and LangChain-compatible LLMs, it compiles a deterministic TODO plan, prepares the workflow agen… | [📖 English](Agentic_AI/deep_agents_reports_neo4j_rec_engine/README.md) | [▶️ Video](https://youtu.be/kK8xflUAl40) |
-| **Agentic AI** | Access SharePoint and Microsoft 365 data with intelligent agents and semantic search | In this video, I'll show you a toolkit for accessing Microsoft 365 SharePoint and data. | [📖 English](Agentic_AI/sharepoint-mcp-extended/README.md) | [▶️ Video](https://youtu.be/JXbLip1qxKM) |
-| **Agentic AI** | MCP Financial Markets Analysis Tool (Google ADK) | In this video, I'll show you how to build an AI-powered financial analysis platform that combines **Model Context Protocol (MCP)**, **Google ADK**, **FastAPI**, and **Django UI** to deliver professional-grade investment analysis reports. The system uses multi-agent orchestration… | [📖 English](Agentic_AI/adk-agentic-financial-markets-analysis/readme.md) | [▶️ Video](https://youtu.be/DCgCisa95jg) |
-| **Agentic AI** | OWASP Security Workbench. Build Multi-Agent Applications with CREWAI | In this video, we'll create a unified workspace for security exploration and code review to: | [📖 English](Agentic_AI/OWASP-Security-Workbench-Crewai/README.md) | [▶️ Video](https://youtu.be/NGljkurRziU) |
-| **Agentic AI** | Reinforcement Learning Introduction | In this video, we're launching a new section and a new course dedicated to Reinforcement Learning. | [📖 English](Agentic_AI/Introduction_to_Reinforcement_Learning/README.md) | [▶️ Video](https://youtu.be/6ZK3RIKc-H8) |
-| **Agentic AI** | Gemini CLI. The Open Source AI Agent | In this video, I'll explain how Gemini CLI works. | [📖 English](Agentic_AI/introduction-gemini-cli/README.md) | [▶️ Video](https://youtu.be/3-Fmpy3-kGc) |
-| **Reinforcement Learning** | Q-learning and Deep Q-Networks | In this video we'll see what Q-learning is, its fundamentals, and how to solve the problem of creating a Q-table with an approximation function using a Neural Network, which we know as DQN. | [📖 English](Reinforcement_Learning/Reinforcement_Learning_q-learning_playground/README.md) | [▶️ Video](https://youtu.be/7RhGK68olVc) |
-| **Reinforcement Learning** | Improving vanilla DQN, Road to Rainbow DQN | In this video, we explore the five main extensions of DQN (Deep Q-Network), the learning DQN algorithm introduced in Part 1 of this series. | [📖 English](Reinforcement_Learning/Reinforcement_Learning_q-learning_playground/README_part2.md) | [▶️ Video](https://youtu.be/WngI9vc6ahE) |
-| **Reinforcement Learning** | Advanced algorithms Q-Learning, Rainbow DQN | In this video, we explore distributional reinforcement learning (C51, QR-DQN), Rainbow DQN, and Replay of Hindsight Experience (PER). | [📖 English](Reinforcement_Learning/Reinforcement_Learning_q-learning_playground/README_part3.md) | [▶️ Video](https://youtu.be/rnw8qE0fisw) |
-| **Reinforcement Learning** | Policy Optimization Introduction. Reinforce to PPO to RLHF | In this video, we'll explore RL Policy Optimization — REINFORCE from scratch: math, code, and connection to RLHF. We'll build from the ground up how REINFORCE works — the policy gradient algorithm that forms the basis of PPO and LLM fine-tuning with RLHF. | [📖 English](Reinforcement_Learning/Reinforcement_Learning_Policy_Optimization/README.md) | [▶️ Video](https://youtu.be/mfjWWOsCNIo) |
-| **Reinforcement Learning** | Advanced Policy Optimization. A2C, A3C, PPO and TRPO | In this video, we'll explore the most advanced Policy Optimization algorithms: A2C, A3C, PPO, and TRPO. We'll also give a brief introduction to GRPO. | [📖 English](Reinforcement_Learning/Reinforcement_Learning_Policy_Optimization/README.md) | [▶️ Video](https://youtu.be/JYGg_U3UVgg) |
-| **Agentic AI** | AI Agents Evaluation. DeepEval, Inspect AI, and Azure AI Evaluation SDK | In this video, we'll see how to evaluate AI agents using three complementary ecosystems: | [📖 English](Agentic_AI/ai-agents-evaluation/README.md) | [▶️ Video](https://youtu.be/-5yW3_EbnAw) |
-| **Reinforcement Learning** | Continuous Control, Actor-Critic Off-Policy Methods | In this video, we'll explore Continuous Reinforcement Learning Control algorithms, specifically Actor-Critic Off-Policy methods. | [📖 English](Reinforcement_Learning/Reinforcement-Learning-Hybrid-algorithms/README.md) | [▶️ Video](https://youtu.be/BULfoeeYWT8) |
-| **Reinforcement Learning** | Libraries and RL in financial Trading | In this video we go through the ecosystem of available Reinforcement Learning libraries in Python, then we will use Stable-Baselines3 to rebuild a stock trading agent on live data from yfinance — and we close with a demo of environments applied to MuJoCo robotics to link the ent… | [📖 English](Reinforcement_Learning/RL_libraries_financial_demo/README.md) | [▶️ Video](https://youtu.be/7Ja9TOv2nIg) |
-| **Reinforcement Learning** | Post-Training LLM,s. SFT, DPO, ORPO, PPO, GRPO Parte 1 | In this video I will do a tour of the five techniques that take a pretrained language model from text completer to aligned assistant, SFT → DPO → ORPO → PPO → GRPO | [📖 English](Reinforcement_Learning/Training-LLMs-with-Reinforcement-Learning/README.md) | [▶️ Video](https://youtu.be/18eyk6_ZLZg) |
-| **Reinforcement Learning** | Post-Training LLM,s. SFT, DPO, ORPO, PPO, GRPO Parte 2 | In this video I will do a tour of the five techniques that take a pretrained language model from text completer to aligned assistant, SFT → DPO → ORPO → PPO → GRPO | [📖 English](Reinforcement_Learning/Training-LLMs-with-Reinforcement-Learning/README.md) | [▶️ Video](https://youtu.be/JnGS4_h0FgY) |
-| **Reinforcement Learning** | RL aplicado al Trading Parte 1 | En este video, Parte 1 de 2 , vamos a ver Reinforcement Learning en un problema real de trading algorítmico. No vamos a quedarnos en teoría: vamos a recorrer un pipeline completo y gobernado, paso a paso. | [📖 English](Reinforcement_Learning/RL_libraries_financial_demo/README.md) | [▶️ Video](https://youtu.be/BBavzqb_PpQ) |
-| **Reinforcement Learning** | RL aplicado al Trading Parte 2 | En esta Parte 2 pasamos del análisis técnico a la orquestación inteligente del sistema. | [📖 English](Reinforcement_Learning/RL_libraries_financial_demo/README.md) | [▶️ Video](https://youtu.be/kex4t7I24RY) |
-| **MLOPS** | UV, el gestor de paquetes y proyectos Python rápido y eficaz | En este vídeo vamos aprender y demostrar el gestor de paquetes de Python `uv` y su flujo de trabajo. | [📖 English](MLOPS/uv_training_ml/README.md) | [▶️ Video](https://youtu.be/4s_qGfANJew) |
-| **Agentic AI** | Building an Agent Framework Application. Red Team Intro PyRIT | En este vídeo se recorre una arquitectura de agentes completa y orientada a produccion, construida con Microsoft Agent Framework, Azure AI Foundry, MCP, Azure AI Evaluation SDK y PyRIT. En lugar de centrarse en teoría, el vídeo sigue un enfoque code-first que conecta cada concep… | [📖 English](Agentic_AI/agents_framework_sdk/README.md) | [▶️ Video](https://youtu.be/ZogVxrHhWsQ) |
-| **Reinforcement Learning** | Gemma 4 Post-Training SFT, DPO and GRPO | En video recorremos, de forma práctica y paso a paso, un flujo completo de post-training para Gemma 4 en Google Colab: desde el baseline (Stage 0) hasta SFT con QLoRA (Stage 1), alineación por preferencias con DPO (Stage 2) y RL de razonamiento con GRPO (Stage 3). | [📖 English](Reinforcement_Learning/RL_fine_tunning_Gemma_4_models/README.md) | [▶️ Video](https://youtu.be/lJHkX4yKzM4) |
-| **Computer Vision** | De la interpolación clásica a la Super-Resolución con Deep Learning y Transformers | En este vídeo vamos a ver el tema de Super-Resolucion. ¿Alguna vez has hecho zoom a una foto esperando ver más detalle y solo has conseguido una imagen borrosa, llena de bloques o con un contorno raro alrededor de los bordes? En este vídeo vamos a entender por qué pasa esto y có… | [📖 English](Computer_Vision/LLM_Notebooks/Zoom_Resize_Image_extended.ipynb) | [▶️ Video](https://youtu.be/KLF4h83KGTM) |
-| **MLOPS** | UV: Python package and project manager – Installation | In this short video, we look at installation and uninstallation on Windows and Linux. | — | [▶️ Video](https://youtu.be/bn8-sK6_xhE) |
-| **MCP** | MCP Financial Markets Analysis Tool (Google ADK). From Market data to Agentic Report | Agentic AI: MCP Financial Markets Analysis Tool (Google ADK) | [📖 English](Google_AI/Canal_only_readmes/README.md) | [▶️ Video](https://youtu.be/mbkFDe0MCcQ) |
-| **MCP** | Agentic AI: MCP Financial Markets Analysis Tool (Google ADK). strategies and Scoring Models | Agentic AI: MCP Financial Markets Analysis Tool (Google ADK) | [📖 English](Google_AI/Canal_only_readmes/README.md) | [▶️ Video](https://youtu.be/qfw5mlw6Jmc) |
-| **MCP** | Agentic AI: MCP Financial Markets Analysis Tool (Google ADK). Multi Agents loop | Agentic AI: MCP Financial Markets Analysis Tool (Google ADK) | [📖 English](Google_AI/Canal_only_readmes/README.md) | [▶️ Video](https://youtu.be/oC--JAxAC_I) |
-| **MCP** | Agentic AI: MCP Financial Markets Analysis Tool (Google ADK) . Agents Workflow From Ui to Tools | Agentic AI: MCP Financial Markets Analysis Tool (Google ADK) | [📖 English](Google_AI/Canal_only_readmes/README.md) | [▶️ Video](https://youtu.be/cG2wnpps1f0) |
-| **MCP** | LLMOps: MCP. Introduction and example in Python. MCP Client and Server | In this video, we will explain what MCP is and provide a practical example of creating an MCP server and interacting with a Python client in chatbot mode. | [📖 English](mcp/AI_Notebooks_subscription/README.md) | [▶️ Video](https://youtu.be/iqtepYf53FA) |
-| **Azure AI** | Microsoft Ai: Document Processing with Azure AI & PowerApps | In this video, we'll see how to process documents with Document Intelligence Studio and create a small application in PowerApps that processes them and extracts some of the attributes that the document has, so that another application can then consume them, such as an email, dat… | — | [▶️ Video](https://youtu.be/OBTHfCNHJXI) |
-| **OpenAI Video Processing** | LLMOps: Translation/Transcription API with Whisper and DotNet | In this Video we are going to see how to Create a Rest API to do Translation and Transcription of Audio files Using Dotnet and the OpenAi Whisper model | [📖 English](OpenAI/DotNet_ML/whisper_net) | [▶️ Video](https://youtu.be/ifWaHO7va00) |
+[Español](Readme_es.md)
 
-## Repository overview
+## Courses
 
-### OpenAI Video Processing
+- [Course Reinforcement Learning](playlists/course-reinforcement-learning.md) — 8 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6jpkV4Z0RAWLgQPzA1LCYhM)
 
-- **AI Video Translator.** Complete local AI-powered video translation system from Spanish to English using OpenAI Whisper, Helsinki-NLP transformers, and Edge TTS
-- **LLMOps: Translation/Transcription API with Whisper and DotNet.** In this Video we are going to see how to Create a Rest API to do Translation and Transcription of Audio files Using Dotnet and the OpenAi Whisper model
+## Playlists
 
-### Medical AI
-
-- **DICOM Anonymization.** DICOM medical image anonymization using Microsoft Presidio
-
-### Google AI
-
-- **Video Summarizer.** AI-powered video transcription and summarization with Gemini Pro
-- **Content Caching.** Google AI Context Caching optimization with Gemini API
-- **Introduction to Google ADK, Agent Development Kit.** In this video, I'll show you a multi-agent application built with the Google Agent Development Kit (ADK) that transforms First Notice of Loss (FNOL) narratives into structured data, assigns a severity level, and routes the claim to the appropriate processing queue.
-- **How to use OpenAPI tools with Google ADK agents.** In this video, I'll show you how to create a conversational assistant built with the Google Agent Development Kit (ADK). The agent leverages the OpenAPI specification (`schema.json`) to generate tools that interact with a read-only SQL API. With natural language questions, you can: - List available tables. - Query a table's schema. - Get a sample of rows. - Execute parameterized `SELECT` queries.
-
-### Azure AI
-
-- **Azure AI Foundry Agent.** Python application demonstrating Azure AI Foundry Agent Service for specialized agricultural data analysis with automated wheat production forecasting capabilities and comprehensive markdown report generation
-- **Microsoft Ai: Document Processing with Azure AI & PowerApps.** In this video, we'll see how to process documents with Document Intelligence Studio and create a small application in PowerApps that processes them and extracts some of the attributes that the document has, so that another application can then consume them, such as an email, database, or other. The basic workflow is: we receive an email with an invoice. PowerApps detects this, sends the document to your model, extracts the data, and PowerApps returns an email with the result. We'll also train a
-
-### Azure Multi-Agent
-
-- **Multi-Agent Solution.** Enterprise-grade connected agents system for complex ticket processing with specialized sub-agents for triage, technical analysis, and customer communication using Azure AI Foundry
-
-### NVIDIA GPU Computing
-
-- **Feature Engineering with GPU Acceleration.** High-performance feature engineering for tabular data using RAPIDS cuDF and cuML with 100x+ speedup over traditional CPU-based approaches
-
-### Distributed OCR
-
-- **NATS OCR System.** Distributed OCR system with NATS messaging and RapidOCR
-
-### Financial RAG
-
-- **Financial Analysis.** RAG system for fundamental financial analysis with real-time data
-
-### Trading Strategy
-
-- **Bollinger RSI Strategy.** Trading strategy combining Bollinger Bands and RSI crossover
-- **Connors RSI Strategy.** Enhanced momentum oscillator with LangGraph integration for advanced mean reversion signals
-- **MACD-Donchian Strategy.** Momentum and breakout combination using MACD signals with Donchian Channel analysis
-- **Dual Moving Average Crossover.** Classic institutional strategy featuring Golden Cross/Death Cross signals with AI-powered analysis and scoring
-
-### Trading Analysis
-
-- **Bollinger Z-Score.** Financial trading analysis with Bollinger Bands and Z-Score
-- **Bollinger-Fibonacci Strategy.** Advanced strategy merging volatility analysis (Bollinger Bands) with Fibonacci retracement levels for precise entry/exit points
-
-### Neo4j RAG
-
-- **Neo4j RAG System.** Natural language interface for graph databases enabling conversational data exploration and complex relationship analysis
-
-### MCP
-
-- **Financial Analysis MCP Client.** Comprehensive MCP client with financial analysis tools and multi-server support
-- **Claude AI MCP Custom Connector.** Multi-tenant MCP server platform with SQL database integration, Docker deployment, and production-ready authentication
-- **Neo4j Tools MCP Copilot.** Professional Neo4j report generator for event analytics with comprehensive visitor tracking, session analysis, and cross-event intelligence
-- **Streamlit CRM & Graph Platform.** Full-stack AI-powered platform integrating Neo4j, HubSpot CRM, and Yahoo Finance with enterprise authentication
-- **Build MCP with LLMs.** Comprehensive guide to accelerate MCP server development using language models like Claude, with practical PDF document processor example
-- **AI-Powered Search MCP Integration Platform.** Comprehensive full-stack application providing AI-powered interactions with Google Search and Perplexity AI through MCP servers with optional HTTPS security, user authentication, and advanced caching
-- **Claude Desktop Setup Guide.** Complete guide for Claude Desktop installation and MCP configuration
-- **MCP Python Client/Server.** Python reference implementation for MCP client/server (STDIO/SSE/HTTP) with tool examples and end-to-end flow
-- **MCP Server.** Production-ready base MCP server with transport support (STDIO/SSE/HTTP) and authentication
-- **Financial Markets Analysis MCP.** MCP tool for technical/market analysis with strategies and backtesting
-- **MCP Toolbox for BigQuery and Databases with ADK.** In this video, I'll show you the Google MCP Toolbox for BigQuery and Cloud Databases.
-- **MSSQL MCP Server with OAuth 2.0 and ChatGPT Integration.** In this video, I'll show you how to create an MSSQL MCP Server with OAuth 2.0 and ChatGPT integration.
-- **MCP Financial Markets Analysis Tool (Google ADK). From Market data to Agentic Report.** Agentic AI: MCP Financial Markets Analysis Tool (Google ADK)
-- **Agentic AI: MCP Financial Markets Analysis Tool (Google ADK). strategies and Scoring Models.** Agentic AI: MCP Financial Markets Analysis Tool (Google ADK)
-- **Agentic AI: MCP Financial Markets Analysis Tool (Google ADK). Multi Agents loop.** Agentic AI: MCP Financial Markets Analysis Tool (Google ADK)
-- **Agentic AI: MCP Financial Markets Analysis Tool (Google ADK) . Agents Workflow From Ui to Tools.** Agentic AI: MCP Financial Markets Analysis Tool (Google ADK)
-- **LLMOps: MCP. Introduction and example in Python. MCP Client and Server.** In this video, we will explain what MCP is and provide a practical example of creating an MCP server and interacting with a Python client in chatbot mode.
-
-### Mortgage Analysis
-
-- **Combined-Loan-to-Value.** In this video, we will create a comprehensive mortgage loan analysis application that combines traditional Combined Loan-to-Value (CLTV) calculations with AI-driven risk assessment and borrower scoring.
-
-### Microsoft Ai
-
-- **Copilot Assisted Order Management Tool.** In this video, we'll demonstrate how to create a Microsoft solution on the Office 365 Copilot Power Platform. This application, which we'll call the "Copilot Assisted Order Management Tool," is a Microsoft Power Platform-based application designed to manage the order lifecycle through two complementary experiences: - A Canvas app for visual interaction (creating, viewing, updating, and deleting orders). - A conversational assistant built with Copilot Studio that allows end users to perform natur
-- **Connect Azure Ai Foundry agents with OpenAPI tools.** In this video, we'll see how to create a command-line chatbot that runs on Azure AI Foundry Agents and uses an OpenAPI tool that exposes a read-only SQL database. Azure AI Foundry Agents provide a managed orchestration layer for building, running, and scaling AI assistants capable of invoking tools and maintaining conversational context. OpenAPI is a vendor-independent specification for describing machine-readable HTTP APIs in JSON or YAML format, enabling automatic validation and client generat
-
-### Agentic AI
-
-- **Deep Dive Advanced Reasoning Techniques with LLMs. CoT and React.** In this video, I'll show you an artificial intelligence application that demonstrates advanced reasoning techniques with LLMs.
-- **Build a Knowledge Graph with Google ADK and Neo4J.** In this video, we'll show you how to create a modular application that uses AI Agents to create a Knowledge Graph using OpenAI LLM, Google ADK( Agents Development Kit) , and Neo4j.
-- **How to Agentic Workflows.** In today's video, we'll dive into one of the most exciting developments in AI: agentic workflows. Unlike traditional interactions where you type a prompt and get a response, we're talking about AI systems that can autonomously plan, reflect, collaborate, and execute complex, multi-step tasks. By the end of this session, you'll not only understand the theory but also see a complete production implementation.
-- **Intelligent Agent for conducting research with Deep Agents Langchain.** In this video, we'll see how to create a production-ready Intelligent Agent for research, built on the [deepagents](https://github.com/langchain-ai/deepagents) stack. The project includes a complete example that implements TODO scheduling, file-based memory management, sub-agent delegation, and a dual web research chain integrating Tavily search and Perplexity synthesis.
-- **Search and enrich data with Artificial Intelligence.** In this video, we'll explain how to enrich a data catalog by using different AI-powered research/ search pipelines AI-powered by LLMs, in this case, Azure OpenAI. It offers several interchangeable strategies for gathering evidence (Perplexity, Firecrawl, Google Custom Search) along with a comparison tool to evaluate how the pipelines perform in looking for missing Information unders some criteria for the same set of Data. It also includes a conversational bot (`firecrawl_bot.py`) that uses Firec
-- **SharePoint MCP server with Microsoft Graph API. LLamaIdex Bot.** In this video, I'll show you how to create a SharePoint MCP Server and a bot to use with LlamaIndex, an MCP client, and Streamlit as the front end.
-- **Financial Market Analysis Tool build with Intelligent Agents (SmolAgents).** In this video, I'll show you how to build a Financial Market Analysis Tool with Intelligent Agents.
-- **Custom MCP Streamable HTTP connector for PostgreSQL database.** In this video, I'll show you how to create a PostgreSQL MCP Server that uses the transport protocol (Streamable HTTP) and a Agentic Ai bot which use LangGraph, with a MCP client, and Streamlit as a front end.
-- **Connect your MSSQL database to Copilot with OpenAPI Connector.** In this video, I'll show you how to create an OpenAPI version 2 connector to connect an MSSQL database to your Agents in Copilot Studio. We'll also create the Docker container with the Swagger OpenAPI 2 REST server, configure our Nginx reverse proxy, and set up a custom connector in both Power Platform and Copilot Studio.
-- **Create an MCP Http Streamable server and connect it to Copilot agents.** In this video, I'll show you how to create a custom MCP connector from your MSSQL database to your Agents in Copilot Studio. We'll also create the Docker container with an MCP server implementing Streamable HTTP, OAuth v2, and auto-registration. We'll configure our Nginx reverse proxy and set up a custom connector in both Power Platform and Copilot Studio.
-- **Connect to your Copilot Agents with Azure Bot Service.** In this video, I'll show you how to build a custom Direct Line client to chat with your Microsoft Copilot Studio agents through Azure Bot Service. We'll create both a web-based UI using Django and a CLI client that connects to Copilot agents via the Direct Line REST API, complete with secure token management and OAuth card handling for enterprise authentication.
-- **Introduction to the CrewAI Framework.** In this video, we'll introduce CrewAI, an open-source Python framework designed to orchestrate autonomous AI agents to work collaboratively. This allows them to tackle complex, multi-step tasks by acting as a team with specialized roles. In the demonstration, we'll see how to build a multi-agent system using CrewAI that automatically reviews pull requests for code quality and security vulnerabilities. I'll show you key features such as memory management, guardrails, and execution hooks.
-- **Connect to your Copilot agents using available SDKs.** In this video, I'll show you how to create a Django application that demonstrates four different ways to integrate with Microsoft Copilot Studio agents and Microsoft Graph semantic search:
-- **Build AI Foundry Agent with SharePoint as tools.** In this video, I'll show you how to create an AI Foundry Agent and connect it to SharePoint as tools.
-- **Knowledge Graph-based Reporting with Deep Agents and Neo4J.** In this video, we'll see how to create an Intelligent Agent that prepares and executes an analytical report on the performance of events. Using DeepAgents, Knowledge Graphs in Neo4j, and LangChain-compatible LLMs, it compiles a deterministic TODO plan, prepares the workflow agents with schema/configuration context, and manages the entire report generation cycle.
-- **Access SharePoint and Microsoft 365 data with intelligent agents and semantic search.** In this video, I'll show you a toolkit for accessing Microsoft 365 SharePoint and data.
-- **MCP Financial Markets Analysis Tool (Google ADK).** In this video, I'll show you how to build an AI-powered financial analysis platform that combines **Model Context Protocol (MCP)**, **Google ADK**, **FastAPI**, and **Django UI** to deliver professional-grade investment analysis reports. The system uses multi-agent orchestration to interpret MCP strategy outputs and produce grounded, guardrail-validated reports.
-- **OWASP Security Workbench. Build Multi-Agent Applications with CREWAI.** In this video, we'll create a unified workspace for security exploration and code review to:
-- **Reinforcement Learning Introduction.** In this video, we're launching a new section and a new course dedicated to Reinforcement Learning.
-- **Gemini CLI. The Open Source AI Agent.** In this video, I'll explain how Gemini CLI works.
-- **AI Agents Evaluation. DeepEval, Inspect AI, and Azure AI Evaluation SDK.** In this video, we'll see how to evaluate AI agents using three complementary ecosystems:
-- **Building an Agent Framework Application. Red Team Intro PyRIT.** En este vídeo se recorre una arquitectura de agentes completa y orientada a produccion, construida con Microsoft Agent Framework, Azure AI Foundry, MCP, Azure AI Evaluation SDK y PyRIT. En lugar de centrarse en teoría, el vídeo sigue un enfoque code-first que conecta cada concepto con un modulo funcional del repositorio.
-
-### OpenApi / ChatGPT
-
-- **Connect private data with OpenAPI to custom GPTs using actions in ChatGPT.** In this video, I'll show you how to create an OpenAPI MSSQL Server with Bearer Token authentication. This MSSQL OpeanAPI Server with OAuth 2.0 and ChatGPT integration includes the GPT,s option, allowing you to create your own custom models.
-
-### Reinforcement Learning
-
-- **Q-learning and Deep Q-Networks.** In this video we'll see what Q-learning is, its fundamentals, and how to solve the problem of creating a Q-table with an approximation function using a Neural Network, which we know as DQN.
-- **Improving vanilla DQN, Road to Rainbow DQN.** In this video, we explore the five main extensions of DQN (Deep Q-Network), the learning DQN algorithm introduced in Part 1 of this series.
-- **Advanced algorithms Q-Learning, Rainbow DQN.** In this video, we explore distributional reinforcement learning (C51, QR-DQN), Rainbow DQN, and Replay of Hindsight Experience (PER).
-- **Policy Optimization Introduction. Reinforce to PPO to RLHF.** In this video, we'll explore RL Policy Optimization — REINFORCE from scratch: math, code, and connection to RLHF. We'll build from the ground up how REINFORCE works — the policy gradient algorithm that forms the basis of PPO and LLM fine-tuning with RLHF.
-- **Advanced Policy Optimization. A2C, A3C, PPO and TRPO.** In this video, we'll explore the most advanced Policy Optimization algorithms: A2C, A3C, PPO, and TRPO. We'll also give a brief introduction to GRPO.
-- **Continuous Control, Actor-Critic Off-Policy Methods.** In this video, we'll explore Continuous Reinforcement Learning Control algorithms, specifically Actor-Critic Off-Policy methods.
-- **Libraries and RL in financial Trading.** In this video we go through the ecosystem of available Reinforcement Learning libraries in Python, then we will use Stable-Baselines3 to rebuild a stock trading agent on live data from yfinance — and we close with a demo of environments applied to MuJoCo robotics to link the entire stack.
-- **Post-Training LLM,s. SFT, DPO, ORPO, PPO, GRPO Parte 1.** In this video I will do a tour of the five techniques that take a pretrained language model from text completer to aligned assistant, SFT → DPO → ORPO → PPO → GRPO
-- **Post-Training LLM,s. SFT, DPO, ORPO, PPO, GRPO Parte 2.** In this video I will do a tour of the five techniques that take a pretrained language model from text completer to aligned assistant, SFT → DPO → ORPO → PPO → GRPO
-- **RL aplicado al Trading Parte 1.** En este video, Parte 1 de 2 , vamos a ver Reinforcement Learning en un problema real de trading algorítmico. No vamos a quedarnos en teoría: vamos a recorrer un pipeline completo y gobernado, paso a paso.
-- **RL aplicado al Trading Parte 2.** En esta Parte 2 pasamos del análisis técnico a la orquestación inteligente del sistema.
-- **Gemma 4 Post-Training SFT, DPO and GRPO.** En video recorremos, de forma práctica y paso a paso, un flujo completo de post-training para Gemma 4 en Google Colab: desde el baseline (Stage 0) hasta SFT con QLoRA (Stage 1), alineación por preferencias con DPO (Stage 2) y RL de razonamiento con GRPO (Stage 3).
-
-### MLOPS
-
-- **UV, el gestor de paquetes y proyectos Python rápido y eficaz.** En este vídeo vamos aprender y demostrar el gestor de paquetes de Python `uv` y su flujo de trabajo.
-- **UV: Python package and project manager – Installation.** In this short video, we look at installation and uninstallation on Windows and Linux.
-
-### Computer Vision
-
-- **De la interpolación clásica a la Super-Resolución con Deep Learning y Transformers.** En este vídeo vamos a ver el tema de Super-Resolucion. ¿Alguna vez has hecho zoom a una foto esperando ver más detalle y solo has conseguido una imagen borrosa, llena de bloques o con un contorno raro alrededor de los bordes? En este vídeo vamos a entender por qué pasa esto y cómo la inteligencia artificial ha cambiado por completo la forma de ampliar imágenes.
+- [Agentic Ai](playlists/agentic-ai.md) — 18 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gduMIdu2vMDDg4qK011Cd6)
+- [AI / Rag Finance](playlists/ai-rag-finance.md) — 9 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gZRMhTU84L1B_llIpyO3Th)
+- [Artificial Intelligence in Finance](playlists/artificial-intelligence-in-finance.md) — 11 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6iFoF4StYjUHaXJq4vDsH95)
+- [Generative AI, LLM,s, Transformers, CV, NLP and more](playlists/generative-ai-llm-s-transformers-cv-nlp-and-more.md) — 60 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6hJTGshlRfNtcLOA1yoygzK)
+- [Google ML and AI](playlists/google-ml-and-ai.md) — 11 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gxfC3-WMveVWWIDCrJrNwP)
+- [Langchain](playlists/langchain.md) — 12 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gbrGi2oS7roT3DCztJXEfL)
+- [Microsoft AI and ML Projects](playlists/microsoft-ai-and-ml-projects.md) — 13 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6iVKH_vcuhOe-yMR78L0goh)
+- [Microsoft Copilot](playlists/microsoft-copilot.md) — 5 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6ho5dA751egqIJxVN4_zPn6)
+- [ML projects](playlists/ml-projects.md) — 1 video. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gFYNk4fr5I0aVaJDceYfsU)
+- [ML Tricks](playlists/ml-tricks.md) — 1 video. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6iBclNnRAAe7DFnKn_0oWXJ)
+- [MLOps](playlists/mlops.md) — 33 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6i7oaSoQSfMNGibiXtfr1Mn)
+- [Model Context Protocol](playlists/model-context-protocol.md) — 14 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6i4xmYJw1gYG6T3VY2Fn5vk)
+- [Neo4J Data Science](playlists/neo4j-data-science.md) — 3 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6iaqVkzFMR2H_sO-ZhiPl-A)
+- [Other videos](playlists/other-videos.md) — 14 videos.
+- [RAG Retrieval Augmented Generation](playlists/rag-retrieval-augmented-generation.md) — 24 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6g5GWsf9eoREhVVruhVHvGD)

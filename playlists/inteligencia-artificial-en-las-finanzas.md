@@ -1,0 +1,21 @@
+# Inteligencia Artificial en las finanzas
+
+Todos los videos de esta lista se pueden ver. Cuando el código es solo para suscriptores de pago, la tabla lo indica.
+
+[YouTube playlist](https://www.youtube.com/playlist?list=PLw-i55H2Io6heb-ox7W62T6IKIujJFTDG)
+
+| Categoría | Proyecto | Descripción | Documentación | Video |
+|----------|---------|-------------|-------------- |---|
+| **Reinforcement Learning** | RL aplicado al Trading Parte 2 | En esta Parte 2 pasamos del análisis técnico a la orquestación inteligente del sistema. | [📖 Español](../Reinforcement_Learning/RL_libraries_financial_demo/README_es.md) | [▶️ Video](https://youtu.be/kex4t7I24RY) |
+| **Reinforcement Learning** | RL aplicado al Trading Parte 1 | En este video, Parte 1 de 2 , vamos a ver Reinforcement Learning en un problema real de trading algorítmico. No vamos a quedarnos en teoría: vamos a recorrer un pipeline completo… | [📖 Español](../Reinforcement_Learning/RL_libraries_financial_demo/README_es.md) | [▶️ Video](https://youtu.be/BBavzqb_PpQ) |
+| **Reinforcement Learning** | Librerias y RL aplicado al Trading | En este vídeo recorremos el ecosistema de librerias disponible de Reinforcement Learning en Python, luego usaremos Stable-Baselines3 para construir un agente de trading bursátil s… | [📖 Español](../Reinforcement_Learning/RL_libraries_financial_demo/README_es.md) | [▶️ Video](https://youtu.be/_YTG3rBLmMM) |
+| **Agentic AI** | Herramienta de análisis de mercados financieros MCP | En este video, les mostraré cómo crear una plataforma de análisis financiero con IA que combina el Protocolo de Contexto de Modelos (MCP), Google ADK, FastAPI y Django UI para gen… | [📖 Español](../Agentic_AI/adk-agentic-financial-markets-analysis/readme_es.md) | [▶️ Video](https://youtu.be/NZ_BHUMEhyU) |
+| **Agentic AI** | Herramienta Análisis Mercados Financieros Agentes Inteligentes SmolAgents | En este vídeo te mostrare como construir una Herramienta de Análisis de Mercados Financieros con Agentes Inteligentes | [📖 Español](../Agentic_AI/agentic_mcp_financial_markets_analysis_tool/readme_es.md) | [▶️ Video](https://youtu.be/9oaEwoijNU8) |
+| **Mortgage Analysis** | Combined-Loan-to-Value | En este vídeo crearemos una aplicación integral de análisis de préstamos hipotecarios que combina cálculos tradicionales de Combined Loan-to-Value (CLTV) con evaluación de riesgo… | [📖 Español](../RAG/Combined-Loan-to-Value/README_es.md) | [▶️ Video](https://youtu.be/YurOhS5Cwq8) |
+| **MCP** | Análisis de Mercados Financieros MCP | Herramienta MCP para análisis técnico y de mercados con estrategias y backtesting | Video público. Código solo para suscriptores de pago. | [▶️ Video](https://youtu.be/Oa8sQIqzi6E) |
+| **Estrategia Trading** | Cruce de Medias Móviles Dual | Estrategia institucional clásica que presenta señales de Cruce Dorado/Cruce de la Muerte con análisis y puntuación potenciados por IA | [📖 Español](../RAG/Dual_Moving_Average_Crossover_Strategy/README_es.md) | [▶️ Video](https://youtu.be/12TGxveRCMI) |
+| **Estrategia Trading** | Estrategia Connors RSI | Oscilador de momentum mejorado con integración LangGraph para señales avanzadas de reversión a la media | [📖 Español](../RAG/connor-rsi/Readme_es.md) | [▶️ Video](https://youtu.be/MxC7zr1fLSI) |
+| **Estrategia Trading** | Estrategia Bollinger-Fibonacci | Estrategia avanzada que combina análisis de volatilidad (Bandas de Bollinger) con niveles de retroceso de Fibonacci para puntos de entrada/salida precisos | Video público. Código solo para suscriptores de pago. | [▶️ Video](https://youtu.be/AlnwPdPVMlU) |
+| **Estrategia Trading** | Estrategia MACD-Donchian | Combinación de momentum y ruptura usando señales MACD con análisis de Canal de Donchian | Video público. Código solo para suscriptores de pago. | [▶️ Video](https://youtu.be/QAuUczH_13U) |
+| **Estrategia Trading** | Estrategia Bollinger RSI | Estrategia de trading combinando Bandas de Bollinger y cruce RSI | Video público. Código solo para suscriptores de pago. | [▶️ Video](https://youtu.be/LGF9Bzpgx2E) |
+| **RAG Financiero** | Análisis Financiero | Sistema RAG para análisis financiero fundamental con datos en tiempo real | [📖 Español](../RAG/Intro/Readme_es.md) | [▶️ Video](https://youtu.be/JKP1su1R1FA) |
