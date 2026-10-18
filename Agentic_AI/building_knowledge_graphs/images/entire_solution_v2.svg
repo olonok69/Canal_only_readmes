@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <style type="text/css"><![CDATA[
+      .title { font: 700 28px 'Segoe UI', Arial, sans-serif; fill: #111; }
+      .subtitle { font: 600 16px 'Segoe UI', Arial, sans-serif; fill: #333; }
+      .text { font: 14px 'Segoe UI', Arial, sans-serif; fill: #222; }
+      .small { font: 12px 'Segoe UI', Arial, sans-serif; fill: #444; }
+      .box { fill: #fff; stroke: #444; stroke-width: 1.5; rx: 8; ry: 8; }
+      .box-accent { fill: #f6f9ff; stroke: #2b6cb0; stroke-width: 1.6; rx: 8; ry: 8; }
+      .box-alt { fill: #fffaf0; stroke: #c05621; stroke-width: 1.6; rx: 8; ry: 8; }
+      .pill { fill: #edf2f7; stroke: #718096; stroke-width: 1.2; rx: 14; ry: 14; }
+      .db { fill: #f0fff4; stroke: #2f855a; stroke-width: 1.8; rx: 12; ry: 12; }
+      .arrow { stroke: #666; stroke-width: 1.6; marker-end: url(#arrowhead); fill: none; }
+      .arrow-alt { stroke: #2b6cb0; stroke-width: 1.8; marker-end: url(#arrowhead-blue); fill: none; }
+      .arrow-warn { stroke: #c05621; stroke-width: 1.8; marker-end: url(#arrowhead-warn); fill: none; }
+      .legend { font: 12px 'Segoe UI', Arial, sans-serif; fill: #222; }
+    ]]></style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2b6cb0" />
+    </marker>
+    <marker id="arrowhead-warn" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c05621" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="40" y="50" class="title">Agentic Knowledge Graph – End-to-End Pipeline</text>
+  <text x="40" y="78" class="subtitle">A modular, LLM‑powered Neo4j flow from CSVs and unstructured text</text>
+
+  <!-- Inputs row -->
+  <rect x="40" y="110" width="290" height="100" class="box" />
+  <text x="60" y="140" class="subtitle">Configuration</text>
+  <text x="60" y="164" class="text">• YAML (configs/app.yaml)</text>
+  <text x="60" y="186" class="text">• .env (NEO4J_*, LLM_MODEL, keys)</text>
+
+  <rect x="350" y="110" width="300" height="100" class="box" />
+  <text x="370" y="140" class="subtitle">Structured Data</text>
+  <text x="370" y="164" class="text">• data/*.csv (products, assemblies, parts, suppliers)</text>
+  <text x="370" y="186" class="small">Ingest via LOAD CSV (file:/// or https://) or streaming UNWIND</text>
+
+  <rect x="670" y="110" width="300" height="100" class="box" />
+  <text x="690" y="140" class="subtitle">Unstructured Text</text>
+  <text x="690" y="164" class="text">• .md / .txt (domain descriptions, policies)</text>
+  <text x="690" y="186" class="small">Used for schema-from-text and extraction-from-text</text>
+
+  <rect x="990" y="110" width="300" height="100" class="box" />
+  <text x="1010" y="140" class="subtitle">LLM Router</text>
+  <text x="1010" y="164" class="text">• LiteLLM normalization (e.g., openai/gpt-4.1)</text>
+  <text x="1010" y="186" class="small">Optional; agents fall back to heuristics</text>
+
+  <!-- Orchestrator core -->
+  <rect x="40" y="240" width="1250" height="360" class="box-accent" />
+  <text x="60" y="270" class="subtitle">Orchestrator &amp; Agents</text>
+
+  <!-- Agents grid -->
+  <rect x="60" y="290" width="240" height="110" class="pill" />
+  <text x="80" y="320" class="subtitle">UserIntentAgent</text>
+  <text x="80" y="344" class="text">Parse goal (heuristic or LLM)</text>
+
+  <rect x="320" y="290" width="260" height="110" class="pill" />
+  <text x="340" y="320" class="subtitle">FileSuggestionsAgent</text>
+  <text x="340" y="344" class="text">Rank/approve CSVs for the goal</text>
+
+  <rect x="600" y="290" width="300" height="110" class="pill" />
+  <text x="620" y="320" class="subtitle">SchemaProposalStructuredAgent</text>
+  <text x="620" y="344" class="text">Infer ingestable schema from CSVs</text>
+
+  <rect x="920" y="290" width="310" height="110" class="pill" />
+  <text x="940" y="320" class="subtitle">SchemaProposalUnstructuredAgent</text>
+  <text x="940" y="344" class="text">Infer abstract schema from text</text>
+
+  <rect x="60" y="420" width="320" height="120" class="pill" />
+  <text x="80" y="450" class="subtitle">DataIngestAgent</text>
+  <text x="80" y="474" class="text">Constraints + load nodes/relationships</text>
+  <text x="80" y="496" class="small">Modes: LOAD CSV (file:///), LOAD CSV (https://), UNWIND streaming</text>
+
+  <rect x="400" y="420" width="300" height="120" class="pill" />
+  <text x="420" y="450" class="subtitle">UnstructuredIngestAgent</text>
+  <text x="420" y="474" class="text">Extract instances from text with LLM</text>
+  <text x="420" y="496" class="small">Generates stable _key; ingests via UNWIND</text>
+
+  <rect x="720" y="420" width="240" height="120" class="pill" />
+  <text x="740" y="450" class="subtitle">GraphOpsAgent</text>
+  <text x="740" y="474" class="text">Ready / reset / version checks</text>
+
+  <rect x="980" y="420" width="250" height="120" class="pill" />
+  <text x="1000" y="450" class="subtitle">Config &amp; Logging</text>
+  <text x="1000" y="474" class="text">YAML + .env; console &amp; rotating file logs</text>
+
+  <!-- Flow arrows: inputs to orchestrator -->
+  <path d="M185,210 L185,240" class="arrow" />
+  <path d="M500,210 L500,240" class="arrow" />
+  <path d="M820,210 L820,240" class="arrow" />
+  <path d="M1140,210 L1140,240" class="arrow" />
+
+  <!-- Flow inside orchestrator: pipeline path -->
+  <path d="M300,345 L320,345" class="arrow" />
+  <path d="M580,345 L600,345" class="arrow" />
+  <path d="M900,345 L920,345" class="arrow" />
+
+  <!-- Selection to ingest (structured path) -->
+  <path d="M750,400 C750,390 700,380 620,380 C540,380 500,390 500,410 L500,420" class="arrow-alt" />
+  <text x="520" y="370" class="small">Select schema</text>
+
+  <!-- Unstructured schema materialization note -->
+  <rect x="920" y="410" width="310" height="30" class="box-alt" />
+  <text x="935" y="430" class="small">Map abstract schema → CSV files/keys (materialize)</text>
+
+  <!-- Extraction-from-text bypass to unstructured ingest -->
+  <path d="M820,210 C820,230 870,250 960,260 C1040,268 1090,300 1090,380 L1090,420" class="arrow-warn" />
+  <text x="1095" y="380" class="small">--extract-from-text</text>
+
+  <!-- Outputs -->
+  <rect x="40" y="630" width="1250" height="200" class="db" />
+  <text x="60" y="660" class="subtitle">Neo4j Graph (Outputs)</text>
+  <text x="60" y="685" class="text">• Nodes: Product, Assembly, Part, Supplier (from CSVs) + any extracted labels</text>
+  <text x="60" y="707" class="text">• Relationships: HAS_ASSEMBLY, HAS_PART, SUPPLIED_BY + extracted types</text>
+  <text x="60" y="729" class="small">Constraints ensured on configured unique keys; extracted instances use synthetic _key when needed</text>
+  <text x="60" y="753" class="small">Explore via Neo4j Browser/Cyto or examples/query_kg.py &amp; examples/query_extracted.py</text>
+
+  <!-- Legend -->
+  <rect x="1020" y="780" width="270" height="50" class="box" />
+  <text x="1040" y="805" class="legend">Blue arrows: schema selection path; Orange arrows: extraction-from-text path</text>
+
+</svg>

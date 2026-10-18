@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Updated architecture diagram reflecting CLI entry, logging, heuristics, early termination, auto cost correction, loop guard, post-mutation auto evals, extended date range, and narration. -->
+<svg width="1180" height="900" viewBox="0 0 1180 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+    .label { font: 600 14px Arial, sans-serif; fill: #0f172a; }
+    .small { font: 12px Arial, sans-serif; fill: #334155; }
+    .box { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.3; rx: 10; }
+    .agent { fill: #eef2ff; stroke: #6366f1; stroke-width: 2; rx: 10; }
+    .tool { fill: #ecfeff; stroke: #06b6d4; stroke-width: 1.5; rx: 8; }
+    .api { fill: #f0fdf4; stroke: #22c55e; stroke-width: 1.5; rx: 8; }
+    .eval { fill: #fff7ed; stroke: #f59e0b; stroke-width: 1.5; rx: 8; }
+    .heur { fill: #fdf2f8; stroke: #db2777; stroke-width: 1.5; rx: 8; }
+    .log { fill: #e0f2fe; stroke: #0284c7; stroke-width: 1.5; rx: 8; }
+    .decision { fill: #fefce8; stroke: #ca8a04; stroke-width: 1.5; }
+    .arrow { stroke: #475569; stroke-width: 1.5; marker-end: url(#arrowhead); }
+    .dashed { stroke-dasharray: 5 4; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569" />
+    </marker>
+  </defs>
+
+  <text x="30" y="40" class="title">AgentsVille Trip Planner – Runtime Flow &amp; Heuristics</text>
+
+  <!-- CLI / Entry -->
+  <rect x="30" y="70" width="300" height="120" class="box" />
+  <text x="45" y="95" class="label">CLI / Entry (agentsville_trip_planner.py)</text>
+  <text x="45" y="120" class="small">Parse args: dates, travelers, interests, budget</text>
+  <text x="45" y="140" class="small">Load .env (OPENAI_API_KEY)</text>
+  <text x="45" y="160" class="small">Validate VacationInfo (2025-06-10..27)</text>
+
+  <!-- Mocked Data APIs -->
+  <rect x="30" y="210" width="300" height="170" class="api" />
+  <text x="45" y="235" class="label">Mocked Data (project_lib)</text>
+  <text x="45" y="260" class="small">• Weather (per date)</text>
+  <text x="45" y="280" class="small">• Activities (per date)</text>
+  <text x="45" y="300" class="small">• Activity by ID lookup</text>
+  <text x="45" y="320" class="small">Extended range: 2025-06-10 → 2025-06-27</text>
+
+  <!-- ItineraryAgent -->
+  <rect x="370" y="70" width="340" height="170" class="agent" />
+  <text x="385" y="95" class="label">ItineraryAgent (CoT)</text>
+  <text x="385" y="120" class="small">Prompt: schema + weather + activities</text>
+  <text x="385" y="140" class="small">Generates initial TravelPlan JSON</text>
+  <text x="385" y="160" class="small">Cost may be approximate</text>
+
+  <!-- Initial TravelPlan Box -->
+  <rect x="750" y="70" width="340" height="120" class="box" />
+  <text x="765" y="95" class="label">Initial TravelPlan</text>
+  <text x="765" y="120" class="small">city, date range, total_cost, days[]</text>
+  <text x="765" y="140" class="small">Activities + per-day weather</text>
+
+  <!-- Initial Evaluations -->
+  <rect x="370" y="270" width="340" height="200" class="eval" />
+  <text x="385" y="295" class="label">Evaluations (run_evals_tool)</text>
+  <text x="385" y="320" class="small">• Dates &amp; continuity</text>
+  <text x="385" y="338" class="small">• Cost accuracy &amp; budget</text>
+  <text x="385" y="356" class="small">• Activity ID validity</text>
+  <text x="385" y="374" class="small">• Interests coverage (>=2/day)</text>
+  <text x="385" y="392" class="small">• Weather compatibility (indoor override)</text>
+
+  <!-- Decision: All Passed? -->
+  <polygon points="760,300 820,330 760,360 700,330" class="decision" />
+  <text x="706" y="334" class="small">all_passed?</text>
+
+  <!-- Early Final TravelPlan -->
+  <rect x="880" y="250" width="210" height="120" class="box" />
+  <text x="895" y="275" class="label">Final TravelPlan</text>
+  <text x="895" y="300" class="small">Early termination path</text>
+  <text x="895" y="320" class="small">Persisted to log</text>
+
+  <!-- Revision Agent Cluster -->
+  <rect x="370" y="520" width="340" height="200" class="agent" />
+  <text x="385" y="545" class="label">ItineraryRevisionAgent (ReAct Loop)</text>
+  <text x="385" y="570" class="small">THOUGHT → ACTION(JSON) → OBSERVATION</text>
+  <text x="385" y="590" class="small">Starts with run_evals_tool</text>
+  <text x="385" y="610" class="small">Mutations: add/remove / calculator</text>
+  <text x="385" y="630" class="small">Finalizes via final_answer_tool</text>
+
+  <!-- Tools Box -->
+  <rect x="750" y="500" width="340" height="170" class="tool" />
+  <text x="765" y="525" class="label">Tools</text>
+  <text x="765" y="550" class="small">• run_evals_tool</text>
+  <text x="765" y="568" class="small">• calculator_tool</text>
+  <text x="765" y="586" class="small">• get_activities_by_date_tool</text>
+  <text x="765" y="604" class="small">• add/remove activity (via tools)</text>
+  <text x="765" y="622" class="small">• final_answer_tool</text>
+
+  <!-- Heuristics Box -->
+  <rect x="30" y="520" width="300" height="230" class="heur" />
+  <text x="45" y="545" class="label">Heuristics &amp; Guards</text>
+  <text x="45" y="570" class="small">1. Early termination on all_passed</text>
+  <text x="45" y="588" class="small">2. Auto adopt auto_corrected cost</text>
+  <text x="45" y="606" class="small">3. Post-mutation auto eval run</text>
+  <text x="45" y="624" class="small">4. Calculator loop guard</text>
+  <text x="45" y="642" class="small">5. Interest-first activity fill</text>
+  <text x="45" y="660" class="small">6. Indoor weather forgiveness</text>
+  <text x="45" y="678" class="small">7. JSON patch diff logging</text>
+
+  <!-- Logging System -->
+  <rect x="750" y="690" width="340" height="150" class="log" />
+  <text x="765" y="715" class="label">RevisionRunLogger</text>
+  <text x="765" y="740" class="small">Per-step: thought, tool, result</text>
+  <text x="765" y="758" class="small">Patches + truncation threshold</text>
+  <text x="765" y="776" class="small">Early finalize annotations</text>
+  <text x="765" y="794" class="small">Modes: md / json</text>
+
+  <!-- Final TravelPlan (post-revision) -->
+  <rect x="370" y="760" width="340" height="110" class="box" />
+  <text x="385" y="785" class="label">Final TravelPlan (after loop)</text>
+  <text x="385" y="810" class="small">All evals passed + feedback met</text>
+
+  <!-- Narration Optional -->
+  <rect x="30" y="780" width="300" height="90" class="box" />
+  <text x="45" y="805" class="label">Optional Narration</text>
+  <text x="45" y="830" class="small">LLM summary after final plan</text>
+
+  <!-- Arrows / Flow -->
+  <line x1="330" y1="130" x2="370" y2="130" class="arrow" /> <!-- CLI -> ItineraryAgent -->
+  <line x1="330" y1="260" x2="370" y2="150" class="arrow" /> <!-- APIs -> ItineraryAgent -->
+  <line x1="710" y1="130" x2="750" y2="130" class="arrow" /> <!-- ItineraryAgent -> Initial Plan -->
+  <line x1="540" y1="240" x2="540" y2="270" class="arrow" /> <!-- Initial Plan down to evals -->
+  <line x1="710" y1="330" x2="700" y2="330" class="arrow" /> <!-- Evals -> Decision -->
+  <line x1="820" y1="330" x2="880" y2="310" class="arrow" /> <!-- Decision yes path -->
+  <line x1="760" y1="360" x2="760" y2="500" class="arrow" /> <!-- Decision no path to tools -->
+  <line x1="710" y1="600" x2="710" y2="330" class="arrow dashed" /> <!-- Loop back evals -->
+  <line x1="540" y1="470" x2="540" y2="520" class="arrow" /> <!-- Evals to RevisionAgent -->
+  <line x1="370" y1="635" x2="330" y2="635" class="arrow" /> <!-- RevisionAgent -> Heuristics consult -->
+  <line x1="330" y1="700" x2="370" y2="810" class="arrow" /> <!-- Heuristics influence final plan -->
+  <line x1="540" y1="720" x2="540" y2="760" class="arrow" /> <!-- RevisionAgent to Final TravelPlan -->
+  <line x1="710" y1="585" x2="750" y2="585" class="arrow" /> <!-- Tools -> Logger path via loop -->
+  <line x1="920" y1="670" x2="920" y2="690" class="arrow" /> <!-- Tools down to Logger -->
+  <line x1="710" y1="765" x2="710" y2="810" class="arrow" /> <!-- Logger to final plan -->
+  <line x1="370" y1="815" x2="330" y2="815" class="arrow" /> <!-- Final plan -> narration -->
+  <line x1="880" y1="310" x2="880" y2="690" class="arrow dashed" /> <!-- Early path also logged -->
+
+  <!-- Legend (mini) -->
+  <rect x="1030" y="720" width="120" height="110" class="box" />
+  <text x="1040" y="745" class="small">Legend:</text>
+  <rect x="1045" y="755" width="14" height="14" class="agent" />
+  <text x="1065" y="766" class="small">Agent</text>
+  <rect x="1045" y="775" width="14" height="14" class="eval" />
+  <text x="1065" y="786" class="small">Evals</text>
+  <rect x="1045" y="795" width="14" height="14" class="tool" />
+  <text x="1065" y="806" class="small">Tools</text>
+  <rect x="1045" y="815" width="14" height="14" class="heur" />
+  <text x="1065" y="826" class="small">Heuristics</text>
+</svg>

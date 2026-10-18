@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 940" font-family="Helvetica,Arial,sans-serif" font-size="13">
+  <defs>
+    <linearGradient id="phase1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#e7f0ff"/>
+      <stop offset="100%" stop-color="#cfe0ff"/>
+    </linearGradient>
+    <linearGradient id="phase2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#e8f7ec"/>
+      <stop offset="100%" stop-color="#cce8d3"/>
+    </linearGradient>
+    <linearGradient id="phase3" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff4e0"/>
+      <stop offset="100%" stop-color="#ffe1b3"/>
+    </linearGradient>
+    <linearGradient id="phase4" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fde7e9"/>
+      <stop offset="100%" stop-color="#f7c2c7"/>
+    </linearGradient>
+    <linearGradient id="azure" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0078d4"/>
+      <stop offset="100%" stop-color="#005a9e"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#444"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f7d4a"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b8770a"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b00020"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="640" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#1a1a1a">ms-agent-app — Microsoft Agent Framework + Foundry + MCP + Eval + PyRIT</text>
+  <text x="640" y="56" text-anchor="middle" font-size="13" fill="#555">Phase 1: chat agent · Phase 2: local MCP tools · Phase 3: evaluation · Phase 4: red teaming</text>
+
+  <!-- ========== TOP ROW: USER · APP CORE · FOUNDRY ========== -->
+  <g>
+    <rect x="40" y="100" width="200" height="180" rx="14" fill="#f5f5f5" stroke="#888" stroke-width="1.4"/>
+    <text x="140" y="128" text-anchor="middle" font-weight="700">Developer</text>
+    <text x="140" y="150" text-anchor="middle" fill="#555">CLI / Notebook</text>
+    <text x="140" y="184" text-anchor="middle" font-family="monospace" font-size="11">uv run ms-agent-app</text>
+    <text x="140" y="204" text-anchor="middle" font-family="monospace" font-size="11">uv run ms-agent-app --with-mcp</text>
+    <text x="140" y="224" text-anchor="middle" font-family="monospace" font-size="11">uv run ms-agent-redteam</text>
+    <text x="140" y="244" text-anchor="middle" font-family="monospace" font-size="11">python -m ms_agent_app.eval.score</text>
+  </g>
+
+  <!-- Phase 1 — App core (blue) -->
+  <g>
+    <rect x="320" y="100" width="320" height="180" rx="14" fill="url(#phase1)" stroke="#2864c8" stroke-width="1.6"/>
+    <text x="480" y="126" text-anchor="middle" font-weight="700" fill="#143a7a">Phase 1 — ms_agent_app core</text>
+
+    <rect x="340" y="142" width="130" height="46" rx="8" fill="#fff" stroke="#2864c8"/>
+    <text x="405" y="160" text-anchor="middle" font-weight="600">cli.py</text>
+    <text x="405" y="178" text-anchor="middle" font-size="11" fill="#555">async REPL</text>
+
+    <rect x="490" y="142" width="130" height="46" rx="8" fill="#fff" stroke="#2864c8"/>
+    <text x="555" y="160" text-anchor="middle" font-weight="600">agent_factory.py</text>
+    <text x="555" y="178" text-anchor="middle" font-size="11" fill="#555">build_chat_agent()</text>
+
+    <rect x="340" y="200" width="130" height="46" rx="8" fill="#fff" stroke="#2864c8"/>
+    <text x="405" y="218" text-anchor="middle" font-weight="600">foundry_client.py</text>
+    <text x="405" y="236" text-anchor="middle" font-size="11" fill="#555">provider chat client</text>
+
+    <rect x="490" y="200" width="130" height="46" rx="8" fill="#fff" stroke="#2864c8"/>
+    <text x="555" y="218" text-anchor="middle" font-weight="600">config.py</text>
+    <text x="555" y="236" text-anchor="middle" font-size="11" fill="#555">.env → Settings</text>
+
+    <text x="480" y="266" text-anchor="middle" font-size="11" fill="#143a7a">Agent (agent-framework) · AzureCliCredential</text>
+    <text x="480" y="280" text-anchor="middle" font-size="10" fill="#143a7a">MODEL_PROVIDER: foundry | openai | azure-openai | anthropic</text>
+  </g>
+
+  <!-- Azure AI Foundry (top right) -->
+  <g>
+    <rect x="730" y="100" width="200" height="180" rx="14" fill="url(#azure)" stroke="#003e75" stroke-width="1.6"/>
+    <text x="830" y="128" text-anchor="middle" font-weight="700" fill="#fff">Azure AI Foundry</text>
+    <text x="830" y="152" text-anchor="middle" font-size="11" fill="#dfeeff">Project endpoint</text>
+    <text x="830" y="170" text-anchor="middle" font-family="monospace" font-size="11" fill="#fff">FOUNDRY_PROJECT_ENDPOINT</text>
+    <rect x="755" y="186" width="150" height="40" rx="8" fill="#fff" stroke="#003e75"/>
+    <text x="830" y="204" text-anchor="middle" font-weight="600" fill="#003e75">Deployment</text>
+    <text x="830" y="220" text-anchor="middle" font-size="11" fill="#003e75">gpt-4.1 (chat)</text>
+    <text x="830" y="252" text-anchor="middle" font-size="11" fill="#dfeeff">via AzureCliCredential</text>
+  </g>
+
+  <!-- Provider note -->
+  <g>
+    <rect x="950" y="100" width="290" height="180" rx="14" fill="#fafafa" stroke="#aaa" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <text x="1095" y="128" text-anchor="middle" font-weight="700" fill="#333">AI provider selection</text>
+    <text x="1095" y="150" text-anchor="middle" font-size="11" fill="#555">Runtime chat provider is selected by</text>
+    <text x="1095" y="168" text-anchor="middle" font-family="monospace" font-size="11" fill="#333">MODEL_PROVIDER</text>
+    <text x="1095" y="196" text-anchor="middle" font-size="11" fill="#555">Supported values:</text>
+    <text x="1095" y="214" text-anchor="middle" font-family="monospace" font-size="11" fill="#333">foundry | openai | azure-openai | anthropic</text>
+    <text x="1095" y="242" text-anchor="middle" font-size="11" fill="#555">Judge routing is separate via</text>
+    <text x="1095" y="260" text-anchor="middle" font-family="monospace" font-size="11" fill="#333">JUDGE_PROVIDER</text>
+  </g>
+
+  <!-- arrow user -> app -->
+  <line x1="240" y1="190" x2="318" y2="190" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="278" y="182" text-anchor="middle" font-size="11" fill="#555">prompt</text>
+
+  <!-- arrow app -> foundry -->
+  <line x1="640" y1="190" x2="728" y2="190" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="684" y="182" text-anchor="middle" font-size="11" fill="#555">chat completion</text>
+
+  <!-- ========== VERTICAL ARROW + LABELS BETWEEN BLUE AND GREEN ========== -->
+  <g>
+    <text x="480" y="304" text-anchor="middle" font-size="11" fill="#2f7d4a" font-weight="600">--with-mcp · agent.run(prompt, tools=mcp_server)</text>
+    <text x="480" y="320" text-anchor="middle" font-size="11" fill="#2f7d4a">MCP list_tools + call_tool over stdio JSON-RPC</text>
+    <line x1="480" y1="328" x2="480" y2="358" stroke="#2f7d4a" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arrowGreen)"/>
+  </g>
+
+  <!-- ========== MCP ROW: Phase 2 (green) BELOW blue ========== -->
+  <g>
+    <rect x="320" y="360" width="320" height="180" rx="14" fill="url(#phase2)" stroke="#2f7d4a" stroke-width="1.6"/>
+    <text x="480" y="386" text-anchor="middle" font-weight="700" fill="#1c4f2e">Phase 2 — Finance MCP server</text>
+
+    <rect x="340" y="402" width="280" height="46" rx="8" fill="#fff" stroke="#2f7d4a"/>
+    <text x="480" y="420" text-anchor="middle" font-weight="600">mcp_finance.py</text>
+    <text x="480" y="438" text-anchor="middle" font-size="11" fill="#555">MCPStdioTool (subprocess)</text>
+
+    <rect x="340" y="460" width="280" height="60" rx="8" fill="#fff" stroke="#2f7d4a"/>
+    <text x="480" y="480" text-anchor="middle" font-weight="600">../adk_financial_mcp_server</text>
+    <text x="480" y="498" text-anchor="middle" font-size="11" fill="#555">server/main.py · FastMCP "finance tools"</text>
+    <text x="480" y="514" text-anchor="middle" font-size="11" fill="#555">dual_ma · trin · fundamentals · scanner · …</text>
+
+    <text x="480" y="532" text-anchor="middle" font-size="11" fill="#1c4f2e">stdio JSON-RPC · own venv</text>
+  </g>
+
+  <!-- ========== SIDE PANEL (far right, clear of the red app->pyrit diagonal) ========== -->
+  <g>
+    <rect x="1020" y="360" width="220" height="180" rx="14" fill="#fafafa" stroke="#aaa" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <text x="1130" y="388" text-anchor="middle" font-weight="700" fill="#333">Tool exposure</text>
+    <text x="1130" y="412" text-anchor="middle" font-size="11" fill="#555">Foundry deployment sees</text>
+    <text x="1130" y="428" text-anchor="middle" font-size="11" fill="#555">the MCP server's tools as</text>
+    <text x="1130" y="444" text-anchor="middle" font-size="11" fill="#555">function definitions inside</text>
+    <text x="1130" y="460" text-anchor="middle" font-size="11" fill="#555">each chat completion call.</text>
+    <text x="1130" y="486" text-anchor="middle" font-size="11" fill="#555">Subprocess starts lazily on</text>
+    <text x="1130" y="502" text-anchor="middle" font-size="11" fill="#555">first --with-mcp run; exits</text>
+    <text x="1130" y="518" text-anchor="middle" font-size="11" fill="#555">when the REPL exits.</text>
+  </g>
+
+  <!-- ========== BOTTOM-LEFT: PHASE 3 EVAL ========== -->
+  <g>
+    <rect x="40" y="600" width="600" height="200" rx="14" fill="url(#phase3)" stroke="#b8770a" stroke-width="1.6"/>
+    <text x="340" y="628" text-anchor="middle" font-weight="700" fill="#7a4b00">Phase 3 — Azure AI Evaluation SDK</text>
+
+    <rect x="60" y="644" width="170" height="60" rx="8" fill="#fff" stroke="#b8770a"/>
+    <text x="145" y="662" text-anchor="middle" font-weight="600">eval/dataset.py</text>
+    <text x="145" y="680" text-anchor="middle" font-size="11" fill="#555">4 curated EvalCases</text>
+    <text x="145" y="696" text-anchor="middle" font-size="11" fill="#555">prompt + intent + tool flag</text>
+
+    <rect x="245" y="644" width="170" height="60" rx="8" fill="#fff" stroke="#b8770a"/>
+    <text x="330" y="662" text-anchor="middle" font-weight="600">eval/runner.py</text>
+    <text x="330" y="680" text-anchor="middle" font-size="11" fill="#555">Trajectory.record()</text>
+    <text x="330" y="696" text-anchor="middle" font-size="11" fill="#555">OpenAI msg schema</text>
+
+    <rect x="430" y="644" width="190" height="60" rx="8" fill="#fff" stroke="#b8770a"/>
+    <text x="525" y="662" text-anchor="middle" font-weight="600">eval/score.py</text>
+    <text x="525" y="680" text-anchor="middle" font-size="11" fill="#555">Intent · TaskAdherence</text>
+    <text x="525" y="696" text-anchor="middle" font-size="11" fill="#555">ToolCallAccuracy</text>
+
+    <rect x="60" y="718" width="560" height="64" rx="8" fill="#fff7e8" stroke="#b8770a" stroke-dasharray="4 3"/>
+    <text x="340" y="738" text-anchor="middle" font-weight="600" fill="#7a4b00">Judge provider (JUDGE_PROVIDER)</text>
+    <text x="340" y="756" text-anchor="middle" font-size="11" fill="#555">azure-openai or openai (evaluation judge model)</text>
+    <text x="340" y="772" text-anchor="middle" font-size="11" fill="#555">writes .eval_outputs/results.json</text>
+  </g>
+
+  <!-- ========== BOTTOM-RIGHT: PHASE 4 PYRIT ========== -->
+  <g>
+    <rect x="660" y="600" width="580" height="200" rx="14" fill="url(#phase4)" stroke="#b00020" stroke-width="1.6"/>
+    <text x="950" y="628" text-anchor="middle" font-weight="700" fill="#7a0014">Phase 4 — PyRIT red team</text>
+
+    <rect x="680" y="644" width="170" height="60" rx="8" fill="#fff" stroke="#b00020"/>
+    <text x="765" y="662" text-anchor="middle" font-weight="600">redteam/dataset.py</text>
+    <text x="765" y="680" text-anchor="middle" font-size="11" fill="#555">jailbreak · injection</text>
+    <text x="765" y="696" text-anchor="middle" font-size="11" fill="#555">harm · misuse</text>
+
+    <rect x="865" y="644" width="170" height="60" rx="8" fill="#fff" stroke="#b00020"/>
+    <text x="950" y="662" text-anchor="middle" font-weight="600">redteam/target.py</text>
+    <text x="950" y="680" text-anchor="middle" font-size="11" fill="#555">AgentFrameworkTarget</text>
+    <text x="950" y="696" text-anchor="middle" font-size="11" fill="#555">: PromptTarget</text>
+
+    <rect x="1050" y="644" width="170" height="60" rx="8" fill="#fff" stroke="#b00020"/>
+    <text x="1135" y="662" text-anchor="middle" font-weight="600">redteam/run.py</text>
+    <text x="1135" y="680" text-anchor="middle" font-size="11" fill="#555">PromptSendingAttack</text>
+    <text x="1135" y="696" text-anchor="middle" font-size="11" fill="#555">SelfAskRefusalScorer</text>
+
+    <rect x="680" y="718" width="540" height="64" rx="8" fill="#fdeef0" stroke="#b00020" stroke-dasharray="4 3"/>
+    <text x="950" y="738" text-anchor="middle" font-weight="600" fill="#7a0014">Judge provider (JUDGE_PROVIDER) — OpenAIChatTarget</text>
+    <text x="950" y="756" text-anchor="middle" font-size="11" fill="#555">CentralMemory in-memory · attack outcome SUCCESS = refusal detected</text>
+    <text x="950" y="772" text-anchor="middle" font-size="11" fill="#555">writes .pyrit_outputs/results.json</text>
+  </g>
+
+  <!-- arrows from app core (Phase 1) to Phase 3 and Phase 4 -->
+  <line x1="430" y1="280" x2="280" y2="598" stroke="#b8770a" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrowOrange)"/>
+  <text x="270" y="430" font-size="11" fill="#b8770a">replay prompts</text>
+  <text x="270" y="446" font-size="11" fill="#b8770a">→ trajectory</text>
+
+  <line x1="600" y1="280" x2="900" y2="598" stroke="#b00020" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+  <text x="720" y="430" font-size="11" fill="#b00020">target the same agent</text>
+  <text x="720" y="446" font-size="11" fill="#b00020">→ red-team attack</text>
+
+  <!-- ========== FOOTER: LEGEND / FLOW ========== -->
+  <g>
+    <rect x="40" y="830" width="1200" height="100" rx="12" fill="#fafafa" stroke="#bbb"/>
+    <text x="60" y="854" font-weight="700" fill="#222">Runtime flow</text>
+    <text x="60" y="874" font-size="12" fill="#333">1. Developer launches the CLI; <tspan font-family="monospace">cli.py</tspan> loads <tspan font-family="monospace">.env</tspan> through <tspan font-family="monospace">config.py</tspan> and builds an Agent via <tspan font-family="monospace">agent_factory.build_chat_agent()</tspan>.</text>
+    <text x="60" y="890" font-size="12" fill="#333">2. The Agent talks to the selected LLM provider based on <tspan font-family="monospace">MODEL_PROVIDER</tspan>; with <tspan font-family="monospace">--with-mcp</tspan> the finance MCP server is spawned as a stdio subprocess and its tools become callable.</text>
+    <text x="60" y="906" font-size="12" fill="#333">3. Phase 3 replays curated prompts through the same Agent and scores trajectories with Azure-AI-Evaluation evaluators using judge routing from <tspan font-family="monospace">JUDGE_PROVIDER</tspan>.</text>
+    <text x="60" y="922" font-size="12" fill="#333">4. Phase 4 wraps the same Agent in a <tspan font-family="monospace">PromptTarget</tspan>, sends red-team prompts through a <tspan font-family="monospace">PromptSendingAttack</tspan>, and uses <tspan font-family="monospace">SelfAskRefusalScorer</tspan> with the configured judge provider.</text>
+  </g>
+</svg>

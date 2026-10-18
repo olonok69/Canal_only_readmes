@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#302b63"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ff8c00"/>
+    </linearGradient>
+    <linearGradient id="cell" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a4e;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#0d0d2b;stop-opacity:0.9"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="360" fill="url(#bg)"/>
+
+  <!-- Decorative grid pattern -->
+  <g opacity="0.08" stroke="#fff" stroke-width="0.5">
+    <line x1="0" y1="60" x2="720" y2="60"/><line x1="0" y1="120" x2="720" y2="120"/>
+    <line x1="0" y1="180" x2="720" y2="180"/><line x1="0" y1="240" x2="720" y2="240"/>
+    <line x1="0" y1="300" x2="720" y2="300"/>
+    <line x1="120" y1="0" x2="120" y2="360"/><line x1="240" y1="0" x2="240" y2="360"/>
+    <line x1="360" y1="0" x2="360" y2="360"/><line x1="480" y1="0" x2="480" y2="360"/>
+    <line x1="600" y1="0" x2="600" y2="360"/>
+  </g>
+
+  <!-- 4x4 Grid World -->
+  <g transform="translate(60, 70)">
+    <!-- Grid cells -->
+    <g fill="url(#cell)" stroke="#4a4a8a" stroke-width="1.5">
+      <rect x="0" y="0" width="55" height="55" rx="4"/>
+      <rect x="60" y="0" width="55" height="55" rx="4"/>
+      <rect x="120" y="0" width="55" height="55" rx="4"/>
+      <rect x="180" y="0" width="55" height="55" rx="4"/>
+      <rect x="0" y="60" width="55" height="55" rx="4"/>
+      <rect x="60" y="60" width="55" height="55" rx="4" fill="#3a0a0a" stroke="#8a2a2a"/>
+      <rect x="120" y="60" width="55" height="55" rx="4"/>
+      <rect x="180" y="60" width="55" height="55" rx="4"/>
+      <rect x="0" y="120" width="55" height="55" rx="4"/>
+      <rect x="60" y="120" width="55" height="55" rx="4"/>
+      <rect x="120" y="120" width="55" height="55" rx="4"/>
+      <rect x="180" y="120" width="55" height="55" rx="4" fill="#3a0a0a" stroke="#8a2a2a"/>
+      <rect x="0" y="180" width="55" height="55" rx="4"/>
+      <rect x="60" y="180" width="55" height="55" rx="4"/>
+      <rect x="120" y="180" width="55" height="55" rx="4"/>
+      <rect x="180" y="180" width="55" height="55" rx="4" fill="#0a3a0a" stroke="#2a8a2a"/>
+    </g>
+
+    <!-- Agent (circle with glow) -->
+    <circle cx="27" cy="27" r="16" fill="#00bfff" opacity="0.9" filter="url(#glow)"/>
+    <text x="27" y="33" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">A</text>
+
+    <!-- Pit markers -->
+    <text x="87" y="93" text-anchor="middle" fill="#ff4444" font-size="14" font-weight="bold">✕</text>
+    <text x="207" y="153" text-anchor="middle" fill="#ff4444" font-size="14" font-weight="bold">✕</text>
+
+    <!-- Goal star -->
+    <text x="207" y="215" text-anchor="middle" fill="url(#gold)" font-size="22" filter="url(#glow)">★</text>
+
+    <!-- Q-value arrows showing optimal path -->
+    <g stroke="#00ff88" stroke-width="2" fill="none" opacity="0.7" marker-end="url(#arrowhead)">
+      <path d="M45,27 L55,27" stroke="#00ff88" stroke-width="2.5"/>
+      <path d="M75,45 L75,55" stroke="#00ff88" stroke-width="2"/>
+      <path d="M75,105 L75,115" stroke="#00ff88" stroke-width="2"/>
+      <path d="M75,165 L75,175" stroke="#00ff88" stroke-width="2"/>
+      <path d="M95,207 L115,207" stroke="#00ff88" stroke-width="2"/>
+      <path d="M155,207 L175,207" stroke="#00ff88" stroke-width="2"/>
+    </g>
+    <!-- Arrow heads (simple triangles) -->
+    <polygon points="58,27 52,22 52,32" fill="#00ff88" opacity="0.7"/>
+    <polygon points="75,58 70,52 80,52" fill="#00ff88" opacity="0.7"/>
+    <polygon points="75,118 70,112 80,112" fill="#00ff88" opacity="0.7"/>
+    <polygon points="75,178 70,172 80,172" fill="#00ff88" opacity="0.7"/>
+    <polygon points="118,207 112,202 112,212" fill="#00ff88" opacity="0.7"/>
+    <polygon points="178,207 172,202 172,212" fill="#00ff88" opacity="0.7"/>
+
+    <!-- Small Q-values on cells -->
+    <text x="45" y="16" font-size="7" fill="#aaa" font-family="monospace">0.48</text>
+    <text x="105" y="76" font-size="7" fill="#aaa" font-family="monospace">0.59</text>
+    <text x="105" y="136" font-size="7" fill="#aaa" font-family="monospace">0.73</text>
+    <text x="105" y="196" font-size="7" fill="#aaa" font-family="monospace">0.81</text>
+    <text x="165" y="196" font-size="7" fill="#aaa" font-family="monospace">0.90</text>
+  </g>
+
+  <!-- Q-Table visualization -->
+  <g transform="translate(370, 75)" filter="url(#shadow)">
+    <rect x="0" y="0" width="290" height="200" rx="8" fill="#0d0d2b" stroke="#4a4a8a" stroke-width="1.5" opacity="0.95"/>
+    <text x="145" y="25" text-anchor="middle" fill="#00bfff" font-size="14" font-weight="bold" font-family="monospace">Q-Table</text>
+    <line x1="10" y1="35" x2="280" y2="35" stroke="#4a4a8a" stroke-width="0.5"/>
+
+    <!-- Header -->
+    <text x="50" y="52" text-anchor="middle" fill="#888" font-size="10" font-family="monospace">State</text>
+    <text x="115" y="52" text-anchor="middle" fill="#888" font-size="10" font-family="monospace">Up</text>
+    <text x="160" y="52" text-anchor="middle" fill="#888" font-size="10" font-family="monospace">Down</text>
+    <text x="205" y="52" text-anchor="middle" fill="#888" font-size="10" font-family="monospace">Left</text>
+    <text x="255" y="52" text-anchor="middle" fill="#888" font-size="10" font-family="monospace">Right</text>
+
+    <!-- Row data -->
+    <text x="50" y="72" text-anchor="middle" fill="#ccc" font-size="10" font-family="monospace">s₀</text>
+    <text x="115" y="72" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.12</text>
+    <text x="160" y="72" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.05</text>
+    <text x="205" y="72" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.03</text>
+    <text x="255" y="72" text-anchor="middle" fill="#00ff88" font-size="10" font-family="monospace" font-weight="bold">0.48</text>
+
+    <text x="50" y="92" text-anchor="middle" fill="#ccc" font-size="10" font-family="monospace">s₁</text>
+    <text x="115" y="92" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.31</text>
+    <text x="160" y="92" text-anchor="middle" fill="#ff6666" font-size="10" font-family="monospace">-0.10</text>
+    <text x="205" y="92" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.15</text>
+    <text x="255" y="92" text-anchor="middle" fill="#00ff88" font-size="10" font-family="monospace" font-weight="bold">0.59</text>
+
+    <text x="50" y="112" text-anchor="middle" fill="#ccc" font-size="10" font-family="monospace">s₅</text>
+    <text x="115" y="112" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.08</text>
+    <text x="160" y="112" text-anchor="middle" fill="#00ff88" font-size="10" font-family="monospace" font-weight="bold">0.73</text>
+    <text x="205" y="112" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.22</text>
+    <text x="255" y="112" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.18</text>
+
+    <text x="145" y="132" text-anchor="middle" fill="#555" font-size="10" font-family="monospace">⋮</text>
+
+    <text x="50" y="152" text-anchor="middle" fill="#ccc" font-size="10" font-family="monospace">s₁₄</text>
+    <text x="115" y="152" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.33</text>
+    <text x="160" y="152" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.41</text>
+    <text x="205" y="152" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">0.15</text>
+    <text x="255" y="152" text-anchor="middle" fill="#00ff88" font-size="10" font-family="monospace" font-weight="bold">0.90</text>
+
+    <!-- Bellman equation -->
+    <text x="145" y="182" text-anchor="middle" fill="#ffd700" font-size="10" font-family="serif" font-style="italic">
+      Q(s,a) ← Q(s,a) + α[r + γ max Q(s',a') − Q(s,a)]
+    </text>
+  </g>
+
+  <!-- Title -->
+  <text x="360" y="32" text-anchor="middle" fill="#fff" font-size="24" font-weight="bold" font-family="sans-serif" filter="url(#shadow)">
+    Q-Learning
+  </text>
+  <text x="360" y="52" text-anchor="middle" fill="#00bfff" font-size="12" font-family="sans-serif" opacity="0.8">
+    Tabular Reinforcement Learning
+  </text>
+
+  <!-- Bottom label -->
+  <text x="360" y="340" text-anchor="middle" fill="#666" font-size="10" font-family="monospace">
+    Agent ➜ Environment ➜ Reward ➜ Learn ➜ Repeat
+  </text>
+</svg>

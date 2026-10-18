@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="680" viewBox="0 0 1400 680">
+  <defs>
+    <style>
+      .stage { fill: #0f62fe; stroke: #052f5f; stroke-width: 2; rx: 16; }
+      .stage-light { fill: #4f8ef7; stroke: #052f5f; stroke-width: 2; rx: 14; }
+      .support { fill: #f4f6ff; stroke: #4b5d7e; stroke-width: 2; rx: 12; }
+      .db { fill: #ffe8c2; stroke: #c77a25; stroke-width: 2; rx: 18; }
+      .title { font: 22px 'Segoe UI', sans-serif; fill: #052f5f; font-weight: 600; }
+      .subtitle { font: 15px 'Segoe UI', sans-serif; fill: #052f5f; }
+      .stage-text { font: 15px 'Segoe UI', sans-serif; fill: #ffffff; text-anchor: middle; }
+      .support-text { font: 14px 'Segoe UI', sans-serif; fill: #052f5f; text-anchor: middle; }
+      .arrow { stroke: #6c6f7f; stroke-width: 3; marker-end: url(#arrowhead); }
+      .arrow-rev { stroke: #6c6f7f; stroke-width: 3; marker-end: url(#arrowhead); }
+      .label { font: 13px 'Segoe UI', sans-serif; fill: #052f5f; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#6c6f7f" />
+    </marker>
+  </defs>
+
+  <text x="700" y="36" text-anchor="middle" class="title">Deep Agents Coordination Overview</text>
+  <text x="700" y="62" text-anchor="middle" class="subtitle">Primary agent, sub-agents, and tool backends orchestrated by ShowReportGenerator</text>
+
+  <!-- ShowReportGenerator -->
+  <rect x="520" y="90" width="360" height="110" class="stage" />
+  <text x="700" y="125" class="stage-text">
+    <tspan x="700" dy="0">ShowReportGenerator</tspan>
+    <tspan x="700" dy="20">(Manifest, TODOs, Context Builder)</tspan>
+  </text>
+
+  <!-- DeepAgent core -->
+  <rect x="520" y="250" width="360" height="120" class="stage-light" />
+  <text x="700" y="290" class="stage-text">
+    <tspan x="700" dy="0">DeepAgent Coordinator</tspan>
+    <tspan x="700" dy="20">(Drives task loop &amp; delegation)</tspan>
+  </text>
+
+  <!-- Neo4j Sub Agent -->
+  <rect x="130" y="240" width="300" height="120" class="stage" />
+  <text x="280" y="275" class="stage-text">
+    <tspan x="280" dy="0">Neo4j Sub-Agent</tspan>
+    <tspan x="280" dy="20">Cypher author / executor</tspan>
+  </text>
+
+  <!-- Critique Agent -->
+  <rect x="970" y="240" width="300" height="120" class="stage" />
+  <text x="1120" y="275" class="stage-text">
+    <tspan x="1120" dy="0">Critique / QA Sub-Agent</tspan>
+    <tspan x="1120" dy="20">Enforces quality gates</tspan>
+  </text>
+
+  <!-- Neo4j Tools -->
+  <rect x="520" y="430" width="360" height="110" class="support" />
+  <text x="700" y="465" class="support-text">
+    <tspan x="700" dy="0">Neo4j Tool Surface</tspan>
+    <tspan x="700" dy="20">get schema / read / write cypher</tspan>
+  </text>
+
+  <!-- Filesystem Backend -->
+  <rect x="150" y="430" width="260" height="110" class="support" />
+  <text x="280" y="465" class="support-text">
+    <tspan x="280" dy="0">SafeFilesystemBackend</tspan>
+    <tspan x="280" dy="20">Mirrors outputs &amp; /memories</tspan>
+  </text>
+
+  <!-- LLM Provider -->
+  <rect x="1030" y="430" width="240" height="110" class="support" />
+  <text x="1150" y="465" class="support-text">
+    <tspan x="1150" dy="0">LLM Provider</tspan>
+    <tspan x="1150" dy="20">(Azure/OpenAI/Anthropic)</tspan>
+  </text>
+
+  <!-- Neo4j DB -->
+  <rect x="520" y="580" width="360" height="80" class="db" />
+  <text x="700" y="615" class="support-text">Neo4j Database</text>
+
+  <!-- Outputs directory -->
+  <rect x="150" y="580" width="260" height="80" class="db" />
+  <text x="280" y="615" class="support-text">reports / outputs / memories</text>
+
+  <!-- Arrows -->
+  <line x1="700" y1="200" x2="700" y2="250" class="arrow" />
+  <text x="710" y="220" class="label">Prompt + TODOs</text>
+
+  <line x1="520" y1="300" x2="430" y2="300" class="arrow" />
+  <text x="470" y="285" class="label" transform="rotate(-0 470 285)">Cypher briefs</text>
+  <line x1="430" y1="320" x2="520" y2="320" class="arrow" />
+  <text x="475" y="340" class="label">Cypher outputs</text>
+
+  <line x1="880" y1="300" x2="970" y2="300" class="arrow" />
+  <text x="925" y="285" class="label">Drafts</text>
+  <line x1="970" y1="320" x2="880" y2="320" class="arrow" />
+  <text x="925" y="340" class="label">Critiques / QA</text>
+
+  <line x1="700" y1="370" x2="700" y2="430" class="arrow" />
+  <text x="710" y="400" class="label">Tool binding</text>
+
+  <line x1="520" y1="330" x2="410" y2="430" class="arrow" />
+  <text x="450" y="380" class="label">Write/read artifacts</text>
+
+  <line x1="880" y1="320" x2="1030" y2="485" class="arrow" />
+  <text x="980" y="380" class="label">LLM calls</text>
+
+  <line x1="700" y1="540" x2="700" y2="580" class="arrow" />
+  <text x="710" y="560" class="label">Cypher execution</text>
+
+  <line x1="280" y1="540" x2="280" y2="580" class="arrow" />
+  <text x="290" y="560" class="label">Mirrored files</text>
+
+  <line x1="410" y1="500" x2="520" y2="320" class="arrow" />
+  <text x="430" y="450" class="label">TODO evidence / recovery</text>
+
+  <line x1="280" y1="360" x2="700" y2="430" class="arrow" />
+  <text x="520" y="390" class="label">Schema/read/write requests</text>
+
+  <line x1="520" y1="470" x2="430" y2="330" class="arrow" />
+  <text x="520" y="400" class="label">Query results</text>
+
+  <line x1="880" y1="200" x2="1120" y2="240" stroke="#a1a4b3" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="980" y="210" class="label">QA instructions</text>
+
+  <line x1="520" y1="200" x2="280" y2="240" stroke="#a1a4b3" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="420" y="210" class="label">Cypher task briefs</text>
+
+  <line x1="700" y1="200" x2="700" y2="430" stroke="#c2c8da" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrowhead)" />
+  <text x="715" y="360" class="label">Model settings</text>
+</svg>

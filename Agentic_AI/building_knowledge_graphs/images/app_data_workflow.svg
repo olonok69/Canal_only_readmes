@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <style type="text/css"><![CDATA[
+      .box { fill:#ffffff; stroke:#1f2937; stroke-width:2; rx:8; ry:8; }
+      .group { fill:#f3f4f6; stroke:#9ca3af; stroke-width:2; rx:10; ry:10; }
+      .label { font-family:Segoe UI, Arial, sans-serif; font-size:16px; fill:#111827; }
+      .small { font-size:14px; fill:#374151; }
+      .title { font-size:18px; font-weight:bold; fill:#111827; }
+      .arrow { stroke:#374151; stroke-width:2; marker-end:url(#arrowhead); fill:none; }
+      .note { fill:#e5e7eb; stroke:#9ca3af; stroke-width:1; rx:6; ry:6; }
+    ]]></style>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text class="title" x="40" y="40">Agentic Knowledge Graph - Data Workflow</text>
+
+  <!-- Left: Inputs -->
+  <rect class="group" x="40" y="70" width="380" height="780" />
+  <text class="title" x="60" y="100">Inputs</text>
+
+  <rect class="box" x="60" y="130" width="340" height="100" />
+  <text class="label" x="80" y="160">Command Line (CLI)</text>
+  <text class="small" x="80" y="185">python -m agentic_kg_app.cli &lt;command&gt;</text>
+  <text class="small" x="80" y="205">--config configs/app.yaml --data-dir data/</text>
+
+  <rect class="box" x="60" y="250" width="340" height="120" />
+  <text class="label" x="80" y="280">Configuration</text>
+  <text class="small" x="80" y="305">configs/app.yaml</text>
+  <text class="small" x="80" y="325">nodes, relationships, logging</text>
+
+  <rect class="box" x="60" y="390" width="340" height="100" />
+  <text class="label" x="80" y="420">Environment (.env)</text>
+  <text class="small" x="80" y="445">NEO4J_URI, USERNAME, PASSWORD,</text>
+  <text class="small" x="80" y="465">DATABASE, NEO4J_IMPORT_DIR</text>
+
+  <rect class="box" x="60" y="510" width="340" height="150" />
+  <text class="label" x="80" y="540">Workspace Data (CSV)</text>
+  <text class="small" x="80" y="565">data/products.csv</text>
+  <text class="small" x="80" y="585">data/assemblies.csv</text>
+  <text class="small" x="80" y="605">data/parts.csv</text>
+  <text class="small" x="80" y="625">data/suppliers.csv</text>
+  <text class="small" x="80" y="645">data/part_supplier_mapping.csv</text>
+
+  <!-- Middle: App -->
+  <rect class="group" x="450" y="70" width="520" height="780" />
+  <text class="title" x="470" y="100">App Runtime</text>
+
+  <rect class="box" x="470" y="130" width="480" height="90" />
+  <text class="label" x="490" y="160">Orchestrator</text>
+  <text class="small" x="490" y="185">- Loads YAML &amp; merges .env</text>
+  <text class="small" x="490" y="205">- Configures logging, creates Neo4j client</text>
+
+  <rect class="box" x="470" y="240" width="480" height="120" />
+  <text class="label" x="490" y="270">Agents</text>
+  <text class="small" x="490" y="295">DataIngestAgent</text>
+  <text class="small" x="690" y="295">- CSV copy to import dir</text>
+  <text class="small" x="690" y="315">- MERGE nodes, relationships</text>
+  <text class="small" x="490" y="335">GraphOpsAgent</text>
+  <text class="small" x="690" y="335">- ready, reset, version</text>
+
+  <rect class="box" x="470" y="380" width="480" height="90" />
+  <text class="label" x="490" y="410">Utilities</text>
+  <text class="small" x="490" y="435">build_set_assignments(), copy_csvs_to_import()</text>
+
+  <rect class="box" x="470" y="490" width="480" height="120" />
+  <text class="label" x="490" y="520">Neo4j Client</text>
+  <text class="small" x="490" y="545">- Session/Run wrapper</text>
+  <text class="small" x="490" y="565">- get_import_dir()</text>
+
+  <rect class="box" x="470" y="630" width="480" height="90" />
+  <text class="label" x="490" y="660">Logging</text>
+  <text class="small" x="490" y="685">Console + rotating file (logs/app.log)</text>
+
+  <!-- Right: Neo4j -->
+  <rect class="group" x="990" y="70" width="370" height="780" />
+  <text class="title" x="1010" y="100">Neo4j</text>
+
+  <rect class="box" x="1010" y="130" width="330" height="90" />
+  <text class="label" x="1030" y="160">Import Directory</text>
+  <text class="small" x="1030" y="185">CSV copied here by app</text>
+
+  <rect class="box" x="1010" y="240" width="330" height="120" />
+  <text class="label" x="1030" y="270">LOAD CSV</text>
+  <text class="small" x="1030" y="295">MERGE (n:Label {key: row.key})</text>
+  <text class="small" x="1030" y="315">SET properties</text>
+  <text class="small" x="1030" y="335">MERGE (a)-[:TYPE]->(b)</text>
+
+  <rect class="box" x="1010" y="380" width="330" height="200" />
+  <text class="label" x="1030" y="410">Graph</text>
+  <text class="small" x="1030" y="435">Product --HAS_ASSEMBLY--> Assembly</text>
+  <text class="small" x="1030" y="455">Assembly --HAS_PART--> Part</text>
+  <text class="small" x="1030" y="475">Part --SUPPLIED_BY--> Supplier</text>
+  <text class="small" x="1030" y="495">Uniqueness constraints per label</text>
+
+  <!-- Arrows -->
+  <path class="arrow" d="M 400 180 L 470 180" />
+  <path class="arrow" d="M 400 305 L 470 170" />
+  <path class="arrow" d="M 400 440 L 470 170" />
+  <path class="arrow" d="M 400 585 L 980 175" />
+
+  <path class="arrow" d="M 710 200 L 1010 175" />
+  <path class="arrow" d="M 710 560 L 1010 560" />
+  <path class="arrow" d="M 950 680 L 1010 680" />
+
+  <path class="arrow" d="M 1010 315 L 950 315" />
+  <path class="arrow" d="M 950 315 L 950 540" />
+
+  <!-- Notes -->
+  <rect class="note" x="60" y="680" width="340" height="150" />
+  <text class="small" x="80" y="710">Commands:</text>
+  <text class="small" x="80" y="735">ready | reset | ingest</text>
+  <text class="small" x="80" y="760">ingest: copies CSVs to import dir,</text>
+  <text class="small" x="80" y="780">creates constraints, loads nodes/edges</text>
+</svg>

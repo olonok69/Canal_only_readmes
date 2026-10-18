@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560">
+  <style>
+    .title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 24px; font-weight: 600; fill: #1f2933; }
+    .subtitle { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; fill: #52606d; }
+    .label { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; fill: #1f2933; }
+  .step { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #ffffff; }
+  .box { fill: #ffffff; stroke: #334e68; stroke-width: 2; rx: 12; ry: 12; }
+    .box-light { fill: #eef2f7; stroke: #9fb3c8; stroke-width: 1.5; rx: 10; ry: 10; }
+    .box-dashed { fill: #ffffff; stroke: #9fb3c8; stroke-width: 1.5; stroke-dasharray: 6 6; rx: 10; ry: 10; }
+    .arrow { fill: none; stroke: #486581; stroke-width: 2.5; marker-end: url(#arrowhead); }
+    .arrow-light { fill: none; stroke: #9fb3c8; stroke-width: 2; marker-end: url(#arrowhead-light); }
+  .workflow-band { fill: #486581; stroke: none; rx: 14; ry: 14; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#486581" />
+    </marker>
+    <marker id="arrowhead-light" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9fb3c8" />
+    </marker>
+  </defs>
+
+  <text class="title" x="40" y="50">Deep Research Agent · Architecture &amp; Flow</text>
+  <text class="subtitle" x="40" y="78">Combines TODO planning, file-based memory, and sub-agent delegation with Tavily + Perplexity research</text>
+
+  <!-- Main Agent -->
+  <rect class="box" x="60" y="110" width="260" height="200" />
+  <text class="label" x="80" y="150" font-weight="600">Main Research Agent</text>
+  <text class="label" x="80" y="178">• Governing workflow (Plan → Recite)</text>
+  <text class="label" x="80" y="200">• TODO management + recitation</text>
+  <text class="label" x="80" y="222">• Orchestrates tools &amp; sub-agents</text>
+  <text class="label" x="80" y="244">• Persists artifacts &amp; final report</text>
+
+  <!-- Tool Belt -->
+  <rect class="box-light" x="60" y="330" width="260" height="150" />
+  <text class="label" x="80" y="360" font-weight="600">Built-in Tools</text>
+  <text class="label" x="80" y="386">write_todos · read_todos</text>
+  <text class="label" x="80" y="408">ls · read_file · write_file · edit_file</text>
+  <text class="label" x="80" y="430">task (delegate to sub-agents)</text>
+
+  <!-- Sub Agents -->
+  <rect class="box-light" x="360" y="330" width="220" height="150" />
+  <text class="label" x="380" y="360" font-weight="600">Research Sub-Agent</text>
+  <text class="label" x="380" y="386">• Deep investigation</text>
+  <text class="label" x="380" y="408">• Own file workspace</text>
+  <text class="label" x="380" y="430">• Produces citations</text>
+
+  <rect class="box-light" x="620" y="330" width="220" height="150" />
+  <text class="label" x="640" y="360" font-weight="600">Critique Sub-Agent</text>
+  <text class="label" x="640" y="386">• Reviews coverage &amp; gaps</text>
+  <text class="label" x="640" y="408">• Suggests improvements</text>
+  <text class="label" x="640" y="430">• Ensures citations &amp; quality</text>
+
+  <!-- Arrows for delegation -->
+  <path class="arrow-light" d="M190 330 L190 300 L470 300 L470 330" />
+  <path class="arrow-light" d="M190 330 L190 300 L730 300 L730 330" />
+
+  <!-- External Tools -->
+  <rect class="box" x="360" y="110" width="220" height="200" />
+  <text class="label" x="380" y="150" font-weight="600">Tavily Search</text>
+  <text class="label" x="380" y="178">• Structured web evidence</text>
+  <text class="label" x="380" y="200">• `internet_search` tool</text>
+  <text class="label" x="380" y="226">• Saves outputs to files</text>
+
+  <rect class="box" x="620" y="110" width="220" height="200" />
+  <text class="label" x="640" y="150" font-weight="600">Perplexity Research</text>
+  <text class="label" x="640" y="178">• Optional cited synthesis</text>
+  <text class="label" x="640" y="200">• `perplexity_research` tool</text>
+  <text class="label" x="640" y="226">• Stores summary to file</text>
+
+  <!-- Flow Arrows -->
+  <path class="arrow" d="M320 200 H360" />
+  <path class="arrow" d="M580 200 H620" />
+
+  <!-- Workflow steps -->
+  <rect class="workflow-band" x="60" y="494" width="840" height="60" />
+
+  <g transform="translate(95,508)">
+    <text class="step" y="0">1 · Plan</text>
+    <text class="step" y="20">(write_todos)</text>
+  </g>
+
+  <g transform="translate(220,508)">
+    <text class="step" y="0">2 · Orient</text>
+    <text class="step" y="20">(save prompt)</text>
+    <text class="step" y="36">(list files)</text>
+  </g>
+
+  <g transform="translate(360,508)">
+    <text class="step" y="0">3 · Gather</text>
+    <text class="step" y="20">(Tavily → Perplexity)</text>
+  </g>
+
+  <g transform="translate(500,508)">
+    <text class="step" y="0">4 · Organise</text>
+    <text class="step" y="20">(read files)</text>
+    <text class="step" y="36">(delegate)</text>
+  </g>
+
+  <g transform="translate(630,508)">
+    <text class="step" y="0">5 · Synthesize</text>
+    <text class="step" y="20">(compose report)</text>
+  </g>
+
+  <g transform="translate(760,508)">
+    <text class="step" y="0">6 · Recite</text>
+    <text class="step" y="20">(confirm TODOs)</text>
+  </g>
+
+  <!-- Artifact outputs -->
+  <rect class="box-dashed" x="850" y="110" width="100" height="200" />
+  <text class="label" x="870" y="150" font-weight="600">Artifacts</text>
+  <text class="label" x="870" y="178">final_report</text>
+  <text class="label" x="870" y="200">todos.md</text>
+  <text class="label" x="870" y="222">agent_files/</text>
+
+  <path class="arrow" d="M840 200 H860" />
+</svg>

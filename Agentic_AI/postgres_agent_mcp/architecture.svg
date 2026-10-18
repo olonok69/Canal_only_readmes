@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .component { fill: #f0f8ff; stroke: #4682b4; stroke-width: 2; }
+      .arrow { fill: #4682b4; }
+      .label { font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .title { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      .layer { fill: #e6f3ff; stroke: #4682b4; stroke-width: 1; opacity: 0.7; }
+      .legend-label { font-family: Arial, sans-serif; font-size: 11px; text-anchor: start; }
+    </style>
+  </defs>
+
+  <!-- Background layers -->
+  <rect x="50" y="50" width="700" height="120" class="layer"/>
+  <rect x="50" y="200" width="700" height="120" class="layer"/>
+  <rect x="50" y="350" width="700" height="120" class="layer"/>
+  <rect x="50" y="500" width="700" height="80" class="layer"/>
+
+  <!-- Layer labels -->
+  <text x="400" y="35" class="title">User Interface Layer</text>
+  <text x="400" y="185" class="title">Agent Layer</text>
+  <text x="400" y="335" class="title">Tool Layer</text>
+  <text x="400" y="485" class="title">Database Layer</text>
+
+  <!-- User Interface -->
+  <rect x="300" y="60" width="200" height="80" rx="10" class="component"/>
+  <text x="400" y="82" class="title">Streamlit Chat UI</text>
+  <text x="400" y="100" class="label">streamlit_chat.py</text>
+  <text x="400" y="118" class="label" font-size="11">Modern chat interface</text>
+  <text x="400" y="134" class="label" font-size="11">with advanced controls</text>
+
+  <!-- Agent Layer -->
+  <rect x="150" y="220" width="180" height="70" rx="10" class="component"/>
+  <text x="240" y="235" class="title">Direct LangGraph Agent</text>
+  <text x="240" y="250" class="label">agent_langchain.py</text>
+  <text x="240" y="265" class="label">Direct tool calls</text>
+  <text x="240" y="280" class="label">No network overhead</text>
+
+  <rect x="470" y="220" width="180" height="70" rx="10" class="component"/>
+  <text x="560" y="235" class="title">MCP Client Agent</text>
+  <text x="560" y="250" class="label">agent_mcp_client.py</text>
+  <text x="560" y="265" class="label">HTTP-based tool calls</text>
+  <text x="560" y="280" class="label">Dynamic tool discovery</text>
+
+  <!-- Tool Layer -->
+  <rect x="120" y="370" width="200" height="70" rx="10" class="component"/>
+  <text x="220" y="385" class="title">Database Operations</text>
+  <text x="220" y="400" class="label">db.py</text>
+  <text x="220" y="415" class="label">Async PostgreSQL interface</text>
+  <text x="220" y="430" class="label">Connection pooling</text>
+
+  <rect x="480" y="370" width="200" height="70" rx="10" class="component"/>
+  <text x="580" y="385" class="title">MCP Server</text>
+  <text x="580" y="400" class="label">server4.py</text>
+  <text x="580" y="415" class="label">HTTP-based MCP protocol</text>
+  <text x="580" y="430" class="label">SSE transport</text>
+
+  <!-- Database Layer -->
+  <rect x="300" y="510" width="200" height="50" rx="10" class="component"/>
+  <text x="400" y="525" class="title">PostgreSQL Database</text>
+  <text x="400" y="540" class="label">Async PG connection pool</text>
+
+  <!-- Arrows -->
+  <!-- UI to Agents (alternative selection, not both) -->
+  <line x1="350" y1="140" x2="240" y2="220" stroke="#4682b4" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="240,220 246,215 234,215" class="arrow"/>
+  <text x="290" y="175" class="label" font-size="10">OR</text>
+  
+  <line x1="450" y1="140" x2="560" y2="220" stroke="#4682b4" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="560,220 554,215 566,215" class="arrow"/>
+
+  <!-- Direct Agent to db.py -->
+  <line x1="240" y1="290" x2="220" y2="370" stroke="#4682b4" stroke-width="2"/>
+  <polygon points="220,370 225,364 215,364" class="arrow"/>
+  <text x="200" y="330" class="label" font-size="10">Direct calls</text>
+
+  <!-- MCP Client to MCP Server -->
+  <line x1="560" y1="290" x2="580" y2="370" stroke="#4682b4" stroke-width="2"/>
+  <polygon points="580,370 575,364 585,364" class="arrow"/>
+  <text x="600" y="330" class="label" font-size="10">HTTP/SSE</text>
+
+  <!-- MCP Server to db.py -->
+  <line x1="480" y1="405" x2="320" y2="405" stroke="#4682b4" stroke-width="2"/>
+  <polygon points="320,405 330,410 330,400" class="arrow"/>
+  <text x="400" y="395" class="label" font-size="10">Uses</text>
+
+  <!-- db.py to Database -->
+  <line x1="220" y1="440" x2="350" y2="510" stroke="#4682b4" stroke-width="2"/>
+  <polygon points="350,510 354,504 344,504" class="arrow"/>
+  <text x="280" y="480" class="label" font-size="10">AsyncPG</text>
+
+  <!-- Data flow labels -->
+  <text x="400" y="165" class="label">Agent Selection</text>
+  <text x="150" y="320" class="label">Tool Execution</text>
+  <text x="550" y="320" class="label">Remote Tool Calls</text>
+  <text x="360" y="450" class="label">Database Operations</text>
+
+  <!-- Legend -->
+  <rect x="20" y="505" width="220" height="85" fill="white" stroke="#4682b4" stroke-width="1"/>
+  <text x="130" y="523" class="title">Legend</text>
+  <!-- Direct Flow -->
+  <text x="30" y="544" class="legend-label">Direct Flow</text>
+  <line x1="170" y1="540" x2="200" y2="540" stroke="#4682b4" stroke-width="2"/>
+  <polygon points="200,540 195,538 195,542" fill="#4682b4"/>
+  <!-- Alternative (OR) -->
+  <text x="30" y="562" class="legend-label">Alternative (OR)</text>
+  <line x1="170" y1="558" x2="200" y2="558" stroke="#4682b4" stroke-width="2" stroke-dasharray="5,5"/>
+  <!-- Component -->
+  <text x="30" y="580" class="legend-label">Component</text>
+  <rect x="170" y="571" width="30" height="13" fill="#f0f8ff" stroke="#4682b4" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="400" y="20" class="title" font-size="18">Postgres MCP + LangGraph Agent System Architecture</text>
+</svg>

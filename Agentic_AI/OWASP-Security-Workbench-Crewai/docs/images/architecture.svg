@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="940" viewBox="0 0 1400 940" role="img" aria-labelledby="title desc">
+  <title id="title">OWASP Security Workbench Architecture</title>
+  <desc id="desc">Architecture diagram showing Streamlit UI, service layer, external services, local storage, and CrewAI workflows.</desc>
+
+  <defs>
+    <style>
+      .title { font: 700 28px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 14px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .group-title { font: 700 16px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .box-title { font: 700 14px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .box-text { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #1f2937; }
+      .edge { stroke: #475569; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .edge-dashed { stroke: #64748b; stroke-width: 2; fill: none; stroke-dasharray: 7 5; marker-end: url(#arrow); }
+      .label { font: 600 11px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+    </style>
+
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1400" height="940" fill="#f8fafc"/>
+  <text x="700" y="42" text-anchor="middle" class="title">OWASP Security Workbench — Architecture</text>
+  <text x="700" y="66" text-anchor="middle" class="subtitle">Streamlit app + parsing/caching services + Firecrawl + CrewAI workflows</text>
+
+  <!-- Group backgrounds -->
+  <rect x="40" y="90" width="380" height="320" rx="14" fill="#e0f2fe" stroke="#93c5fd"/>
+  <text x="58" y="116" class="group-title">Client/UI Layer</text>
+
+  <rect x="450" y="90" width="500" height="520" rx="14" fill="#ecfccb" stroke="#bef264"/>
+  <text x="468" y="116" class="group-title">Application Service Layer (src/ + app.py)</text>
+
+  <rect x="980" y="90" width="380" height="240" rx="14" fill="#fee2e2" stroke="#fca5a5"/>
+  <text x="998" y="116" class="group-title">External Services</text>
+
+  <rect x="980" y="360" width="380" height="250" rx="14" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="998" y="386" class="group-title">Local Storage / Artifacts</text>
+
+  <rect x="40" y="640" width="1320" height="290" rx="14" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="58" y="666" class="group-title">AI Workflows (agents/)</text>
+
+  <!-- UI boxes -->
+  <rect x="70" y="140" width="320" height="96" rx="10" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="88" y="166" class="box-title">Streamlit UI (app.py)</text>
+  <text x="88" y="186" class="box-text">• Cheat Sheets section</text>
+  <text x="88" y="204" class="box-text">• Top 10 section</text>
+  <text x="88" y="222" class="box-text">• Reports + code review panel</text>
+
+  <rect x="70" y="254" width="320" height="128" rx="10" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="88" y="280" class="box-title">User Interactions</text>
+  <text x="88" y="300" class="box-text">• Select live/local data source</text>
+  <text x="88" y="318" class="box-text">• Browse risks and mitigations</text>
+  <text x="88" y="336" class="box-text">• Upload files / paste PR diff</text>
+  <text x="88" y="354" class="box-text">• Download Markdown report</text>
+
+  <!-- Service boxes -->
+  <rect x="480" y="140" width="210" height="100" rx="10" fill="#ffffff" stroke="#bef264"/>
+  <text x="498" y="166" class="box-title">ConfigManager</text>
+  <text x="498" y="186" class="box-text">• config.yaml</text>
+  <text x="498" y="204" class="box-text">• .env substitution</text>
+
+  <rect x="720" y="140" width="200" height="100" rx="10" fill="#ffffff" stroke="#bef264"/>
+  <text x="738" y="166" class="box-title">FirecrawlClient</text>
+  <text x="738" y="186" class="box-text">• scrape/crawl</text>
+  <text x="738" y="204" class="box-text">• retries + rate limit</text>
+
+  <rect x="480" y="264" width="210" height="120" rx="10" fill="#ffffff" stroke="#bef264"/>
+  <text x="498" y="290" class="box-title">CheatsheetParser</text>
+  <text x="498" y="310" class="box-text">• Glossary/index parsing</text>
+  <text x="498" y="328" class="box-text">• Risk extraction</text>
+  <text x="498" y="346" class="box-text">• Model mapping</text>
+
+  <rect x="720" y="264" width="200" height="120" rx="10" fill="#ffffff" stroke="#bef264"/>
+  <text x="738" y="290" class="box-title">CacheManager</text>
+  <text x="738" y="310" class="box-text">• Disk JSON cache</text>
+  <text x="738" y="328" class="box-text">• TTL + size cleanup</text>
+  <text x="738" y="346" class="box-text">• index/content keys</text>
+
+  <rect x="480" y="408" width="440" height="170" rx="10" fill="#ffffff" stroke="#bef264"/>
+  <text x="498" y="434" class="box-title">Domain &amp; Rendering</text>
+  <text x="498" y="454" class="box-text">• Pydantic models (CheatSheet, RiskItem, AttackExample, ...)</text>
+  <text x="498" y="472" class="box-text">• Top 10 sources: static (src/top10_data.py) + web parse + local JSON</text>
+  <text x="498" y="490" class="box-text">• Context builders feed selected OWASP guidance into review prompt</text>
+  <text x="498" y="508" class="box-text">• Report writer saves Markdown outputs for in-app report viewer</text>
+  <text x="498" y="526" class="box-text">• Cached functions via Streamlit cache_resource/cache_data</text>
+
+  <!-- External -->
+  <rect x="1010" y="140" width="320" height="80" rx="10" fill="#ffffff" stroke="#fca5a5"/>
+  <text x="1028" y="166" class="box-title">Firecrawl API</text>
+  <text x="1028" y="186" class="box-text">Content extraction for OWASP pages</text>
+
+  <rect x="1010" y="236" width="320" height="70" rx="10" fill="#ffffff" stroke="#fca5a5"/>
+  <text x="1028" y="262" class="box-title">OWASP Web Sources</text>
+  <text x="1028" y="282" class="box-text">Cheat Sheet Series + Top 10 pages</text>
+
+  <!-- Local storage -->
+  <rect x="1010" y="410" width="320" height="62" rx="10" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="1028" y="435" class="box-title">cache/</text>
+  <text x="1028" y="454" class="box-text">API/raw/parsed cached entries</text>
+
+  <rect x="1010" y="484" width="320" height="62" rx="10" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="1028" y="509" class="box-title">data/checksheets + data/top10</text>
+  <text x="1028" y="528" class="box-text">Crew-generated local JSON datasets</text>
+
+  <rect x="1010" y="558" width="320" height="62" rx="10" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="1028" y="583" class="box-title">report/ + logs/</text>
+  <text x="1028" y="602" class="box-text">Review reports and runtime logs</text>
+
+  <!-- AI workflow boxes -->
+  <rect x="70" y="700" width="390" height="95" rx="10" fill="#ffffff" stroke="#fdba74"/>
+  <text x="88" y="724" class="box-title">checksheet_crew</text>
+  <text x="88" y="742" class="box-text">Input: CHEATSHEET_URL</text>
+  <text x="88" y="758" class="box-text">Output: checksheet JSON</text>
+  <text x="88" y="774" class="box-text">Path: data/checksheets/</text>
+
+  <rect x="505" y="700" width="390" height="95" rx="10" fill="#ffffff" stroke="#fdba74"/>
+  <text x="523" y="724" class="box-title">top10_crew</text>
+  <text x="523" y="742" class="box-text">Input: TOP10_URL</text>
+  <text x="523" y="758" class="box-text">Output: Top 10 JSON</text>
+  <text x="523" y="774" class="box-text">Path: data/top10/</text>
+
+  <rect x="940" y="700" width="390" height="95" rx="10" fill="#ffffff" stroke="#fdba74"/>
+  <text x="958" y="724" class="box-title">code_review_crew</text>
+  <text x="958" y="742" class="box-text">Agents: senior/security/tech lead</text>
+  <text x="958" y="758" class="box-text">Input: selected context + diff/files</text>
+  <text x="958" y="774" class="box-text">Output: structured findings JSON</text>
+
+  <rect x="70" y="810" width="1260" height="62" rx="10" fill="#ffffff" stroke="#fdba74"/>
+  <text x="88" y="834" class="box-title">code_review_flow (advanced orchestration example)</text>
+  <text x="88" y="854" class="box-text">Routes SIMPLE vs COMPLEX PRs; SIMPLE uses direct LLM, COMPLEX dispatches full crew review and persists state.</text>
+
+  <rect x="70" y="878" width="1260" height="45" rx="10" fill="#ffffff" stroke="#fdba74"/>
+  <text x="88" y="900" class="box-title">Shared model contract</text>
+  <text x="88" y="916" class="box-text">Crew outputs align with app loaders so generated local JSON appears directly in sidebar selectors.</text>
+
+  <!-- Edges -->
+  <path class="edge" d="M390 188 L480 188"/>
+  <text x="420" y="176" class="label">config + init</text>
+
+  <path class="edge" d="M390 318 L480 318"/>
+  <text x="414" y="306" class="label">user actions</text>
+
+  <path class="edge" d="M690 188 L720 188"/>
+  <path class="edge" d="M820 240 L820 264"/>
+  <path class="edge" d="M690 324 L720 324"/>
+
+  <path class="edge" d="M920 188 L1010 180"/>
+  <text x="930" y="170" class="label">API call</text>
+
+  <path class="edge" d="M1170 220 L1170 236"/>
+  <text x="1182" y="232" class="label">scrapes</text>
+
+  <path class="edge" d="M820 324 L1010 435"/>
+  <text x="890" y="360" class="label">cache write/read</text>
+
+  <path class="edge" d="M360 396 L120 396"/>
+  <text x="165" y="386" class="label">local source load (JSON)</text>
+
+  <path class="edge" d="M700 748 L1010 516"/>
+  <text x="836" y="634" class="label">generate artifacts</text>
+
+  <path class="edge" d="M1135 700 L1135 620"/>
+  <text x="1146" y="664" class="label">save report</text>
+
+  <path class="edge-dashed" d="M390 350 L390 700"/>
+  <text x="402" y="548" class="label">operator-triggered</text>
+
+  <path class="edge-dashed" d="M265 795 L265 810"/>
+  <path class="edge-dashed" d="M700 795 L700 810"/>
+  <path class="edge-dashed" d="M1135 795 L1135 810"/>
+
+  <path class="edge" d="M1330 840 L1330 620"/>
+  <text x="1198" y="734" class="label">decision output</text>
+</svg>

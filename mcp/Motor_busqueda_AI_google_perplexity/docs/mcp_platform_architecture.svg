@@ -1,0 +1,240 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">
+    AI-Powered Search MCP Integration Platform
+  </text>
+  
+  <!-- USER LAYER -->
+  <rect x="50" y="60" width="1100" height="80" rx="8" fill="#7c4dff" stroke="#5e35b1" stroke-width="2"/>
+  <text x="600" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">
+    USER LAYER
+  </text>
+  <text x="600" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Streamlit Interface - Authentication - Session Management - SSL/HTTPS Support
+  </text>
+  <text x="600" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Multi-Provider AI Support - Tool Management - Conversation History
+  </text>
+  
+  <!-- User Layer Components -->
+  <g id="user-components">
+    <!-- Authentication -->
+    <rect x="80" y="160" width="160" height="100" rx="6" fill="#ff6b6b" stroke="#e74c3c" stroke-width="2"/>
+    <text x="160" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Authentication</text>
+    <text x="160" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">User Login System</text>
+    <text x="160" y="207" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">bcrypt Hashing</text>
+    <text x="160" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Session Management</text>
+    <text x="160" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Role-Based Access</text>
+    <text x="160" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Security Validation</text>
+    
+    <!-- Streamlit Client -->
+    <rect x="260" y="160" width="160" height="100" rx="6" fill="#4caf50" stroke="#388e3c" stroke-width="2"/>
+    <text x="340" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Streamlit Client</text>
+    <text x="340" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">AI Chat Interface</text>
+    <text x="340" y="207" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Multi-Provider Support</text>
+    <text x="340" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Conversation History</text>
+    <text x="340" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Tool Management</text>
+    <text x="340" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Real-time Updates</text>
+    
+    <!-- Chat Memory -->
+    <rect x="440" y="160" width="160" height="100" rx="6" fill="#00bcd4" stroke="#0097a7" stroke-width="2"/>
+    <text x="520" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Chat Memory</text>
+    <text x="520" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Conversation Storage</text>
+    <text x="520" y="207" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Context Management</text>
+    <text x="520" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">User Isolation</text>
+    <text x="520" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Session Persistence</text>
+    
+    <!-- AI Providers -->
+    <rect x="620" y="160" width="160" height="100" rx="6" fill="#9c27b0" stroke="#7b1fa2" stroke-width="2"/>
+    <text x="700" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">AI Providers</text>
+    <text x="700" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">OpenAI GPT-4</text>
+    <text x="700" y="207" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Azure OpenAI</text>
+    <text x="700" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Model Switching</text>
+    <text x="700" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Parameter Control</text>
+    
+    <!-- Information Flow -->
+    <rect x="800" y="160" width="160" height="100" rx="6" fill="#ff5722" stroke="#d84315" stroke-width="2"/>
+    <text x="880" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Information Flow</text>
+    <text x="880" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">1. User Query</text>
+    <text x="880" y="207" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">2. AI Processing</text>
+    <text x="880" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">3. Tool Selection</text>
+    <text x="880" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">4. Data Retrieval</text>
+    <text x="880" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">5. Generated Response</text>
+    
+    <!-- Tech Stack -->
+    <rect x="980" y="160" width="160" height="100" rx="6" fill="#607d8b" stroke="#455a64" stroke-width="2"/>
+    <text x="1060" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Tech Stack</text>
+    <text x="1060" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Frontend: Streamlit</text>
+    <text x="1060" y="207" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Backend: FastAPI</text>
+    <text x="1060" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Transport: SSE/stdio</text>
+    <text x="1060" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Protocol: MCP via SSE</text>
+    <text x="1060" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Container: Docker</text>
+    <text x="1060" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Security: SSL/HTTPS</text>
+  </g>
+  
+  <!-- AI ORCHESTRATION LAYER -->
+  <rect x="50" y="280" width="1100" height="60" rx="8" fill="#34495e" stroke="#2c3e50" stroke-width="2"/>
+  <text x="600" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">
+    AI ORCHESTRATION LAYER
+  </text>
+  <text x="600" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    LangChain Agent - Tool Selection - Context Processing - Response Generation
+  </text>
+  
+  <!-- Orchestration Components -->
+  <g id="orchestration-components">
+    <!-- LangChain Agent -->
+    <rect x="80" y="360" width="180" height="80" rx="6" fill="#e91e63" stroke="#c2185b" stroke-width="2"/>
+    <text x="170" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">LangChain Agent</text>
+    <text x="170" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">ReAct Pattern</text>
+    <text x="170" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Tool Routing</text>
+    <text x="170" y="419" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Context Management</text>
+    <text x="170" y="431" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Chain of Thought</text>
+    
+    <!-- Tool Selector -->
+    <rect x="280" y="360" width="180" height="80" rx="6" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+    <text x="370" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Tool Selector</text>
+    <text x="370" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Intent Classification</text>
+    <text x="370" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Tool Discovery</text>
+    <text x="370" y="419" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Parameter Mapping</text>
+    <text x="370" y="431" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Execution Planning</text>
+    
+    <!-- Prompt Engine -->
+    <rect x="480" y="360" width="180" height="80" rx="6" fill="#f44336" stroke="#d32f2f" stroke-width="2"/>
+    <text x="570" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Prompt Engine</text>
+    <text x="570" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">System Prompts</text>
+    <text x="570" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Context Enhancement</text>
+    <text x="570" y="419" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Memory Integration</text>
+    <text x="570" y="431" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Response Formatting</text>
+    
+    <!-- Response Handler -->
+    <rect x="680" y="360" width="180" height="80" rx="6" fill="#4caf50" stroke="#388e3c" stroke-width="2"/>
+    <text x="770" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Response Handler</text>
+    <text x="770" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Stream Processing</text>
+    <text x="770" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Tool Results</text>
+    <text x="770" y="419" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Error Handling</text>
+    <text x="770" y="431" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Format Conversion</text>
+    
+    <!-- Security Layer -->
+    <rect x="880" y="360" width="260" height="80" rx="6" fill="#673ab7" stroke="#512da8" stroke-width="2"/>
+    <text x="1010" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Security Layer</text>
+    <text x="1010" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Input Sanitization - Authentication - Rate Limiting</text>
+    <text x="1010" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Permission Checks - Audit Logging - Session Management</text>
+    <text x="1010" y="419" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">SSL/TLS Encryption - Token Validation - Data Privacy</text>
+    <text x="1010" y="431" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Error Masking - Secure Logging - Access Control</text>
+  </g>
+  
+  <!-- MCP PROTOCOL LAYER -->
+  <rect x="50" y="460" width="1100" height="40" rx="8" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+  <text x="600" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">
+    MCP PROTOCOL (MODEL CONTEXT PROTOCOL)
+  </text>
+  <text x="600" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Server-Sent Events - Tool Discovery - Schema Validation - Real-time Communication
+  </text>
+  
+  <!-- MCP Servers -->
+  <g id="mcp-servers">
+    <!-- Google Search MCP Server -->
+    <rect x="80" y="520" width="280" height="120" rx="6" fill="#ff6b35" stroke="#e55100" stroke-width="2"/>
+    <text x="220" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Google Search MCP Server</text>
+    <text x="220" y="555" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Port 8002 | Transport: SSE</text>
+    <text x="220" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Web Search - Content Extraction</text>
+    <text x="220" y="582" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Google Custom Search API - Cheerio HTML Parsing</text>
+    <text x="220" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Schema Validation - Content Cleanup</text>
+    <text x="220" y="606" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Result Limiting - Error Handling</text>
+    <text x="220" y="618" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Tools: google-search, read-webpage</text>
+    <text x="220" y="630" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Health Monitoring - Express Framework</text>
+    
+    <!-- Perplexity MCP Server -->
+    <rect x="380" y="520" width="280" height="120" rx="6" fill="#6a5acd" stroke="#483d8b" stroke-width="2"/>
+    <text x="520" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Perplexity MCP Server</text>
+    <text x="520" y="555" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Port 8001 | Transport: SSE</text>
+    <text x="520" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">AI-Powered Search - Advanced Parameters</text>
+    <text x="520" y="582" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Multiple Models - Recency Filtering</text>
+    <text x="520" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">CSV Category Data - Show Categorization</text>
+    <text x="520" y="606" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Citation Support - Temperature Control</text>
+    <text x="520" y="618" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Tools: perplexity_search_web, advanced_search</text>
+    <text x="520" y="630" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Resources: categories://, FastMCP Framework</text>
+    
+    <!-- Company Tagging MCP Server -->
+    <rect x="680" y="520" width="280" height="120" rx="6" fill="#20b2aa" stroke="#008b8b" stroke-width="2"/>
+    <text x="820" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Company Tagging MCP Server</text>
+    <text x="820" y="555" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Embedded | Transport: stdio</text>
+    <text x="820" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Trade Show Categorization - Taxonomy Management</text>
+    <text x="820" y="582" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">CSV Data Processing - Industry/Product Pairs</text>
+    <text x="820" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Show Filtering - Company Research</text>
+    <text x="820" y="606" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Integrated Workflow - Context Integration</text>
+    <text x="820" y="618" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Tools: search_show_categories</text>
+    <text x="820" y="630" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Shows: CAI, DOL, CCSE, BDAIW, DCW</text>
+  </g>
+  
+  <!-- EXTERNAL DATA SOURCES -->
+  <rect x="50" y="660" width="1100" height="40" rx="8" fill="#8b4513" stroke="#654321" stroke-width="2"/>
+  <text x="600" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">
+    EXTERNAL DATA SOURCES
+  </text>
+  <text x="600" y="695" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    External APIs - Search Engines - AI Services - Category Data
+  </text>
+  
+  <!-- External Sources -->
+  <g id="external-sources">
+    <!-- Google APIs -->
+    <rect x="80" y="720" width="280" height="60" rx="6" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+    <text x="220" y="740" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Google APIs</text>
+    <text x="220" y="755" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Google Custom Search API - Search Engine Configuration</text>
+    <text x="220" y="767" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Web Search Results - Metadata - Ranking Algorithms</text>
+    <text x="220" y="779" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Rate Limiting - Quota Management - Result Quality</text>
+    
+    <!-- Perplexity AI -->
+    <rect x="380" y="720" width="280" height="60" rx="6" fill="#daa520" stroke="#b8860b" stroke-width="2"/>
+    <text x="520" y="740" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Perplexity AI</text>
+    <text x="520" y="755" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">AI-Powered Search Engine - Multiple Model Support</text>
+    <text x="520" y="767" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">sonar, sonar-pro, sonar-reasoning - Citation Generation</text>
+    <text x="520" y="779" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Recency Filtering - Advanced Parameters - Real-time Analysis</text>
+    
+    <!-- OpenAI/Azure -->
+    <rect x="680" y="720" width="280" height="60" rx="6" fill="#deb887" stroke="#cd853f" stroke-width="2"/>
+    <text x="820" y="740" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">OpenAI/Azure AI</text>
+    <text x="820" y="755" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">GPT-4o, GPT-4o-mini - Azure OpenAI Service</text>
+    <text x="820" y="767" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Language Understanding - Tool Orchestration - Response Generation</text>
+    <text x="820" y="779" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Temperature Control - Token Management - Model Selection</text>
+  </g>
+  
+  <!-- Connection arrows -->
+  <g stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+    <!-- Define arrow marker -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+              refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50" />
+      </marker>
+    </defs>
+    
+    <!-- User to Orchestration arrows -->
+    <line x1="160" y1="260" x2="170" y2="360"/>
+    <line x1="340" y1="260" x2="370" y2="360"/>
+    <line x1="520" y1="260" x2="570" y2="360"/>
+    <line x1="700" y1="260" x2="770" y2="360"/>
+    <line x1="880" y1="260" x2="1010" y2="360"/>
+    
+    <!-- Orchestration to MCP arrows -->
+    <line x1="220" y1="440" x2="220" y2="520"/>
+    <line x1="520" y1="440" x2="520" y2="520"/>
+    <line x1="820" y1="440" x2="820" y2="520"/>
+    
+    <!-- MCP to External arrows -->
+    <line x1="220" y1="640" x2="220" y2="720"/>
+    <line x1="520" y1="640" x2="520" y2="720"/>
+    <line x1="820" y1="640" x2="820" y2="720"/>
+  </g>
+  
+  <!-- Footer -->
+  <text x="1150" y="790" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">
+    AI-Powered Search MCP Platform v2.0.0 - 6 Tools - 3 Servers - Multi-Engine Integration
+  </text>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 700" width="1300" height="700">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937" />
+    </marker>
+  </defs>
+  <style>
+    text { font-family: 'Segoe UI', Arial, sans-serif; fill: #1f2937; }
+    .title { font-size: 26px; font-weight: 600; }
+    .box { fill: #f9fafb; stroke: #2563eb; stroke-width: 2; rx: 14; ry: 14; }
+    .alt { fill: #eef2ff; }
+    .highlight { fill: #fef3c7; stroke: #d97706; }
+    .service { fill: #ecfeff; stroke: #0891b2; }
+    .target { fill: #ecfccb; stroke: #4d7c0f; }
+    .text { font-size: 16px; text-anchor: middle; }
+    .small { font-size: 14px; text-anchor: middle; }
+    .label { font-size: 14px; fill: #374151; }
+    .arrow { stroke: #1f2937; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <rect x="0" y="0" width="1300" height="700" fill="#ffffff" />
+  <text class="title" x="650" y="40">SharePoint MCP Bot Architecture</text>
+
+  <rect class="box" x="40" y="100" width="230" height="90" />
+  <text class="text" x="155" y="135">CLI Chat Bot</text>
+  <text class="small" x="155" y="160">llamaindex_bot.py</text>
+
+  <rect class="box" x="40" y="230" width="230" height="90" />
+  <text class="text" x="155" y="265">Streamlit Chat UI</text>
+  <text class="small" x="155" y="290">streamlit_app.py</text>
+
+  <rect class="box alt" x="300" y="60" width="300" height="90" />
+  <text class="text" x="450" y="95">OpenAI LLM</text>
+  <text class="small" x="450" y="120">llama_index.llms.openai.OpenAI</text>
+  <text class="small" x="450" y="145">Model and endpoint via .env</text>
+
+  <rect class="box" x="300" y="180" width="300" height="140" />
+  <text class="text" x="450" y="215">FunctionAgent + ConversationMemory</text>
+  <text class="small" x="450" y="240">llamaindex_bot.py / streamlit_app.py</text>
+  <text class="small" x="450" y="265">Discovers MCP tools via McpToolSpec</text>
+  <text class="small" x="450" y="290">Injects context defaults into prompts</text>
+
+  <rect class="box highlight" x="630" y="180" width="230" height="140" />
+  <text class="text" x="745" y="215">MemoryMCPClient (stdio)</text>
+  <text class="small" x="745" y="240">Subclass of BasicMCPClient</text>
+  <text class="small" x="745" y="265">Launches selected MCP server</text>
+  <text class="small" x="745" y="290">Persists SharePoint context defaults</text>
+
+  <rect class="box service" x="900" y="80" width="300" height="170" />
+  <text class="text" x="1050" y="120">SharePoint CSOM MCP Server</text>
+  <text class="small" x="1050" y="145">mcp_sharepoint.server</text>
+  <text class="small" x="1050" y="170">FastMCP + office365.sharepoint ClientContext</text>
+  <text class="small" x="1050" y="195">Tools for folders, documents, metadata</text>
+  <text class="small" x="1050" y="220">SharePoint CSOM API</text>
+
+  <rect class="box target" x="900" y="280" width="300" height="150" />
+  <text class="text" x="1050" y="330">SharePoint Online / Microsoft 365</text>
+  <text class="small" x="1050" y="355">Sites, document libraries, files</text>
+  <text class="small" x="1050" y="380">Accessible via CSOM or Graph APIs</text>
+
+  <rect class="box service" x="900" y="470" width="300" height="180" />
+  <text class="text" x="1050" y="515">Microsoft Graph MCP Server</text>
+  <text class="small" x="1050" y="540">mcp_sharepoint.graph_server</text>
+  <text class="small" x="1050" y="565">FastMCP + OAuth2 client credentials flow</text>
+  <text class="small" x="1050" y="590">Graph search, drives, files, content preview</text>
+  <text class="small" x="1050" y="615">Microsoft Graph REST API</text>
+
+  <path class="arrow" d="M 270 145 L 300 210" />
+  <path class="arrow" d="M 270 275 L 300 240" />
+  <path class="arrow" d="M 450 180 L 450 150" />
+  <path class="arrow" d="M 600 250 L 630 250" />
+  <path class="arrow" d="M 860 250 L 880 250 L 880 165 L 900 165" />
+  <path class="arrow" d="M 860 250 L 880 250 L 880 560 L 900 560" />
+  <path class="arrow" d="M 1050 250 L 1050 280" />
+  <path class="arrow" d="M 1050 470 L 1050 430" />
+
+  <text class="label" x="720" y="165">Tool invocations via MCP</text>
+  <text class="label" x="450" y="340">Responses formatted for chat streams</text>
+</svg>

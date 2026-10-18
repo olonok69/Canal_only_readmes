@@ -1,0 +1,222 @@
+<svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .node-visitor-current { fill: #4A90E2; stroke: #2E5A8A; stroke-width: 2; }
+      .node-visitor-past { fill: #5AC8FA; stroke: #2E8ABA; stroke-width: 2; }
+      .node-session-current { fill: #7ED321; stroke: #5A9B16; stroke-width: 2; }
+      .node-session-past { fill: #9ED951; stroke: #6AB526; stroke-width: 2; }
+      .node-stream { fill: #F5A623; stroke: #B8801A; stroke-width: 2; }
+      .node-show { fill: #B28BE6; stroke: #7A54B6; stroke-width: 2; }
+      .text-label { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; text-anchor: middle; fill: white; }
+      .text-count { font-family: Arial, sans-serif; font-size: 9px; text-anchor: middle; fill: white; }
+      .text-small { font-family: Arial, sans-serif; font-size: 10px; text-anchor: middle; fill: #333; }
+      .relationship { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .relationship-thick { stroke: #333; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .relationship-dashed { stroke: #999; stroke-width: 1.5; stroke-dasharray: 5,5; fill: none; marker-end: url(#arrowhead); }
+      .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; text-anchor: middle; fill: #333; }
+      .legend-text { font-family: Arial, sans-serif; font-size: 11px; fill: #333; }
+      .rel-label { font-family: Arial, sans-serif; font-size: 9px; fill: #666; text-anchor: middle; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="700" y="30" class="title">Neo4j Shows Database</text>
+  
+  <!-- Current Year Visitors -->
+  <g id="current-visitors">
+    <text x="200" y="80" class="text-small">Current Year Visitors</text>
+    <rect x="120" y="100" width="160" height="80" rx="10" class="node-visitor-current"/>
+    <text x="200" y="125" class="text-label">Visitor_this_year</text>
+    <text x="200" y="140" class="text-count">Active visitor profiles</text>
+    <text x="200" y="155" class="text-count">Job roles &amp; practice focus</text>
+    <text x="200" y="170" class="text-count">Drives personalization signals</text>
+  </g>
+
+  <!-- Past Year Visitors (BVA) -->
+  <g id="past-visitors-bva">
+    <text x="200" y="220" class="text-small">Past Visitors (Main Show)</text>
+    <rect x="120" y="240" width="160" height="80" rx="10" class="node-visitor-past"/>
+    <text x="200" y="265" class="text-label">Visitor_last_year_bva</text>
+    <text x="200" y="280" class="text-count">Historical attendees</text>
+    <text x="200" y="295" class="text-count">Used for retention targeting</text>
+    <text x="200" y="310" class="text-count">Includes prior-year context</text>
+  </g>
+
+  <!-- Past Year Visitors (LVA) -->
+  <g id="past-visitors-lva">
+    <text x="200" y="360" class="text-small">Past Visitors (Secondary Show)</text>
+    <rect x="120" y="380" width="160" height="80" rx="10" class="node-visitor-past"/>
+    <text x="200" y="405" class="text-label">Visitor_last_year_lva</text>
+    <text x="200" y="420" class="text-count">Secondary-show attendees</text>
+    <text x="200" y="435" class="text-count">Feeds cross-show insights</text>
+    <text x="200" y="450" class="text-count">Complements main archive</text>
+  </g>
+
+  <!-- Entry Scan Shows -->
+  <g id="entry-shows">
+    <text x="510" y="440" class="text-small">Entry Scan Shows (Post-Analysis)</text>
+    <rect x="420" y="460" width="180" height="80" rx="10" class="node-show"/>
+    <text x="510" y="485" class="text-label">Show_this_year</text>
+    <text x="510" y="500" class="text-count">Gate scan derived nodes</text>
+    <text x="510" y="515" class="text-count">Drives registered_to_show edges</text>
+    <text x="510" y="530" class="text-count">Available in post_analysis mode</text>
+  </g>
+
+  <!-- Streams (Central) -->
+  <g id="streams">
+    <text x="700" y="80" class="text-small">Specialization / Interest Streams</text>
+    <circle cx="700" cy="140" r="40" class="node-stream"/>
+    <text x="700" y="135" class="text-label">Stream</text>
+    <text x="700" y="150" class="text-count">Configured per show</text>
+    
+    <!-- Sample stream labels around the main circle -->
+    <text x="580" y="100" class="text-small">Surgery</text>
+    <text x="820" y="100" class="text-small">Emergency</text>
+    <text x="580" y="180" class="text-small">Cardiology</text>
+    <text x="820" y="180" class="text-small">Dermatology</text>
+    <text x="640" y="200" class="text-small">Equine</text>
+    <text x="760" y="200" class="text-small">Small Animal</text>
+    <text x="700" y="220" class="text-small">...additional streams per catalog</text>
+  </g>
+
+  <!-- Current Sessions -->
+  <g id="current-sessions">
+    <text x="1050" y="80" class="text-small">Current Sessions</text>
+    <rect x="970" y="100" width="160" height="80" rx="10" class="node-session-current"/>
+    <text x="1050" y="125" class="text-label">Sessions_this_year</text>
+    <text x="1050" y="140" class="text-count">Active show sessions</text>
+    <text x="1050" y="155" class="text-count">Ready for recommendations</text>
+    <text x="1050" y="170" class="text-count">Embeddings + metadata</text>
+  </g>
+
+  <!-- Past Sessions -->
+  <g id="past-sessions">
+    <text x="1050" y="220" class="text-small">Past Sessions</text>
+    <rect x="970" y="240" width="160" height="80" rx="10" class="node-session-past"/>
+    <text x="1050" y="265" class="text-label">Sessions_past_year</text>
+    <text x="1050" y="280" class="text-count">Historical sessions</text>
+    <text x="1050" y="295" class="text-count">Retention + benchmarking</text>
+    <text x="1050" y="310" class="text-count">Attendance captured</text>
+  </g>
+
+  <!-- Relationships -->
+  
+  <!-- job_to_stream (Current visitors to streams) - MASSIVE relationship -->
+  <line x1="280" y1="140" x2="660" y2="140" class="relationship-thick"/>
+  <text x="470" y="135" class="rel-label">job_to_stream - roles matched to streams</text>
+  
+  <!-- specialization_to_stream (Past visitors to streams) -->
+  <line x1="280" y1="280" x2="660" y2="160" class="relationship"/>
+  <text x="470" y="220" class="rel-label">specialization_to_stream - expertise to streams</text>
+  
+  <line x1="280" y1="420" x2="660" y2="160" class="relationship"/>
+  
+  <!-- HAS_STREAM (Sessions to streams) -->
+  <line x1="740" y1="140" x2="970" y2="140" class="relationship"/>
+  <text x="855" y="135" class="rel-label">HAS_STREAM - session taxonomy</text>
+  
+  <line x1="740" y1="150" x2="970" y2="280" class="relationship"/>
+  
+  <!-- IS_RECOMMENDED (Visitors to current sessions) -->
+  <line x1="280" y1="120" x2="970" y2="120" class="relationship-dashed"/>
+  <text x="625" y="115" class="rel-label">IS_RECOMMENDED - personalization edges</text>
+  
+  <!-- assisted_session_this_year (Scan-confirmed attendance) -->
+  <line x1="280" y1="160" x2="970" y2="160" class="relationship"/>
+  <text x="625" y="155" class="rel-label">assisted_session_this_year (post_analysis scans)</text>
+  
+  <!-- attended_session (Past visitors to past sessions) -->
+  <line x1="280" y1="300" x2="970" y2="300" class="relationship"/>
+  <text x="625" y="295" class="rel-label">attended_session - historical attendance</text>
+  
+  <line x1="280" y1="440" x2="970" y2="300" class="relationship"/>
+  
+  <!-- Same_Visitor (Connecting past and current visitors) -->
+  <path d="M 200 240 Q 100 200 200 180" class="relationship-dashed"/>
+  <text x="120" y="210" class="rel-label">Same_Visitor - returning attendees</text>
+  
+  <path d="M 200 380 Q 100 340 200 180" class="relationship-dashed"/>
+
+  <!-- registered_to_show (Entry scans linking visitors to shows) -->
+  <line x1="280" y1="180" x2="510" y2="460" class="relationship"/>
+  <text x="380" y="310" class="rel-label">registered_to_show (entry scans)</text>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 520)">
+    <text x="0" y="0" class="legend-text" font-weight="bold">Node Types:</text>
+    
+    <rect x="0" y="15" width="25" height="15" rx="2" class="node-visitor-current"/>
+    <text x="35" y="27" class="legend-text">Current Year Visitors - Active show registrants</text>
+    
+    <rect x="0" y="35" width="25" height="15" rx="2" class="node-visitor-past"/>
+    <text x="35" y="47" class="legend-text">Past Year Visitors - Prior editions used for retention</text>
+    
+    <circle cx="12" cy="62" r="8" class="node-stream"/>
+    <text x="35" y="67" class="legend-text">Streams - Interest or specialization taxonomies</text>
+    
+    <rect x="0" y="75" width="25" height="15" rx="2" class="node-session-current"/>
+    <text x="35" y="87" class="legend-text">Current Sessions - Live agenda powering recommendations</text>
+    
+    <rect x="0" y="95" width="25" height="15" rx="2" class="node-session-past"/>
+    <text x="35" y="107" class="legend-text">Past Sessions - Archived agenda with attendance data</text>
+    <rect x="0" y="115" width="25" height="15" rx="2" class="node-show"/>
+    <text x="35" y="127" class="legend-text">Entry Scan Shows - Created from gate scans in post_analysis mode</text>
+  </g>
+
+  <!-- Relationship Legend -->
+  <g id="rel-legend" transform="translate(50, 690)">
+    <text x="0" y="0" class="legend-text" font-weight="bold">Relationships:</text>
+    
+    <line x1="0" y1="20" x2="30" y2="20" class="relationship-thick"/>
+    <text x="40" y="25" class="legend-text">job_to_stream - Job roles mapped to streams</text>
+    
+    <line x1="0" y1="40" x2="30" y2="40" class="relationship"/>
+    <text x="40" y="45" class="legend-text">specialization_to_stream - Specializations to streams</text>
+    
+    <line x1="0" y1="60" x2="30" y2="60" class="relationship"/>
+    <text x="40" y="65" class="legend-text">HAS_STREAM - Sessions categorized by stream</text>
+    
+    <line x1="0" y1="80" x2="30" y2="80" class="relationship-dashed"/>
+    <text x="40" y="85" class="legend-text">IS_RECOMMENDED - Session recommendations to visitors</text>
+    
+    <line x1="0" y1="100" x2="30" y2="100" class="relationship"/>
+    <text x="40" y="105" class="legend-text">attended_session - Historical session attendance</text>
+    
+    <line x1="0" y1="120" x2="30" y2="120" class="relationship-dashed"/>
+    <text x="40" y="125" class="legend-text">Same_Visitor - Links returning attendees across years</text>
+    <line x1="0" y1="140" x2="30" y2="140" class="relationship"/>
+    <text x="40" y="145" class="legend-text">assisted_session_this_year - Scan-confirmed attendance wiring (post_analysis)</text>
+    <line x1="0" y1="160" x2="30" y2="160" class="relationship"/>
+    <text x="40" y="165" class="legend-text">registered_to_show - Entry scans connecting visitors to Show_this_year nodes</text>
+  </g>
+
+  <!-- Database Stats -->
+  <g id="database-stats" transform="translate(800, 520)">
+    <text x="0" y="0" class="legend-text" font-weight="bold">Database Statistics:</text>
+    <text x="0" y="20" class="legend-text">• Multi-show graph (engagement, personal_agendas, post_analysis)</text>
+    <text x="0" y="35" class="legend-text">• Sample shows onboarded: BVA 2025, LVS 2025, ECOMM/TFM 2025, CPCN 2025</text>
+    <text x="0" y="50" class="legend-text">• Recommendation + attendance telemetry stored side-by-side</text>
+    <text x="0" y="65" class="legend-text">• Entry scan ingestion builds Show_this_year nodes when available</text>
+    <text x="0" y="80" class="legend-text">• Streams, job roles, and specializations curated per event</text>
+    <text x="0" y="95" class="legend-text">• Graph used for both live personalization and post-event analysis</text>
+    <text x="0" y="110" class="legend-text">• Assisted session links capture scanned attendance evidence</text>
+    <text x="0" y="125" class="legend-text">• Visitor lineage maintained to connect returning attendees</text>
+    <text x="0" y="140" class="legend-text">• Session embeddings stored for semantic similarity lookups</text>
+    
+    <text x="0" y="170" class="legend-text" font-weight="bold">Key Features:</text>
+    <text x="0" y="185" class="legend-text">• Recommendation engine surfaces IS_RECOMMENDED edges</text>
+    <text x="0" y="200" class="legend-text">• Cross-year visitor tracking via Same_Visitor relationships</text>
+    <text x="0" y="215" class="legend-text">• Post-analysis entry scans leverage registered_to_show + assisted_session_this_year</text>
+    <text x="0" y="230" class="legend-text">• Job &amp; specialization stream mapping enriches targeting</text>
+    <text x="0" y="245" class="legend-text">• Historical attendance retained for every onboarded show</text>
+    <text x="0" y="260" class="legend-text">• Session nodes persist ML embeddings for semantic matching</text>
+  </g>
+
+  <!-- Production Note -->
+  <text x="700" y="860" class="text-small" style="font-style: italic; font-weight: bold;">
+    Production Database - Live Schema as of Current Connection
+  </text>
+</svg>

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="460" viewBox="0 0 1400 460">
+  <defs>
+    <style>
+      .stage { fill: #0f62fe; stroke: #052f5f; stroke-width: 2; rx: 16; }
+      .stage-text { font: 15px 'Segoe UI', sans-serif; fill: #ffffff; }
+      .title { font: 22px 'Segoe UI', sans-serif; fill: #052f5f; font-weight: 600; }
+      .subtitle { font: 15px 'Segoe UI', sans-serif; fill: #052f5f; }
+      .arrow { stroke: #6c6f7f; stroke-width: 3; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#6c6f7f" />
+    </marker>
+  </defs>
+
+    <text x="700" y="36" text-anchor="middle" class="title">Deep Agents Pre-Show Execution Lifecycle</text>
+    <text x="700" y="60" text-anchor="middle" class="subtitle">Each run deterministically prepares context, supervises the agent, and archives results</text>
+
+  <!-- Row 1 -->
+    <rect x="30" y="90" width="240" height="110" class="stage" />
+    <text x="150" y="120" text-anchor="middle" class="stage-text">
+      <tspan x="150" dy="0">1. Parse CLI</tspan>
+      <tspan x="150" dy="20">&amp; Configure</tspan>
+      <tspan x="150" dy="20">Validate args, build generator</tspan>
+    </text>
+
+    <rect x="300" y="90" width="240" height="110" class="stage" />
+    <text x="420" y="120" text-anchor="middle" class="stage-text">
+      <tspan x="420" dy="0">2. Initialize</tspan>
+      <tspan x="420" dy="20">Environment</tspan>
+      <tspan x="420" dy="20">Load .env, config, Neo4j, LLM</tspan>
+    </text>
+
+    <rect x="570" y="90" width="240" height="110" class="stage" />
+    <text x="690" y="120" text-anchor="middle" class="stage-text">
+      <tspan x="690" dy="0">3. Resolve Template</tspan>
+      <tspan x="690" dy="20">&amp; Config</tspan>
+      <tspan x="690" dy="20">Inject placeholders, store prompt</tspan>
+    </text>
+
+    <rect x="840" y="90" width="240" height="110" class="stage" />
+    <text x="960" y="120" text-anchor="middle" class="stage-text">
+      <tspan x="960" dy="0">4. Manifest</tspan>
+      <tspan x="960" dy="20">+ TODO Synthesis</tspan>
+      <tspan x="960" dy="20">Build manifest, plan, recovery list</tspan>
+    </text>
+
+    <rect x="1110" y="90" width="240" height="110" class="stage" />
+    <text x="1230" y="120" text-anchor="middle" class="stage-text">
+      <tspan x="1230" dy="0">5. Agent Bootstrap</tspan>
+      <tspan x="1230" dy="20">DeepAgent + Neo4j tools</tspan>
+      <tspan x="1230" dy="20">Critique + Neo4j sub-agents</tspan>
+    </text>
+
+    <!-- Row 2 -->
+      <rect x="1110" y="260" width="240" height="110" class="stage" />
+      <text x="1230" y="290" text-anchor="middle" class="stage-text">
+        <tspan x="1230" dy="0">6. TODO Alignment</tspan>
+        <tspan x="1230" dy="20">Loop</tspan>
+        <tspan x="1230" dy="20">Reconcile list, retry if drift</tspan>
+      </text>
+
+      <rect x="840" y="260" width="240" height="110" class="stage" />
+      <text x="960" y="290" text-anchor="middle" class="stage-text">
+        <tspan x="960" dy="0">7. Execution</tspan>
+        <tspan x="960" dy="20">&amp; Monitoring</tspan>
+        <tspan x="960" dy="20">Ensure outputs, mirror memory</tspan>
+      </text>
+
+      <rect x="570" y="260" width="240" height="110" class="stage" />
+      <text x="690" y="290" text-anchor="middle" class="stage-text">
+        <tspan x="690" dy="0">8. Artifact</tspan>
+        <tspan x="690" dy="20">Persistence</tspan>
+        <tspan x="690" dy="20">Archive todos, schema, reports</tspan>
+      </text>
+
+    <!-- Arrows row 1 -->
+    <line x1="270" y1="145" x2="300" y2="145" class="arrow" />
+    <line x1="540" y1="145" x2="570" y2="145" class="arrow" />
+    <line x1="810" y1="145" x2="840" y2="145" class="arrow" />
+    <line x1="1080" y1="145" x2="1110" y2="145" class="arrow" />
+
+    <!-- Down arrow -->
+    <line x1="1230" y1="200" x2="1230" y2="260" class="arrow" />
+
+    <!-- Row 2 arrows -->
+    <line x1="1110" y1="315" x2="1080" y2="315" class="arrow" />
+    <line x1="840" y1="315" x2="810" y2="315" class="arrow" />
+
+    <!-- Loop back suggestion -->
+  
+</svg>

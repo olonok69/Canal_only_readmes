@@ -1,0 +1,131 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="600" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1f2933">
+    Copilot Streamable MCP Architecture - Read-Only SQL
+  </text>
+
+  <!-- Clients -->
+  <g id="clients">
+    <rect x="40" y="90" width="240" height="250" rx="12" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+    <text x="160" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#ffffff">CLIENTS</text>
+    <rect x="60" y="140" width="200" height="60" rx="8" fill="#3b82f6"/>
+    <text x="160" y="175" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#ffffff">Copilot Studio (MCP)</text>
+    <rect x="60" y="210" width="200" height="60" rx="8" fill="#3b82f6"/>
+    <text x="160" y="245" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#ffffff">Power Platform / Agents</text>
+    <rect x="60" y="280" width="200" height="60" rx="8" fill="#3b82f6"/>
+    <text x="160" y="315" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#ffffff">Internal MCP Consumers</text>
+  </g>
+
+  <!-- Public Internet -->
+  <g id="internet">
+    <rect x="320" y="180" width="170" height="100" rx="12" fill="#f97316" stroke="#ea580c" stroke-width="2"/>
+    <text x="405" y="210" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">PUBLIC INTERNET</text>
+    <text x="405" y="235" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ffffff">HTTPS 443 / Streamable HTTP</text>
+    <text x="405" y="255" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fde68a">POST /mcp | Accept: json or event-stream</text>
+  </g>
+
+  <!-- Hosting Zone -->
+  <g id="cloud">
+    <rect x="520" y="60" width="640" height="370" rx="16" fill="#fef3c7" stroke="#fbbf24" stroke-width="2" stroke-dasharray="8,6"/>
+    <text x="840" y="90" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#b45309">SECURE HOSTING ZONE (NGINX + Containers)</text>
+
+    <!-- NGINX -->
+    <rect x="550" y="120" width="280" height="150" rx="10" fill="#111827" stroke="#0f172a" stroke-width="2"/>
+    <text x="690" y="150" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">NGINX REVERSE PROXY</text>
+    <text x="690" y="175" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#d1d5db">TLS termination, CORS, buffering off</text>
+    <text x="690" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#d1d5db">Routes `/copilot/mcp` (POST/OPTIONS/DELETE)</text>
+    <text x="690" y="215" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#22d3ee">Proxies OAuth: /.well-known, /authorize, /token, /register</text>
+    <text x="690" y="235" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#9ca3af">Preserves Accept header for streaming</text>
+
+    <!-- Streamable MCP Service -->
+    <rect x="870" y="120" width="260" height="200" rx="10" fill="#10b981" stroke="#059669" stroke-width="2"/>
+    <text x="1000" y="150" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">STREAMABLE MCP SERVER</text>
+    <text x="1000" y="172" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ecfdf5">Starlette + Uvicorn (port 8013)</text>
+    <text x="1000" y="192" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ecfdf5">Streamable HTTP transport 2025-03-26</text>
+    <text x="1000" y="212" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#bbf7d0">OAuth 2.0: auth code, client creds, refresh</text>
+    <text x="1000" y="232" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#bbf7d0">Dynamic Client Registration at `/register`</text>
+    <text x="1000" y="252" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#bbf7d0">MCP endpoint `/mcp` issues Mcp-Session-Id</text>
+    <text x="1000" y="272" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#bbf7d0">Tools: list_tables, describe_table, execute_sql, get_table_sample</text>
+    <text x="1000" y="292" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#bbf7d0">Read-only guardrails: SELECT-only, blocks DDL/SP/txn</text>
+    <text x="1000" y="312" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#d1fae5">Health: `/health`</text>
+  </g>
+
+  <!-- Database Layer -->
+  <g id="database">
+    <rect x="520" y="460" width="640" height="260" rx="16" fill="#1f2937" stroke="#111827" stroke-width="2"/>
+    <text x="840" y="490" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#ffffff">MICROSOFT SQL SERVER</text>
+    <text x="840" y="515" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#9ca3af">ODBC Driver 18 | ApplicationIntent=ReadOnly</text>
+    <rect x="560" y="530" width="560" height="150" rx="10" fill="#374151"/>
+    <text x="840" y="555" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#e5e7eb">Data Protections</text>
+    <text x="580" y="580" font-family="Arial, sans-serif" font-size="12" fill="#d1d5db">• Read-only credentials and environment flags</text>
+    <text x="580" y="600" font-family="Arial, sans-serif" font-size="12" fill="#d1d5db">• Blocks DDL, stored procedures, transactions</text>
+    <text x="580" y="620" font-family="Arial, sans-serif" font-size="12" fill="#d1d5db">• Single-statement enforcement; semicolon guard</text>
+    <text x="580" y="640" font-family="Arial, sans-serif" font-size="12" fill="#d1d5db">• Results normalized for streaming-safe JSON</text>
+  </g>
+
+  <!-- Arrow defs -->
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Flows -->
+  <path d="M 280 230 L 320 230" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#arrow-blue)"/>
+  <text x="300" y="360" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">HTTPS requests</text>
+
+  <path d="M 490 230 L 550 190" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrow-orange)"/>
+  <text x="540" y="320" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">TLS offload + CORS</text>
+
+  <path d="M 830 190 L 870 190" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrow-green)"/>
+  <text x="860" y="320" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Proxied /copilot/*</text>
+
+  <path d="M 1000 320 L 1000 460" stroke="#94a3b8" stroke-width="3" fill="none" marker-end="url(#arrow-slate)"/>
+  <text x="1035" y="380" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#e5e7eb">ODBC (1433)</text>
+
+  <!-- Security badges -->
+  <g id="security">
+    <rect x="40" y="370" width="150" height="34" rx="17" fill="#f97316"/>
+    <text x="115" y="392" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ffffff">TLS 1.2+</text>
+    <rect x="200" y="370" width="190" height="34" rx="17" fill="#16a34a"/>
+    <text x="295" y="392" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ffffff">OAuth 2.0 (Bearer)</text>
+    <rect x="400" y="370" width="200" height="34" rx="17" fill="#1f2937"/>
+    <text x="500" y="392" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#f9fafb">Read-only SQL enforcement</text>
+  </g>
+
+  <!-- Request Flow -->
+  <g id="flow">
+    <rect x="40" y="440" width="430" height="180" rx="12" fill="#ffffff" stroke="#cbd5f5" stroke-width="1.5"/>
+    <text x="255" y="470" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#1f2937">Streamable MCP Flow</text>
+    <text x="60" y="500" font-family="Arial, sans-serif" font-size="12" fill="#334155">1) Client gets OAuth tokens via /authorize -> /token (or /register)</text>
+    <text x="60" y="520" font-family="Arial, sans-serif" font-size="12" fill="#334155">2) POST /copilot/mcp with Bearer token and Accept: json or event-stream</text>
+    <text x="60" y="540" font-family="Arial, sans-serif" font-size="12" fill="#334155">3) Server issues Mcp-Session-Id, handles initialize, tools/list, tools/call</text>
+    <text x="60" y="560" font-family="Arial, sans-serif" font-size="12" fill="#334155">4) Query executes via ODBC with SELECT-only guardrails</text>
+    <text x="60" y="580" font-family="Arial, sans-serif" font-size="12" fill="#334155">5) JSON or streaming responses returned through NGINX</text>
+  </g>
+
+  <!-- Endpoints Summary -->
+  <g id="endpoints">
+    <rect x="40" y="640" width="1120" height="220" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
+    <text x="600" y="670" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#0f766e">Published Endpoints (prefixed with /copilot)</text>
+    <text x="120" y="695" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#0f766e">• `/mcp` (POST/OPTIONS/DELETE; Bearer token; streamable)</text>
+    <text x="120" y="715" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#0f766e">• `/.well-known/oauth-authorization-server` and `/.well-known/oauth-protected-resource`</text>
+    <text x="120" y="735" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#0f766e">• `/authorize` (Auth Code), `/token` (Access/Refresh), `/register` (DCR)</text>
+    <text x="120" y="755" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#0f766e">• `/health` (port 8013)</text>
+    <text x="600" y="780" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#0f766e">Service name: mcp-server-streamable-copilot (Docker)</text>
+    <text x="600" y="800" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#0f766e">Env highlights: ENVIRONMENT_PATH=/copilot, STREAMABLE_COPILOT_PORT=8013, READ_ONLY_MODE=true</text>
+    <text x="600" y="820" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#0f766e">Allowed redirect hosts include copilot.microsoft.com and global.consent.azure-apim.net</text>
+  </g>
+</svg>

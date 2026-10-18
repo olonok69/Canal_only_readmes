@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1500" viewBox="0 0 2000 1500" font-family="Arial, sans-serif">
+  <style>
+    .box { fill:#0f172a; stroke:#7dd3fc; stroke-width:2; rx:10; ry:10; }
+    .cloud { fill:#111827; stroke:#c084fc; stroke-width:2; rx:14; ry:14; }
+    .embed { fill:#1f2937; stroke:#fbbf24; stroke-width:2; rx:10; ry:10; }
+    .text { fill:#e5e7eb; font-size:14px; }
+    .title { fill:#000000; font-size:24px; font-weight:bold; }
+    .arrow { stroke:#9ca3af; stroke-width:2; marker-end:url(#arrowhead); }
+    .label { fill:#9ca3af; font-size:13px; }
+    .label-red { fill:#f87171; font-size:13px; font-weight:bold; }
+    .label-blue { fill:#60a5fa; font-size:13px; font-weight:bold; }
+    .label-green { fill:#34d399; font-size:13px; font-weight:bold; }
+    .label-orange { fill:#f97316; font-size:13px; font-weight:bold; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="40" y="40" class="title">Copilot Client - All Architectures</text>
+
+  <!-- Legend -->
+  <text x="80" y="350" fill="#000000" font-weight="bold">Legend:</text>
+  <circle cx="80" cy="370" r="6" fill="#60a5fa" />
+  <text x="95" y="375" fill="#000000">Agent SDK Direct Call</text>
+  <circle cx="80" cy="390" r="6" fill="#f87171" />
+  <text x="95" y="395" fill="#000000">Direct Line Channel</text>
+  <circle cx="80" cy="410" r="6" fill="#34d399" />
+  <text x="95" y="415" fill="#000000">Semantic Search Graph</text>
+  <circle cx="80" cy="430" r="6" fill="#f97316" />
+  <text x="95" y="435" fill="#000000">Embed Webchat</text>
+  <circle cx="80" cy="450" r="6" fill="#9ca3af" />
+  <text x="95" y="455" fill="#000000">CLI &amp; Other</text>
+
+  <!-- User / Browser -->
+  <rect x="80" y="100" width="320" height="200" class="box" />
+  <text x="100" y="135" class="text">User Browser</text>
+  <text x="100" y="155" class="text">• Agent SDK UI (/agentsdk/)</text>
+  <text x="100" y="175" class="text">• Direct Line UI (/directline/)</text>
+  <text x="100" y="195" class="text">• Graph Retrieval UI (/graph/)</text>
+  <text x="100" y="215" class="text">• Embed Webchat (/embed/)</text>
+  <text x="100" y="235" class="text">• CLI (directline_bot.py)</text>
+
+  <!-- Django Server -->
+  <rect x="520" y="90" width="360" height="240" class="box" />
+  <text x="540" y="125" class="text">Django Server</text>
+  <text x="540" y="145" class="text">• agentsdk_frontend.html</text>
+  <text x="540" y="165" class="text">• directline_frontend.html</text>
+  <text x="540" y="185" class="text">• graph_frontend.html</text>
+  <text x="540" y="205" class="text">• embed_frontend.html</text>
+  <text x="540" y="225" class="text">• directline_token_endpoint.py</text>
+  <text x="540" y="245" class="text">• graph_retrieval_endpoint.py</text>
+  <text x="540" y="265" class="text">• agentsdk_console_test.py (SDK)</text>
+
+  <!-- Embed Webchat (Direct) -->
+  <rect x="1020" y="120" width="320" height="90" class="embed" />
+  <text x="1040" y="145" class="text">Copilot Studio Web Chat</text>
+  <text x="1040" y="165" class="text">Direct Embed (iframe)</text>
+
+  <!-- Azure Bot Service + Direct Line -->
+  <rect x="1020" y="280" width="320" height="110" class="cloud" />
+  <text x="1040" y="310" class="text">Azure Bot Service</text>
+  <text x="1040" y="330" class="text">Direct Line Channel</text>
+  <text x="1040" y="350" class="text">Direct Line Secret</text>
+
+  <!-- Copilot Studio Agent -->
+  <rect x="1480" y="250" width="360" height="180" class="cloud" />
+  <text x="1500" y="285" class="text">Copilot Studio Agent</text>
+  <text x="1500" y="305" class="text">Bot logic + dialogs</text>
+  <text x="1500" y="325" class="text">OpenAPI connector</text>
+  <text x="1500" y="345" class="text">MCP connector</text>
+  <text x="1500" y="365" class="text">Calls backend/API</text>
+  <text x="1500" y="385" class="text">Copilot Trading agent</text>
+
+  <!-- Microsoft Graph -->
+  <rect x="1020" y="480" width="320" height="110" class="cloud" />
+  <text x="1040" y="510" class="text">Microsoft Graph</text>
+  <text x="1040" y="530" class="text">Copilot Retrieval API</text>
+
+  <!-- Azure Entra ID -->
+  <rect x="1480" y="480" width="360" height="110" class="cloud" />
+  <text x="1500" y="510" class="text">Microsoft Entra ID</text>
+  <text x="1500" y="530" class="text">Auth (MSAL SPA)</text>
+
+  <!-- Local backend note -->
+  <rect x="520" y="450" width="360" height="90" class="box" />
+  <text x="540" y="480" class="text">Local components</text>
+  <text x="540" y="500" class="text">Python + Django + SDKs</text>
+
+  <!-- Arrows: Browser to Django -->
+  <line x1="400" y1="140" x2="520" y2="140" class="arrow" />
+  <text x="410" y="135" class="label-blue">Agent SDK</text>
+  <line x1="400" y1="165" x2="520" y2="165" class="arrow" />
+  <text x="410" y1="160" class="label-red">Direct Line</text>
+  <line x1="400" y1="190" x2="520" y2="190" class="arrow" />
+  <text x="410" y1="185" class="label-green">Graph Retrieval</text>
+  <line x1="400" y1="215" x2="520" y2="215" class="arrow" />
+  <text x="410" y1="210" class="label">Embed</text>
+
+  <!-- Embed direct to Copilot Studio -->
+  <line x1="880" y1="155" x2="1020" y2="155" class="arrow" />
+  <text x="890" y="150" class="label-orange">Direct iframe</text>
+
+  <!-- Django to Direct Line token -->
+  <line x1="880" y1="165" x2="1020" y2="310" class="arrow" />
+  <text x="890" y="240" class="label-red">/api/directline/token</text>
+
+  <!-- Direct Line to Copilot Studio -->
+  <line x1="1340" y1="310" x2="1480" y2="310" class="arrow" />
+  <text x="1350" y="305" class="label-red">User messages</text>
+
+  <!-- Copilot Studio back to Direct Line -->
+  <line x1="1480" y1="340" x2="1340" y2="340" class="arrow" />
+  <text x="1410" y="330" class="label-red">Replies</text>
+
+  <!-- Agent SDK path: Django to Copilot Studio -->
+  <line x1="880" y1="155" x2="1480" y2="280" class="arrow" />
+  <text x="1000" y="220" class="label-blue">Agent SDK Direct Call</text>
+
+  <!-- Graph retrieval path -->
+  <line x1="700" y1="330" x2="700" y2="450" class="arrow" />
+  <text x="640" y="410" class="label-green">MSAL token</text>
+  <line x1="880" y1="530" x2="1020" y2="530" class="arrow" />
+  <text x="890" y="545" class="label-green">Bearer to Graph</text>
+
+  <!-- Auth flows -->
+  <line x1="880" y1="330" x2="1480" y2="480" class="arrow" />
+  <text x="1180" y="430" class="label-green">Auth code + PKCE</text>
+  <line x1="880" y1="330" x2="1480" y2="520" class="arrow" />
+  <text x="1180" y="450" class="label-blue">Auth code + PKCE</text>
+
+  <!-- Copilot Studio to OpenAPI backend -->
+  <line x1="1480" y1="340" x2="880" y2="490" class="arrow" />
+
+  <!-- CLI path -->
+  <line x1="400" y1="235" x2="520" y2="235" class="arrow" />
+  <text x="410" y="230" class="label">CLI script</text>
+  <line x1="880" y1="240" x2="1020" y2="320" class="arrow" />
+  <text x="890" y="285" class="label-red">Direct Line API</text>
+
+</svg>

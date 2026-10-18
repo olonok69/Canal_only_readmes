@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="streamlitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF4B4B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BD4043;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fastapiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#009688;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00796B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="toolcallingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="llmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10A37F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D8A6A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="mcpClientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5B21B6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="mcpServerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="strategyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4338CA;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="yahooGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#720E9E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5A0A7D;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    
+    <!-- Arrow markers -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748B"/>
+    </marker>
+    <marker id="arrowheadBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2196F3"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="650" fill="#F0F7FF"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="700" fill="#1E293B" text-anchor="middle">ToolCallingAgent Architecture - JSON Tool Calls</text>
+  
+  <!-- Main container box -->
+  <rect x="30" y="55" width="840" height="580" rx="12" fill="none" stroke="#90CAF9" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="50" y="80" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#1565C0">TOOLCALLINGAGENT FLOW (JSON-based)</text>
+  
+  <!-- ==================== ROW 1: Streamlit ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="350" y="95" width="200" height="70" rx="8" fill="url(#streamlitGrad)"/>
+    <text x="450" y="125" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">STREAMLIT</text>
+    <text x="450" y="145" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)" text-anchor="middle">Web Interface (5 Tabs)</text>
+  </g>
+  
+  <!-- Agent toggle indicator -->
+  <rect x="580" y="100" width="120" height="55" rx="6" fill="#E3F2FD" stroke="#64B5F6" stroke-width="1"/>
+  <text x="640" y="118" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#1565C0" text-anchor="middle">Agent Toggle</text>
+  <text x="640" y="133" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#2196F3" text-anchor="middle">🔧 ToolCalling</text>
+  <text x="640" y="148" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">🐍 CodeAgent</text>
+  
+  <!-- Arrow: Streamlit to FastAPI -->
+  <line x1="450" y1="165" x2="450" y2="195" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="470" y="185" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#94A3B8">HTTP POST</text>
+  
+  <!-- ==================== ROW 2: FastAPI ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="350" y="200" width="200" height="70" rx="8" fill="url(#fastapiGrad)"/>
+    <text x="450" y="230" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">FASTAPI</text>
+    <text x="450" y="250" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)" text-anchor="middle">REST API Backend</text>
+  </g>
+  
+  <!-- Arrow: FastAPI to ToolCallingAgent -->
+  <line x1="450" y1="270" x2="450" y2="300" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- ==================== ROW 3: ToolCallingAgent + LLM ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="220" y="305" width="230" height="90" rx="8" fill="url(#toolcallingGrad)"/>
+    <text x="335" y="335" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">🔧 TOOLCALLINGAGENT</text>
+    <text x="335" y="355" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)" text-anchor="middle">JSON Tool Calls</text>
+    <text x="335" y="375" font-family="Inter, system-ui, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="middle">One call per LLM round</text>
+  </g>
+  
+  <!-- LLM Box -->
+  <g filter="url(#shadow)">
+    <rect x="500" y="305" width="180" height="90" rx="8" fill="url(#llmGrad)"/>
+    <text x="590" y="335" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">LLM API</text>
+    <text x="590" y="355" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)" text-anchor="middle">OpenAI / HuggingFace</text>
+    <text x="590" y="375" font-family="Inter, system-ui, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="middle">Outputs JSON tool calls</text>
+  </g>
+  
+  <!-- Bidirectional arrow: ToolCallingAgent <-> LLM -->
+  <line x1="450" y1="340" x2="495" y2="340" stroke="#2196F3" stroke-width="2" marker-end="url(#arrowheadBlue)"/>
+  <line x1="495" y1="360" x2="450" y2="360" stroke="#2196F3" stroke-width="2" marker-end="url(#arrowheadBlue)"/>
+  <text x="472" y="330" font-family="Inter, system-ui, sans-serif" font-size="8" fill="#1565C0">Prompt</text>
+  <text x="472" y="380" font-family="monospace" font-size="8" fill="#1565C0">JSON</text>
+  
+  <!-- JSON example box -->
+  <rect x="720" y="305" width="150" height="90" rx="6" fill="#263238" stroke="#37474F" stroke-width="1"/>
+  <text x="795" y="323" font-family="Inter, system-ui, sans-serif" font-size="9" font-weight="600" fill="#64B5F6" text-anchor="middle">LLM Output</text>
+  <text x="730" y="340" font-family="monospace" font-size="8" fill="#A5D6A7">{</text>
+  <text x="735" y="353" font-family="monospace" font-size="8" fill="#FFCC80">"tool": "analyze",</text>
+  <text x="735" y="366" font-family="monospace" font-size="8" fill="#FFCC80">"args": {</text>
+  <text x="740" y="379" font-family="monospace" font-size="8" fill="#81D4FA">"symbol": "AAPL"</text>
+  <text x="735" y="392" font-family="monospace" font-size="8" fill="#A5D6A7">}}</text>
+  
+  <!-- Arrow: ToolCallingAgent to MCP Client -->
+  <line x1="335" y1="395" x2="335" y2="440" stroke="#2196F3" stroke-width="2" marker-end="url(#arrowheadBlue)"/>
+  <text x="355" y="420" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#1565C0">Parse &amp; Execute</text>
+  
+  <!-- ==================== ROW 4: MCP Client ==================== -->
+  <g filter="url(#shadow)">
+    <rect x="220" y="445" width="230" height="65" rx="8" fill="url(#mcpClientGrad)"/>
+    <text x="335" y="473" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">MCP CLIENT</text>
+    <text x="335" y="493" font-family="Inter, system-ui, sans-serif" font-size="10" fill="rgba(255,255,255,0.9)" text-anchor="middle">tools.py + mcp_client.py</text>
+  </g>
+  
+  <!-- Characteristics box -->
+  <rect x="500" y="445" width="180" height="65" rx="6" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="590" y="463" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#37474F" text-anchor="middle">Characteristics</text>
+  <text x="590" y="478" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#43A047" text-anchor="middle">✓ Simple &amp; predictable</text>
+  <text x="590" y="493" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#43A047" text-anchor="middle">✓ No code execution risk</text>
+  
+  <!-- Arrow: MCP Client to MCP Server -->
+  <line x1="335" y1="510" x2="335" y2="535" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="355" y="527" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#94A3B8">stdio</text>
+  
+  <!-- ==================== MCP SERVER SECTION ==================== -->
+  <rect x="80" y="540" width="740" height="85" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/>
+  <text x="100" y="560" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#1E40AF">MCP SERVER (server/main.py)</text>
+  
+  <!-- MCP Server Box -->
+  <g filter="url(#shadow)">
+    <rect x="100" y="570" width="140" height="45" rx="6" fill="url(#mcpServerGrad)"/>
+    <text x="170" y="590" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">FastMCP</text>
+    <text x="170" y="605" font-family="Inter, system-ui, sans-serif" font-size="9" fill="rgba(255,255,255,0.9)" text-anchor="middle">Tool Registry</text>
+  </g>
+  
+  <!-- Arrow: MCP Server to Strategies -->
+  <line x1="240" y1="592" x2="270" y2="592" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Strategies Box -->
+  <g filter="url(#shadow)">
+    <rect x="275" y="570" width="280" height="45" rx="6" fill="url(#strategyGrad)"/>
+    <text x="415" y="590" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">STRATEGIES</text>
+    <text x="415" y="605" font-family="Inter, system-ui, sans-serif" font-size="8" fill="rgba(255,255,255,0.9)" text-anchor="middle">Bollinger-Fib | MACD-Donchian | Connors | Dual MA | Fundamental</text>
+  </g>
+  
+  <!-- Arrow: Strategies to Yahoo -->
+  <line x1="555" y1="592" x2="585" y2="592" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Yahoo Finance Box -->
+  <g filter="url(#shadow)">
+    <rect x="590" y="570" width="210" height="45" rx="6" fill="url(#yahooGrad)"/>
+    <text x="695" y="590" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">YAHOO FINANCE</text>
+    <text x="695" y="605" font-family="Inter, system-ui, sans-serif" font-size="9" fill="rgba(255,255,255,0.9)" text-anchor="middle">Market Data API</text>
+  </g>
+  
+  <!-- Legend -->
+  <rect x="80" y="95" width="150" height="100" rx="6" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="155" y="113" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">TOOLCALLING TRAITS</text>
+  <text x="95" y="132" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#43A047">✓ Battle-tested</text>
+  <text x="95" y="147" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#43A047">✓ Easy to debug</text>
+  <text x="95" y="162" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#F57C00">⚠ One tool per round</text>
+  <text x="95" y="177" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#F57C00">⚠ No loops/variables</text>
+  
+  <!-- File labels -->
+  <text x="140" y="225" font-family="monospace" font-size="9" fill="#94A3B8">api.py</text>
+  <text x="100" y="350" font-family="monospace" font-size="9" fill="#94A3B8">main.py</text>
+  <text x="100" y="475" font-family="monospace" font-size="9" fill="#94A3B8">tools.py</text>
+</svg>
