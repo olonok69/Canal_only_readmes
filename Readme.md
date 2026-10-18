@@ -8,11 +8,15 @@ Channel videos are public. For some projects the code is for paid subscribers; e
 
 ## Courses
 
+- [Agentic Ai](playlists/agentic-ai.md) — 18 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gduMIdu2vMDDg4qK011Cd6)
+- [Computer Vision](playlists/computer-vision.md) — 27 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6hmy_ZMPApeXmgWy2gzwzHt)
 - [Course Reinforcement Learning](playlists/course-reinforcement-learning.md) — 8 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6jpkV4Z0RAWLgQPzA1LCYhM)
+- [GDPR / PII Detection with Spacy](playlists/gdpr-pii-detection-with-spacy.md) — 2 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6hpGHxRoz7qEdwiaHRe0ZVv)
+- [Mlflow Projects](playlists/mlflow-projects.md) — 4 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gy0OsbBhPHm35-p2ioPs1p)
+- [Speak with your Data](playlists/speak-with-your-data.md) — 3 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6h2BT-GGzUYjqWmDVig_j0V)
 
 ## Playlists
 
-- [Agentic Ai](playlists/agentic-ai.md) — 18 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gduMIdu2vMDDg4qK011Cd6)
 - [AI / Rag Finance](playlists/ai-rag-finance.md) — 9 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6gZRMhTU84L1B_llIpyO3Th)
 - [Artificial Intelligence in Finance](playlists/artificial-intelligence-in-finance.md) — 11 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6iFoF4StYjUHaXJq4vDsH95)
 - [Generative AI, LLM,s, Transformers, CV, NLP and more](playlists/generative-ai-llm-s-transformers-cv-nlp-and-more.md) — 60 videos. [YouTube](https://www.youtube.com/playlist?list=PLw-i55H2Io6hJTGshlRfNtcLOA1yoygzK)
