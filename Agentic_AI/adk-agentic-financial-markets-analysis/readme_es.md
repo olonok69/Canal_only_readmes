@@ -334,13 +334,13 @@ DEFAULT_SCANNER_SYMBOLS=AAPL,MSFT,GOOGL,AMZN
 
 ```bash
 # Terminal 1: backend FastAPI
-uvicorn stock_analyzer_bot.api:app --reload --port 8000
+uvicorn stock_analyzer_bot.api:app --reload --port 8100
 
 # Terminal 2: frontend Django
-python django_ui/manage.py runserver
+python django_ui/manage.py runserver 8001
 ```
 
-Abre el navegador en `http://127.0.0.1:8000` (Django UI) o llama directamente los endpoints API.
+Abre el navegador en `http://127.0.0.1:8001` (Django UI) o llama directamente los endpoints API.
 
 ---
 
@@ -527,13 +527,13 @@ DEFAULT_SCANNER_SYMBOLS=AAPL,MSFT,GOOGL,AMZN
 ### Smoke tests de API
 
 ```bash
-python -c "import requests; r=requests.post('http://127.0.0.1:8000/technical', json={'symbol':'AAPL','period':'1y'}); print(r.status_code); print(r.json().get('analysis_type'))"
-python -c "import requests; r=requests.post('http://127.0.0.1:8000/technical', json={'symbol':'AAPL','period':'1y','technical_mode':'score'}); print(r.status_code); print(r.json().get('analysis_type'))"
-python -c "import requests; r=requests.post('http://127.0.0.1:8000/technical', json={'symbol':'AAPL','period':'1y','technical_mode':'strategy','risk_profile':'conservative'}); print(r.status_code); print(r.json().get('tools_approach'))"
-python -c "import requests; r=requests.post('http://127.0.0.1:8000/scanner', json={'symbols':'AAPL,MSFT,NVDA','period':'1y','scanner_mode':'score','risk_profile':'aggressive'}); print(r.status_code); print(r.json().get('tools_approach'))"
-python -c "import requests; r=requests.post('http://127.0.0.1:8000/multisector', json={'period':'1y','multisector_mode':'strategy','risk_profile':'conservative','sectors':[{'name':'Tech','symbols':'AAPL,MSFT,NVDA'},{'name':'Financials','symbols':'JPM,BAC,GS'}]}); print(r.status_code); print(r.json().get('analysis_type'))"
-python -c "import requests; r=requests.post('http://127.0.0.1:8000/combined', json={'symbol':'AAPL','technical_period':'1y','fundamental_period':'3y','technical_mode':'score','risk_profile':'balanced'}); print(r.status_code); print(r.json().get('tools_approach'))"
-python -c "import requests; r=requests.post('http://127.0.0.1:8000/macd_donchian', json={'symbol':'AAPL','period':'5y','fast_period':12,'slow_period':26,'signal_period':9,'window':20}); print(r.status_code); print(r.json().get('analysis_type'))"
+python -c "import requests; r=requests.post('http://127.0.0.1:8100/technical', json={'symbol':'AAPL','period':'1y'}); print(r.status_code); print(r.json().get('analysis_type'))"
+python -c "import requests; r=requests.post('http://127.0.0.1:8100/technical', json={'symbol':'AAPL','period':'1y','technical_mode':'score'}); print(r.status_code); print(r.json().get('analysis_type'))"
+python -c "import requests; r=requests.post('http://127.0.0.1:8100/technical', json={'symbol':'AAPL','period':'1y','technical_mode':'strategy','risk_profile':'conservative'}); print(r.status_code); print(r.json().get('tools_approach'))"
+python -c "import requests; r=requests.post('http://127.0.0.1:8100/scanner', json={'symbols':'AAPL,MSFT,NVDA','period':'1y','scanner_mode':'score','risk_profile':'aggressive'}); print(r.status_code); print(r.json().get('tools_approach'))"
+python -c "import requests; r=requests.post('http://127.0.0.1:8100/multisector', json={'period':'1y','multisector_mode':'strategy','risk_profile':'conservative','sectors':[{'name':'Tech','symbols':'AAPL,MSFT,NVDA'},{'name':'Financials','symbols':'JPM,BAC,GS'}]}); print(r.status_code); print(r.json().get('analysis_type'))"
+python -c "import requests; r=requests.post('http://127.0.0.1:8100/combined', json={'symbol':'AAPL','technical_period':'1y','fundamental_period':'3y','technical_mode':'score','risk_profile':'balanced'}); print(r.status_code); print(r.json().get('tools_approach'))"
+python -c "import requests; r=requests.post('http://127.0.0.1:8100/macd_donchian', json={'symbol':'AAPL','period':'5y','fast_period':12,'slow_period':26,'signal_period':9,'window':20}); print(r.status_code); print(r.json().get('analysis_type'))"
 ```
 
 ### Verificación de compilación
@@ -568,7 +568,7 @@ python -m py_compile stock_analyzer_bot/adk_bot.py stock_analyzer_bot/api.py
 | Problema | Solución |
 |----------|----------|
 | "Servidor MCP no encontrado" | Verifica que `server/main.py` esté en la raíz |
-| "Conexión rechazada" | Inicia FastAPI con `uvicorn stock_analyzer_bot.api:app --port 8000` |
+| "Conexión rechazada" | Inicia FastAPI con `uvicorn stock_analyzer_bot.api:app --port 8100` |
 | "Timeout" | Reduce alcance de símbolos o incrementa timeout del cliente |
 | "Bloqueo de guardrail" | Revisa taxonomía y grounding de métricas MCP |
 | "Agente se detuvo pronto" | Reintenta con modelo más robusto |
